@@ -7,8 +7,8 @@ namespace Console_Pokemon_Project
 {
     class Pokemon
     {
-        public const int MONSTER_WIDTH = 24;
-        public const int MONSTER_HEIGHT = 24;
+        public const int GRAPHIC_WIDTH = 24;
+        public const int GRAPHIC_HEIGHT = 24;
 
         // 하나의 생성자로 이름값에 따라 스탯 별개
         public string name;

@@ -15,6 +15,7 @@ namespace Console_Pokemon_Project
 
         const int CURSOR_X_LENGTH = 2;
 
+
         // 메뉴가 출력되어야 될 위치값을 dialoqueXY로 전달받음
         public string SelectMenu<T>(int dialoqueX, int dialoqueY, T menu) where T : List<string>
         {
@@ -23,7 +24,7 @@ namespace Console_Pokemon_Project
             // ▶가 옮겨지기 전의 위치
             int oldPointerY = 0;
             // 선택 가능한 메뉴 수
-            int menuLength = menu.Count();
+            int menuLength = menu.Count;
 
             // 메뉴 출력
             PrintMenu(dialoqueX, dialoqueY, menu);
@@ -74,7 +75,7 @@ namespace Console_Pokemon_Project
 
             for (int i = 0; i < menuLength; i++)
             {
-                // 커서 위치를 고려하여 커서의 x위치에 2를 더해줌
+                // ▶ 위치를 고려하여 커서의 x위치에 2를 더해줌
                 Console.SetCursorPosition(dialoqueX + CURSOR_X_LENGTH, dialoqueY + i);
                 Console.WriteLine(menu[i]);
             }
