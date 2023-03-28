@@ -29,11 +29,11 @@ namespace Console_Pokemon_Project
       Console.CursorVisible = false;
     }
 
-    public static void print(char[,] pixel)
+    public static void print(char[,] pixel, int xLength)
     {
       for (int y = 0; y < WINDOW_HEIGHT; y++)
       {
-        for (int x = 0; x < WINDOW_WIDTH / 2; x++)
+        for (int x = 0; x < xLength; x++)
         {
           Console.Write(pixel[x, y]);
         }
