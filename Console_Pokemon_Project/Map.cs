@@ -26,10 +26,11 @@ namespace Console_Pokemon_Project
 
         public const int MAP_WIDTH = 40;
         public const int MAP_HEIGHT = 45;
+        
 
         public char[,] mapInfo = new char[MAP_WIDTH, MAP_HEIGHT]; // screen으로 출력할 맵 캐릭터 배열
-        private readonly int startXLoc;
-        private readonly int startYLoc;
+        public readonly int startXLoc;
+        public readonly int startYLoc;
         private int lastPlayerLocX;
         private int lastPlayerLocY;
 
@@ -39,7 +40,6 @@ namespace Console_Pokemon_Project
             this.startXLoc = startXLoc;
             this.startYLoc = startYLoc;
             InitMap();
-            
         }
 
         public void InitMap()
@@ -70,8 +70,9 @@ namespace Console_Pokemon_Project
             
             Screen.print(mapInfo, MAP_WIDTH);
         }
-        public void UpdatePlayerLoc()
+        public bool UpdatePlayerLoc()
         {
+            
             int playerPosX = Player.instance.locX - this.startXLoc;
             int playerPosY = Player.instance.locY - this.startYLoc;
 
@@ -79,13 +80,14 @@ namespace Console_Pokemon_Project
             if (playerPosX >= MAP_WIDTH || playerPosX < 0 ||
                 playerPosY >= MAP_HEIGHT || playerPosY < 0)
             {
-                return;
+                return true;
             }
             mapInfo[lastPlayerLocX, lastPlayerLocY] = (char)TileType.GROUND;
             mapInfo[playerPosX, playerPosY] = (char)TileType.PLAYER;
 
             lastPlayerLocX = Player.instance.locX;
             lastPlayerLocY = Player.instance.locY;
+            return false;
         }
         public void WaitPlayerInput()
         {
@@ -111,7 +113,10 @@ namespace Console_Pokemon_Project
                         Player.instance.isWaitingInput = false;
                         break;
                 }
-                UpdatePlayerLoc();
+                if(UpdatePlayerLoc() == true)
+                {
+                    return;
+                }
                 Screen.print(mapInfo, MAP_WIDTH);
             }
         }
