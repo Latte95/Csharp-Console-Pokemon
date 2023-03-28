@@ -19,6 +19,11 @@ namespace Console_Pokemon_Project
       Map map = new Map();
       // Battle battle = new Battle();
 
+      //Screen.print(pixel);
+      //if (Console.ReadKey(true).Key == ConsoleKey.Escape)
+      //{
+      //  Menu.SelectMenu(cursorX, cursorY, option);
+      //}
     }
   }
 }
