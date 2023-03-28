@@ -30,7 +30,7 @@ namespace Console_Pokemon_Project
         }
 
         public static void print(char[,] pixel, int xLength)
-        {
+        {            
             for (int y = 0; y < WINDOW_HEIGHT; y++)
             {
                 for (int x = 0; x < xLength; x++)
@@ -38,6 +38,22 @@ namespace Console_Pokemon_Project
                     Console.Write(pixel[x, y]);
                 }
                 Console.WriteLine();
+            }
+            if(xLength < 100)
+            {
+                int menualCursorX = 90;
+                int menualCursorY = 5;
+                int blankYSpace = 2;
+                Console.SetCursorPosition(menualCursorX, menualCursorY++);
+                Console.Write("         ↑");
+                Console.SetCursorPosition(menualCursorX, menualCursorY);
+                Console.Write("이동 : ←↓→");
+                menualCursorY += blankYSpace;
+                Console.SetCursorPosition(menualCursorX, menualCursorY);
+                Console.Write("선택 : 엔터");
+                menualCursorY += blankYSpace;
+                Console.SetCursorPosition(menualCursorX, menualCursorY);
+                Console.Write("메뉴 : ESC");
             }
         }
     }
