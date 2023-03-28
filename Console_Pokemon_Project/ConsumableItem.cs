@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Console_Pokemon_Project
 {
-  class ConsumableItem : Item
-  {
-    // 소비아이템
-    // 개수 중첩
-  }
+    class ConsumableItem : Item
+    {
+        // 소비아이템
+        // 개수 중첩
+    }
 }
