@@ -28,14 +28,8 @@ namespace Console_Pokemon_Project
         // 출력 위치 상수
         const int MAP_PRINT_X = 0;
         const int MAP_PRINT_Y = 0;
-        const int MAP_MENU_X = Map.MAP_WIDTH + 2;
-        const int MAP_MENU_Y = WINDOW_HEIGHT / 2 + 2;
-        const int BATTLE_DIALOGUE_PRINT_X = 4;
-        const int BATTLE_DIALOGUE_PRINT_Y = Pokemon.GRAPHIC_HEIGHT + 2;
-        const int ENEMY_PRINT_X = WINDOW_WIDTH - Pokemon.GRAPHIC_WIDTH - 1;
-        const int ENEMY_PRINT_Y = 1;
-        const int PLAYER_PRINT_X = 2;
-        const int PLAYER_PRINT_Y = Pokemon.GRAPHIC_HEIGHT / 2;
+        const int BATTLE_PRINT_X = 0;
+        const int BATTLE_PRINT_Y = 0;
 
         // 콘솔창 기본 설정
         public static void PreferencesWindow()
@@ -51,54 +45,72 @@ namespace Console_Pokemon_Project
             // pixel 배열의 길이 저장
             int xLength = pixel.GetLength(0);
             int yLength = pixel.GetLength(1);
+            int where;
 
-            Judge(xLength, yLength);
+            // pixel크기를 통해 Print를 호출한 곳을 유추
+            where = Judge(xLength, yLength);
+
+            // 호출 위치에 맞는 커서 위치 설정
+            switch (where)
+            {
+                case (int)ScreenType.맵:
+                    Console.SetCursorPosition(MAP_PRINT_X, MAP_PRINT_Y);
+                    break;
+                case (int)ScreenType.배틀:
+                    Console.SetCursorPosition(BATTLE_PRINT_X, BATTLE_PRINT_Y);
+                    break;
+            }
 
             for (int y = 0; y < yLength; y++)
             {
+                // 한줄 출력할 때 마다 커서의 X위치 설정
+                switch (where)
+                {
+                    case (int)ScreenType.맵:
+                        Console.SetCursorPosition(MAP_PRINT_X, Console.CursorTop);
+                        break;
+                    case (int)ScreenType.배틀:
+                        Console.SetCursorPosition(BATTLE_PRINT_X, Console.CursorTop);
+                        break;
+                }
+                // 설정된 커서에서 한 줄 출력
                 for (int x = 0; x < xLength; x++)
                 {
                     Console.Write(pixel[x, y]);
                 }
                 Console.WriteLine();
             }
+
+            // 맵에서 호출 했으면
+            if (where.Equals((int)ScreenType.맵))
+            {
+                // 오른쪽 상단에 메뉴얼 출력
+                DrawMenual();
+            }
         }
 
-        public static void Judge(int xLength, int yLength)
+        public static int Judge(int xLength, int yLength)
         {
-            int where;
-
-            #region pixel 크기로 어디서 준 정보인지 판단
+            // pixel 크기로 어디서 보낸 그래픽인지 유추
             if (xLength.Equals(Map.MAP_WIDTH) && yLength.Equals(Map.MAP_HEIGHT))
             {
-                where = (int)ScreenType.맵;
+                return (int)ScreenType.맵;
             }
             else if (xLength.Equals(WINDOW_WIDTH) && yLength.Equals(WINDOW_HEIGHT))
             {
-                where = (int)ScreenType.배틀;
+                return (int)ScreenType.배틀;
             }
             else
             {
-                where = 99;
-            }
-            #endregion
-
-            switch (where)
-            {
-                case (int)ScreenType.맵:
-                    DrawMenual();
-                    Console.SetCursorPosition(MAP_PRINT_X, MAP_PRINT_Y);
-                    break;
-                case (int)ScreenType.배틀:
-                    Console.SetCursorPosition(MAP_PRINT_X, MAP_PRINT_Y);
-                    break;
+                return 99;
             }
         }
 
         private static void DrawMenual()
         {
-            int menualCursorX = 90;
+            int menualCursorX = Map.MAP_WIDTH + 10;
             int menualCursorY = 5;
+            // 줄 간격
             int blankYSpace = 2;
             Console.SetCursorPosition(menualCursorX, menualCursorY++);
             Console.Write("         ↑");
