@@ -25,11 +25,13 @@ namespace Console_Pokemon_Project
         }
 
         public const int MAP_WIDTH = 40;
-        public const int MAP_HEIGHT = 43;
+        public const int MAP_HEIGHT = 45;
 
         public char[,] mapInfo = new char[MAP_WIDTH, MAP_HEIGHT]; // screen으로 출력할 맵 캐릭터 배열
         private readonly int startXLoc;
         private readonly int startYLoc;
+        private int lastPlayerLocX;
+        private int lastPlayerLocY;
 
         // 해당 Map의 위치 설정
         public Map(int startXLoc, int startYLoc)
@@ -42,28 +44,49 @@ namespace Console_Pokemon_Project
 
         public void InitMap()
         {
-            for(int i=0; i<MAP_WIDTH; i++)
+            for (int i = 0; i < MAP_WIDTH; i++)
             {
-                for(int j=0; j<MAP_HEIGHT; j++)
+                for (int j = 0; j < MAP_HEIGHT; j++)
                 {
                     mapInfo[i, j] = (char)TileType.GROUND;
                 }
             }
-            
+            for (int i=0; i<MAP_WIDTH;i++)
+            {
+                mapInfo[i, 0] = (char)TileType.WALL;
+                mapInfo[i, MAP_HEIGHT - 1] = (char)TileType.WALL;
+            }
+            for(int i=0; i<MAP_HEIGHT; i++)
+            {
+                mapInfo[0, i] = (char)TileType.WALL;
+                mapInfo[MAP_WIDTH-1, i] = (char)TileType.WALL;
+            }
+
+            lastPlayerLocX = Player.instance.locX;
+            lastPlayerLocY = Player.instance.locY;
+
             // 플레이어 위치
+            UpdatePlayerLoc();
+            
+            Screen.print(mapInfo, MAP_WIDTH);
+        }
+        public void UpdatePlayerLoc()
+        {
             int playerPosX = Player.instance.locX - this.startXLoc;
             int playerPosY = Player.instance.locY - this.startYLoc;
 
             // 플레이어가 해당 맵에 없으면 종료
-            if(playerPosX >= MAP_WIDTH || playerPosX < 0 ||
+            if (playerPosX >= MAP_WIDTH || playerPosX < 0 ||
                 playerPosY >= MAP_HEIGHT || playerPosY < 0)
             {
                 return;
             }
+            mapInfo[lastPlayerLocX, lastPlayerLocY] = (char)TileType.GROUND;
             mapInfo[playerPosX, playerPosY] = (char)TileType.PLAYER;
-            Screen.print(mapInfo);
-        }
 
+            lastPlayerLocX = Player.instance.locX;
+            lastPlayerLocY = Player.instance.locY;
+        }
         public void WaitPlayerInput()
         {
             while (Player.instance.isWaitingInput)
@@ -84,8 +107,12 @@ namespace Console_Pokemon_Project
                     case ConsoleKey.DownArrow:
                         Player.instance.locY++;
                         break;
+                    case ConsoleKey.Escape:
+                        Player.instance.isWaitingInput = false;
+                        break;
                 }
-
+                UpdatePlayerLoc();
+                Screen.print(mapInfo, MAP_WIDTH);
             }
         }
 

@@ -35,7 +35,7 @@ namespace Console_Pokemon_Project
         public EquipableItem[] equipInfo;
         public int locX;
         public int locY;
-        public bool isWaitingInput;
+        public bool isWaitingInput = true;
 
         private Player()
         {
