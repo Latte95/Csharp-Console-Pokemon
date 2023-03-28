@@ -17,6 +17,10 @@ namespace Console_Pokemon_Project
         {
             Screen.PreferencesWindow();
             Map map = new Map(0, 0);
+            while (true)
+            {
+                map.WaitPlayerInput();
+            }
 
             // Battle battle = new Battle();
 
