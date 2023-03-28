@@ -6,10 +6,19 @@ using System.Threading.Tasks;
 
 namespace Console_Pokemon_Project
 {
-    class Program
+  class Program
+  {
+    static void Main(string[] args)
     {
-        static void Main(string[] args)
-        {
-        }
+      Start();
     }
+
+    public static void Start()
+    {
+      Screen.PreferencesWindow();
+      Map map = new Map();
+      // Battle battle = new Battle();
+
+    }
+  }
 }

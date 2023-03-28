@@ -13,13 +13,6 @@ namespace Console_Pokemon_Project
     // 전투면 무슨 스킬 선택할지
     // 키입력 감지해서 무슨 메뉴를 선택했는지 판단
 
-    //public List<string> menu;
-
-    //public Menu(List<string> menu)
-    //{
-    //  this.menu = menu;
-    //}
-
     const int CURSOR_X_LENGTH = 2;
 
     // 메뉴가 출력되어야 될 위치값을 dialoqueXY로 전달받음
