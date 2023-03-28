@@ -15,5 +15,14 @@ namespace Console_Pokemon_Project
 
   class Screen
   {
+    void print()
+    {
+      /*
+       * while(true)
+       * {
+       *  
+       * }
+       */
+    }
   }
 }
