@@ -8,5 +8,6 @@ namespace Console_Pokemon_Project
 {
   class Inventory
   {
+    // 아이템
   }
 }

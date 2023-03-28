@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Console_Pokemon_Project
 {
-  class EquipableItem
+  class EquipableItem : Item
   {
+    // 장비의 특성?
   }
 }
