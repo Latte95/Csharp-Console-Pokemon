@@ -16,15 +16,10 @@ namespace Console_Pokemon_Project
             FOOT,
         }
 
-        public EQUIPTYPE equipType;
-
-        public EquipableItem(string name, int atk, int def, EQUIPTYPE equipType, int price)
+        public EQUIPTYPE equipType { get; set; }
+        public EquipableItem(string name, int atk, int def, int price, EQUIPTYPE equipType) : base(name, atk, def, price)
         {
-            this.name = name;
-            this.atk = atk;
-            this.def = def;
             this.equipType = equipType;
-            this.price = price;
         }
     }
 }

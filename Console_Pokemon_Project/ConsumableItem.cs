@@ -6,9 +6,14 @@ using System.Threading.Tasks;
 
 namespace Console_Pokemon_Project
 {
-    class ConsumableItem : Item
+    public class ConsumableItem : Item
     {
+        public int quantity { get; set; }
+
         // 소비아이템
-        // 개수 중첩
+        public ConsumableItem(string name, int atk, int def, int price, int quantity) : base(name, atk, def, price)
+        {
+            this.quantity = quantity;
+        }
     }
 }

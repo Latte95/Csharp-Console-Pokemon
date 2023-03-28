@@ -6,12 +6,13 @@ using System.Threading.Tasks;
 
 namespace Console_Pokemon_Project
 {
-    class Shop
+    public class EquipmentSlot
     {
-        public List<string> shopOption = new List<string> { "아이템 구매", "아이템 판매" };
+        List<Item> equipItem;
 
-        public Shop()
+        public EquipmentSlot()
         {
+            equipItem = new List<Item>();
         }
     }
 }
