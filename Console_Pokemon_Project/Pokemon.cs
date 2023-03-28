@@ -7,8 +7,10 @@ namespace Console_Pokemon_Project
 {
     class Pokemon
     {
-        // 하나의 생성자로 이름값에 따라 스탯 별개
+        public const int MONSTER_WIDTH = 24;
+        public const int MONSTER_HEIGHT = 24;
 
+        // 하나의 생성자로 이름값에 따라 스탯 별개
         public string name;
         public int hp;
         public int att;
@@ -60,10 +62,6 @@ namespace Console_Pokemon_Project
             pokemon[8] = new Pokemon("팬텀", 60 + ranHp + mon9Level * 3, 65 + ranAtt + mon9Level * 2, 60 + ranDef + mon9Level, 110 + ranSpeed + mon9Level * 2, 60 + level * 2, 230 + mon9Level * 2, 15, 3, mon9Level);
             pokemon[9] = new Pokemon("아쿠스타", 60 + ranHp + mon10Level * 3, 75 + ranAtt + mon10Level * 2, 85 + ranDef + mon10Level, 115 + ranSpeed + mon10Level * 2, 70 + level * 2, 300 + mon10Level * 2, 15, 3, mon10Level);
 
-
-
-            
-          
         }
 
 
