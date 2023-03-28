@@ -30,7 +30,8 @@ namespace Console_Pokemon_Project
         }
 
         public static void print(char[,] pixel, int xLength)
-        {            
+        {
+            Console.SetCursorPosition(0, 0);
             for (int y = 0; y < WINDOW_HEIGHT; y++)
             {
                 for (int x = 0; x < xLength; x++)
