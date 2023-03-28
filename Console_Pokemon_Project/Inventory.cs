@@ -6,8 +6,13 @@ using System.Threading.Tasks;
 
 namespace Console_Pokemon_Project
 {
-  class Inventory
-  {
-    // 아이템
-  }
+    public class Inventory
+    {
+        // 아이템
+        public List<Item> itemList;
+        public Inventory()
+        {
+            itemList = new List<Item>();
+        }
+    }
 }
