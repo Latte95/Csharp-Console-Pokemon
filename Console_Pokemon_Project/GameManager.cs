@@ -54,7 +54,8 @@ namespace Console_Pokemon_Project
                         mapList[i].WaitPlayerInput();
                     }
                 }
-
+                Battle ga = new Battle();
+                ga.MeetPokemon();
                 // 여기부터는 배틀차례
                 //if(Player.instance.isInBattle == true)
                 //{
