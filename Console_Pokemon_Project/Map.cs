@@ -84,13 +84,14 @@ namespace Console_Pokemon_Project
             int totalMapColumeCount = 2; // 1줄에 맵 몇개 있는지
             int myMapNumber = ((startXLoc / MAP_WIDTH) + (startYLoc / MAP_HEIGHT) * totalMapColumeCount);// 몇번째 맵인지 확인
 
-            for (int i=0; i<4; i++)
+            for (int i=0; i<7; i++)
             {
                 shop.saleItems.Add(new Item(
-                    ItemInfo.itemInfos[i + (myMapNumber * 3)].name,
-                    ItemInfo.itemInfos[i + (myMapNumber * 3)].atk,
-                    ItemInfo.itemInfos[i + (myMapNumber * 3)].def,
-                    ItemInfo.itemInfos[i + (myMapNumber * 3)].price)
+                    ItemInfo.itemInfos[i + (myMapNumber * 7)].name,
+                    ItemInfo.itemInfos[i + (myMapNumber * 7)].atk,
+                    ItemInfo.itemInfos[i + (myMapNumber * 7)].def,
+                    ItemInfo.itemInfos[i + (myMapNumber * 7)].price,
+                    ItemInfo.itemInfos[i + (myMapNumber * 7)].quantity)
                     );
             }
         }

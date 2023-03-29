@@ -19,7 +19,7 @@ namespace Console_Pokemon_Project
         public Shop(List<Item> saleItems)
         {
             this.saleItems = saleItems;
-            ShopAct();
+            //ShopAct();
         }
 
         public Shop() : this(new List<Item>())

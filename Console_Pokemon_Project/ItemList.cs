@@ -112,7 +112,8 @@ namespace Console_Pokemon_Project
             {
                 // ▶ 위치를 고려하여 커서의 x위치에 2를 더해줌
                 Console.SetCursorPosition(dialoqueX + CURSOR_X_LENGTH, dialoqueY + i);
-                Console.WriteLine(menu[itemIndex + i].name);
+
+                Console.WriteLine($"{menu[itemIndex + i].name} - {menu[itemIndex + i].quantity}개");
             }
         }
 
