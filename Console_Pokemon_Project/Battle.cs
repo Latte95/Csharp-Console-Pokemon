@@ -28,15 +28,15 @@ namespace Console_Pokemon_Project
         public void MeetPokemon()
         {
             bool isBattlePlay = true;
-            while(isBattlePlay)
-            { 
-            Pokemon[] pokemon = new Pokemon[10];
-            Random random = new Random();
-            int monNum = random.Next(10);
+            while (isBattlePlay)
+            {
+                Pokemon[] pokemon = new Pokemon[10];
+                Random random = new Random();
+                int monNum = random.Next(10);
 
 
-            Console.WriteLine("지나가던 {0}와 조우했다!",pokemon[monNum].name);
-            Console.WriteLine("어떤 행동을 하시겠습니까?");
+                Console.WriteLine("지나가던 {0}와 조우했다!", pokemon[monNum].name);
+                Console.WriteLine("어떤 행동을 하시겠습니까?");
                 /*
                  여기서 커서로 행동값의 정보를 받아옴
                 0=전투
@@ -44,7 +44,7 @@ namespace Console_Pokemon_Project
                 2=도망
                  */
                 int num = int.Parse(Console.ReadLine()); // 임시로 커서로 받아올 정보대신 입력으로 넣어놨음
-                switch(num)
+                switch (num)
                 {
                     case 0:
                         {
@@ -68,11 +68,13 @@ namespace Console_Pokemon_Project
                         }
                     case 1:
                         {
+                            //아이템 사용칸
                             Console.WriteLine("");
                             break;
                         }
                     case 2:
-                        { 
+                        {
+                            Run();
                             break;
                         }
                     default:
@@ -80,12 +82,15 @@ namespace Console_Pokemon_Project
                             break;
                         }
                 }
-               
+
             }
         }
         public void PlayerAttack(int monNum)
         {
             Pokemon[] pokemon = new Pokemon[10];
+            Random ran = new Random();
+            int avoidRan = ran.Next(100) + 1;
+            int criRan = ran.Next(100) + 1;
             //데미지 계산식 = (스킬계수 * 공격력 * (레벨*2 /5 +2) / 방어 / 50 ) * 속성보정
             //int dam = (skill * Player.instance.atk * (Player.instance.level * 2 / 5 + 2) / pokemon[monNum].def / 50);
             pokemon[monNum].hp = pokemon[monNum].hp - (Player.instance.atk - pokemon[monNum].def); //임시로 간략하게 계산식을 넣어둠
@@ -99,45 +104,117 @@ namespace Console_Pokemon_Project
             {
                 case 0:
                     {
-                        if (100 - pokemon[monNum].avoidence == 0 ) // 이부분은 100-avoidence < 랜덤1~100 가될때 로 할예정 or 랜덤1~100돌려서 5이상일때
+                        if (100 <= avoidRan+ pokemon[monNum].avoidence) //플레이어의 공격이 빗나갔을때
                         {
                             Console.WriteLine("공격이 빗나갔다!");
                             break;
                         }
-                        else
+                        else // 플레이어의 공격이 성공했을때
                         {
-                        Console.WriteLine("{0} 의 {1} 공격!", Player.instance.name, Player.instance.atk) ;
-                        
-                        Console.WriteLine();
+                            Console.WriteLine("{0} 의 {1}!", Player.instance.name ); // {1}를 추후 스킬.네임 으로변경 
+                            if (100 <= criRan+ pokemon[monNum].critical) //플레이어의 공격이 크리티컬이 터졌을때
+                            {
+                                int criDam = Player.instance.atk *= 2;
+                                Console.WriteLine("{0} 는 {1}의 데미지를 입었다.", pokemon[monNum].name, criDam); // {1}을 추후 데미지계산값으로 변경
+                                Console.WriteLine("급소에 맞았다!");
+                                pokemon[monNum].hp -= criDam;
+                            }
+                            else // 플레이어의 공격이 크리티컬이 안터졌을때
+                            {
+                            Console.WriteLine("{0} 는 {1}의 데미지를 입었다.", pokemon[monNum].name, Player.instance.atk); // {1}을 추후 데미지계산값으로 변경
+                                pokemon[monNum].hp -= Player.instance.atk;
+                            }
                         }
-                        break; 
+                        break;
                     }
                 case 1:
-                    { 
-                        break; 
+                    {
+                        if (100 <= avoidRan + pokemon[monNum].avoidence) //플레이어의 공격이 빗나갔을때
+                        {
+                            Console.WriteLine("공격이 빗나갔다!");
+                            break;
+                        }
+                        else // 플레이어의 공격이 성공했을때
+                        {
+                            Console.WriteLine("{0} 의 {1}!", Player.instance.name, Player.instance.atk); // {1}를 추후 스킬.네임 으로변경 
+                            if (100 <= criRan + pokemon[monNum].critical) //플레이어의 공격이 크리티컬이 터졌을때
+                            {
+                                int criDam = Player.instance.atk *= 2;
+                                Console.WriteLine("{0} 는 {1}의 데미지를 입었다.", pokemon[monNum].name, criDam); // {1}을 추후 데미지계산값으로 변경
+                                Console.WriteLine("급소에 맞았다!");
+                                pokemon[monNum].hp -= criDam;
+                            }
+                            else // 플레이어의 공격이 크리티컬이 안터졌을때
+                            {
+                                Console.WriteLine("{0} 는 {1}의 데미지를 입었다.", pokemon[monNum].name, Player.instance.atk); // {1}을 추후 데미지계산값으로 변경
+                                pokemon[monNum].hp -= Player.instance.atk;
+                            }
+                        }
+                        break;
                     }
                 case 2:
-                    { 
-                        break; 
-                    }
-                case 3: 
                     {
-                       
-                        break; 
+                        if (100 <= avoidRan + pokemon[monNum].avoidence) //플레이어의 공격이 빗나갔을때
+                        {
+                            Console.WriteLine("공격이 빗나갔다!");
+                            break;
+                        }
+                        else // 플레이어의 공격이 성공했을때
+                        {
+                            Console.WriteLine("{0} 의 {1}!", Player.instance.name, Player.instance.atk); // {1}를 추후 스킬.네임 으로변경 
+                            if (100 <= criRan + pokemon[monNum].critical) //플레이어의 공격이 크리티컬이 터졌을때
+                            {
+                                int criDam = Player.instance.atk *= 2;
+                                Console.WriteLine("{0} 는 {1}의 데미지를 입었다.", pokemon[monNum].name, criDam); // {1}을 추후 데미지계산값으로 변경
+                                Console.WriteLine("급소에 맞았다!");
+                                pokemon[monNum].hp -= criDam;
+                            }
+                            else // 플레이어의 공격이 크리티컬이 안터졌을때
+                            {
+                                Console.WriteLine("{0} 는 {1}의 데미지를 입었다.", pokemon[monNum].name, Player.instance.atk); // {1}을 추후 데미지계산값으로 변경
+                                pokemon[monNum].hp -= Player.instance.atk;
+                            }
+                        }
+                        break;
+                    }
+                case 3:
+                    {
+                        if (100 <= avoidRan + pokemon[monNum].avoidence) //플레이어의 공격이 빗나갔을때
+                        {
+                            Console.WriteLine("공격이 빗나갔다!");
+                            break;
+                        }
+                        else // 플레이어의 공격이 성공했을때
+                        {
+                            Console.WriteLine("{0} 의 {1}!", Player.instance.name, Player.instance.atk); // {1}를 추후 스킬.네임 으로변경 
+                            if (100 <= criRan + pokemon[monNum].critical) //플레이어의 공격이 크리티컬이 터졌을때
+                            {
+                                int criDam = Player.instance.atk *= 2;
+                                Console.WriteLine("{0} 는 {1}의 데미지를 입었다.", pokemon[monNum].name, criDam); // {1}을 추후 데미지계산값으로 변경
+                                Console.WriteLine("급소에 맞았다!");
+                                pokemon[monNum].hp -= criDam;
+                            }
+                            else // 플레이어의 공격이 크리티컬이 안터졌을때
+                            {
+                                Console.WriteLine("{0} 는 {1}의 데미지를 입었다.", pokemon[monNum].name, Player.instance.atk); // {1}을 추후 데미지계산값으로 변경
+                                pokemon[monNum].hp -= Player.instance.atk;
+                            }
+                        }
+                        break;
                     }
                 default: // 여기서는 랭업기를 예시로 들었음
                     {
                         //여기는 랭다운기
-                       // Console.WriteLine("{0} 의 {1}!", Player.instance.name, Player.instance.skill);
-                       // Console.WriteLine("{0} 의 {1}이 하락했다", pokemon[monNum].name, pokemon[monNum].def);
-                       // pokemon[monNum].def -= 
-                       // 여기는 랭업기
-                       //Console.WriteLine("{0} 의 {1}!", Player.instance.name , Player.instance.skill);
-                       //Console.WriteLine("{0} 의 {1}이 상승했다",Player.instance.name, Player.instance.def );
-                       //Player.instance.def += Player.instance.def /2;
-                         break;
+                        // Console.WriteLine("{0} 의 {1}!", Player.instance.name, Player.instance.skill);
+                        // Console.WriteLine("{0} 의 {1}이 하락했다", pokemon[monNum].name, pokemon[monNum].def);
+                        // pokemon[monNum].def -= 
+                        // 여기는 랭업기
+                        //Console.WriteLine("{0} 의 {1}!", Player.instance.name , Player.instance.skill);
+                        //Console.WriteLine("{0} 의 {1}이 상승했다",Player.instance.name, Player.instance.def );
+                        //Player.instance.def += Player.instance.def /2;
+                        break;
                     }
-                   
+
             }
         }
         public void MonsterAttack(int monNum)
@@ -153,15 +230,15 @@ namespace Console_Pokemon_Project
         public void Run() // 도망치기시 80%확률로 도망에 성공,
         {
             Random random = new Random();
-            int run = random.Next(100)+1;
+            int run = random.Next(100) + 1;
 
-            if(run < 80)
+            if (run < 80)
             {
                 Console.WriteLine("성공적으로 도망쳤다!");
                 //isBattlePlay = false; (배틀 실행 종료)
                 //맵에서 커서움직이게하는 bool = true (추후수정)
             }
-            if (run >=80)
+            if (run >= 80)
             {
                 Console.WriteLine("도망에 실패했습니다.");
             }
@@ -169,9 +246,9 @@ namespace Console_Pokemon_Project
 
         public void CheckPlayerDie() //플레이어가 죽었는지 확인하는 메서드
         {
-            if(Player.instance.hp==0)
+            if (Player.instance.hp == 0)
             {
-                Console.WriteLine("{0} 의 체력은 0이 되었다.", Player.instance.name) ;
+                Console.WriteLine("{0} 의 체력은 0이 되었다.", Player.instance.name);
                 Console.WriteLine("눈앞이 깜깜해졌다.");
                 //isPlay = false (전체 게임 실행 종료)
             }
@@ -179,10 +256,10 @@ namespace Console_Pokemon_Project
         public void CheckMonsterDie(int monNum) //몬스터가 죽었는지 확인하는 메서드
         {
             Pokemon[] pokemon = new Pokemon[10];
-            if(pokemon[monNum].hp==0)
+            if (pokemon[monNum].hp == 0)
             {
                 Console.WriteLine("{0}의 체력이 0이 되었다.");
-                Console.WriteLine("{0}는 exp{1}과 {2}g를 얻었다!",Player.instance.name,pokemon[monNum].exp , pokemon[monNum].dropgold) ;
+                Console.WriteLine("{0}는 exp{1}과 {2}g를 얻었다!", Player.instance.name, pokemon[monNum].exp, pokemon[monNum].dropgold);
                 //Player.instance.gold += pokemon[monNum].dropgold;
                 //Player.instance.exp += pokemon[monNum].exp;
                 //isBattlePlay = false (배틀 실행 종료)
