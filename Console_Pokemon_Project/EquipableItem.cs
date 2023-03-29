@@ -17,7 +17,7 @@ namespace Console_Pokemon_Project
         }
 
         public EQUIPTYPE equipType { get; set; }
-        public EquipableItem(string name, int atk, int def, int price, EQUIPTYPE equipType) : base(name, atk, def, price)
+        public EquipableItem(string name, int atk, int def, int price, EQUIPTYPE equipType, int quantity) : base(name, atk, def, price, quantity)
         {
             this.equipType = equipType;
         }

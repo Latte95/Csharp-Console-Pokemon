@@ -14,18 +14,16 @@ namespace Console_Pokemon_Project
         const int SHOP_Y_LENGTH = 4;
 
         public List<string> shopOption = new List<string> { "아이템 구매", "아이템 판매" };
-        private List<Item> saleItems;
+        public List<Item> saleItems;
 
         public Shop(List<Item> saleItems)
         {
             this.saleItems = saleItems;
+            //ShopAct();
         }
 
-        public Shop()
+        public Shop() : this(new List<Item>())
         {
-            saleItems = new List<Item>();
-
-            ShopAct();
         }
 
         public void ShopAct()
@@ -46,36 +44,23 @@ namespace Console_Pokemon_Project
             }
         }
 
+        // 판매 아이템 출력 및 구매 아이템 선택
         public void ShowSaleItems()
         {
-            RemoveShopContents();
             Console.SetCursorPosition(CURSOR_X, CURSOR_Y);
-            if (saleItems.Count <= SHOP_Y_LENGTH)
-            {
-                for (int i = 0; i < saleItems.Count; i++)
-                {
-                    Console.SetCursorPosition(CURSOR_X, Console.CursorTop);
-                    Console.WriteLine(saleItems[i].name);
-                }
-            }
-            else
-            {
-                for (int i = 0; i < SHOP_Y_LENGTH; i++)
-                {
-                    Console.SetCursorPosition(CURSOR_X, Console.CursorTop);
-                    Console.WriteLine(saleItems[i].name);
-                }
-            }
+            Console.SetCursorPosition(CURSOR_X, Console.CursorTop);
+            ItemList.SelectMenu(CURSOR_X, CURSOR_Y, saleItems);
         }
 
+        // 사용자 인벤토리 출력 및 판매 아이템 선택
         public void ShowBuyItems()
         {
-            RemoveShopContents();
+            ClearShopContents();
             Console.SetCursorPosition(CURSOR_X, CURSOR_Y);
-
         }
 
-        public void RemoveShopContents()
+        // 상점 화면 초기화
+        public static void ClearShopContents()
         {
             Console.SetCursorPosition(CURSOR_X, CURSOR_Y);
             for (int i = 0; i < 4; i++)
