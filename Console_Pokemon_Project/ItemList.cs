@@ -24,10 +24,18 @@ namespace Console_Pokemon_Project
             bool isUp;
             bool isDown;
 
+            Console.SetCursorPosition(dialoqueX + CURSOR_X_LENGTH + 2, dialoqueY + 1);
+            if (itemIndex >= menu.Count)
+            {
+                Console.WriteLine("보유 아이템이 없습니다.");
+                Console.ReadKey(true);
+                return null;
+            }
+
             // 아이템 출력
             PrintMenu(dialoqueX, dialoqueY, menu, itemIndex);
             // ▶ 출력
-            PrintPointer(pointerY, oldPointerY, dialoqueX, dialoqueY);
+            Menu.PrintPointer(pointerY, oldPointerY, dialoqueX, dialoqueY);
 
             // 키 입력에 따라 ▶ 위치를 바꿔주는 반복문
             while (true)
@@ -90,7 +98,7 @@ namespace Console_Pokemon_Project
                     PrintMenu(dialoqueX, dialoqueY, menu, itemIndex);
                 }
 
-                PrintPointer(pointerY, oldPointerY, dialoqueX, dialoqueY);
+                Menu.PrintPointer(pointerY, oldPointerY, dialoqueX, dialoqueY);
             }
         }
 
@@ -107,12 +115,75 @@ namespace Console_Pokemon_Project
         // 메뉴 목록만 출력
         private static void PrintMenu<T>(int dialoqueX, int dialoqueY, T menu, int itemIndex) where T : List<Item>
         {
+            int menuLength;
+            if(menu.Count>4)
+            {
+                menuLength = 4;
+            }
+            else
+            {
+                menuLength = menu.Count;
+            }
+            int maxWidth = 24;
+            if((dialoqueX%2).Equals(1))
+            {
+                dialoqueX -= 1;
+            }
+
+            Console.SetCursorPosition(dialoqueX, dialoqueY);
+            for (int y = dialoqueY; y < dialoqueY + menuLength + 2; y++)
+            {
+                Console.SetCursorPosition(dialoqueX, Console.CursorTop);
+                for (int x = dialoqueX; x < dialoqueX + maxWidth; x++)
+                {
+                    if (y.Equals(dialoqueY))
+                    {
+                        if (x.Equals(dialoqueX))
+                        {
+                            Console.Write("┍");
+                        }
+                        else if (x.Equals(dialoqueX + maxWidth - 1))
+                        {
+                            Console.Write("┑");
+                        }
+                        else
+                        {
+                            Console.Write("━");
+                        }
+                    }
+                    else if (y.Equals(dialoqueY + menuLength + 1))
+                    {
+                        if (x.Equals(dialoqueX))
+                        {
+                            Console.Write("┕");
+                        }
+                        else if (x.Equals(dialoqueX + maxWidth - 1))
+                        {
+                            Console.Write("┙");
+                        }
+                        else
+                        {
+                            Console.Write("━");
+                        }
+                    }
+                    else
+                    {
+                        if (x.Equals(dialoqueX) || x.Equals(dialoqueX + maxWidth - 1))
+                        {
+                            Console.SetCursorPosition(x, Console.CursorTop);
+                            Console.Write("│");
+                        }
+                    }
+                }
+                Console.WriteLine();
+            }
+
             if (dialoqueX.Equals(Shop.CURSOR_X) &&
                dialoqueY.Equals(Shop.CURSOR_Y))
             {
                 Shop.ClearShopContents();
             }
-            else if(dialoqueX.Equals(Battle.DIALOGUE_X) &&
+            else if (dialoqueX.Equals(Battle.DIALOGUE_X) &&
                 dialoqueY.Equals(Battle.DIALOGUE_Y))
             {
                 Battle.DialogueClear();
@@ -124,22 +195,16 @@ namespace Console_Pokemon_Project
                     break;
                 }
                 // ▶ 위치를 고려하여 커서의 x위치에 2를 더해줌
-                Console.SetCursorPosition(dialoqueX + CURSOR_X_LENGTH, dialoqueY + i);
-
-                Console.WriteLine($"{menu[itemIndex + i].name} - {menu[itemIndex + i].quantity}개");
+                Console.SetCursorPosition(dialoqueX + CURSOR_X_LENGTH + 2, dialoqueY + i + 1);
+                if (itemIndex + i >= menu.Count)
+                {
+                    Console.WriteLine();
+                }
+                else
+                {
+                    Console.WriteLine($"{menu[itemIndex + i].name} - {menu[itemIndex + i].quantity}개");
+                }
             }
-        }
-
-        // 커서 위치 갱신
-        private static void PrintPointer(int newPosition, int oldPointerY, int dialoqueX, int dialoqueY)
-        {
-            // 커서만 새로 그려주도록 구현
-            // 원래 ▶가 있던 위치를 공백을 통해 지우고
-            Console.SetCursorPosition(dialoqueX, oldPointerY + dialoqueY);
-            Console.Write("  ");
-            // 옮겨진 위치에 ▶ 표시
-            Console.SetCursorPosition(dialoqueX, newPosition + dialoqueY);
-            Console.Write("▶");
         }
     }
 }
