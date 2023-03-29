@@ -21,7 +21,8 @@ namespace Console_Pokemon_Project
         {
             GROUND = '　',
             WALL = '■',
-            PLAYER = '●'
+            PLAYER = '●',
+            SHOP = '※'
         }
 
         public const int MAP_WIDTH = 40;
@@ -34,6 +35,8 @@ namespace Console_Pokemon_Project
         private int lastPlayerLocX;
         private int lastPlayerLocY;
         private Shop shop;
+        private int shopLocX;
+        private int shopLocY;
 
         // 해당 Map의 위치 설정
         public Map(int startXLoc, int startYLoc)
@@ -67,12 +70,28 @@ namespace Console_Pokemon_Project
             mapInfo[MAP_WIDTH-1, MAP_HEIGHT /2] = (char)TileType.GROUND;
             mapInfo[0, MAP_HEIGHT / 2] = (char)TileType.GROUND;
 
-           
+            shopLocX = MAP_WIDTH /2;
+            shopLocY = MAP_HEIGHT /2;
+            mapInfo[shopLocX, shopLocY] = (char)TileType.SHOP;
 
-            // 플레이어 위치
-            UpdatePlayerLoc();
-            
-            Screen.Print(mapInfo);
+            CreateShop();
+
+        }
+        private void CreateShop()
+        {
+            shop = new Shop();
+            int totalMapColumeCount = 2; // 1줄에 맵 몇개 있는지
+            int myMapNumber = ((startXLoc / MAP_WIDTH) + (startYLoc / MAP_HEIGHT) * totalMapColumeCount);// 몇번째 맵인지 확인
+
+            for (int i=0; i<4; i++)
+            {
+                shop.saleItems.Add(new Item(
+                    ItemInfo.itemInfos[i + (myMapNumber * 3)].name,
+                    ItemInfo.itemInfos[i + (myMapNumber * 3)].atk,
+                    ItemInfo.itemInfos[i + (myMapNumber * 3)].def,
+                    ItemInfo.itemInfos[i + (myMapNumber * 3)].price)
+                    );
+            }
         }
         public bool UpdatePlayerLoc()
         {
@@ -85,11 +104,12 @@ namespace Console_Pokemon_Project
             if (playerPosX >= MAP_WIDTH || playerPosX < 0 ||
                 playerPosY >= MAP_HEIGHT || playerPosY < 0)
             {
+                mapInfo[lastPlayerPosX, lastPlayerPosY] = (char)TileType.GROUND;    // 맵 바뀌기 직전 캐릭터 흔적 삭제
                 return true;
             }
 
             // 현재 위치가 벽이면 이전위치로
-            if (CheckWall(playerPosX, playerPosY) == true)
+            if (CheckBlock(playerPosX, playerPosY) == true)
             {
                 Player.instance.locX = lastPlayerLocX;
                 Player.instance.locY = lastPlayerLocY;
@@ -105,14 +125,33 @@ namespace Console_Pokemon_Project
             
             return false;
         }
-        public bool CheckWall(int playerPosX, int playerPosY)
+        public bool CheckBlock(int playerPosX, int playerPosY)
         {   
-            return mapInfo[playerPosX, playerPosY] == (char)TileType.WALL;
+            return mapInfo[playerPosX, playerPosY] == (char)TileType.WALL || 
+                mapInfo[playerPosX, playerPosY] == (char)TileType.SHOP;
+        }
+        public bool CheckHereIsShop()
+        {
+            bool isHereShop = false;
+
+            int playerPosX = Player.instance.locX - this.startXLoc;
+            int playerPosY = Player.instance.locY - this.startYLoc;
+
+            if(playerPosX >= shopLocX - 1 && playerPosX <= shopLocX + 1 && playerPosY == shopLocY ||
+                playerPosY >= shopLocY - 1 && playerPosY <= shopLocY + 1 && playerPosX == shopLocX)
+            {
+                isHereShop = true;
+            }
+
+            return isHereShop;
         }
         public void WaitPlayerInput()
         {
             lastPlayerLocX = Player.instance.locX;
             lastPlayerLocY = Player.instance.locY;
+            UpdatePlayerLoc();
+            Screen.Print(mapInfo);
+
             while (Player.instance.isWaitingInput)
             {
                 ConsoleKeyInfo keyInfo;
@@ -120,20 +159,38 @@ namespace Console_Pokemon_Project
                 switch (keyInfo.Key)
                 {
                     case ConsoleKey.LeftArrow:
-                        Player.instance.locX--;
-                        break;
+                        {
+                            Player.instance.locX--;
+                            break;
+                        }
                     case ConsoleKey.RightArrow:
-                        Player.instance.locX++;
-                        break;
+                        {
+                            Player.instance.locX++;
+                            break;
+                        }
                     case ConsoleKey.UpArrow:
-                        Player.instance.locY--;
-                        break;
+                        {
+                            Player.instance.locY--;
+                            break;
+                        }
                     case ConsoleKey.DownArrow:
-                        Player.instance.locY++;
-                        break;
+                        {
+                            Player.instance.locY++;
+                            break;
+                        }
                     case ConsoleKey.Escape:
-                        Player.instance.isWaitingInput = false;
-                        break;
+                        {
+                            Player.instance.isWaitingInput = false;
+                            break;
+                        }
+                    case ConsoleKey.Spacebar:
+                        {
+                            if(CheckHereIsShop()==true)
+                            {
+                                shop.ShopAct();
+                            }
+                            break;
+                        }
                 }
                 // 맵 밖으로 넘어갔으면 true
                 if(UpdatePlayerLoc() == true)
@@ -142,8 +199,8 @@ namespace Console_Pokemon_Project
                 }
                 //else if (몬스터 조우) 
                 //{
-                //   Player.instance.isInBattle = true;
-                //   return;
+                //    Player.instance.isInBattle = true;
+                //    return;
                 //}
                 Screen.Print(mapInfo);
             }

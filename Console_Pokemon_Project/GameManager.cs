@@ -18,11 +18,11 @@ namespace Console_Pokemon_Project
             
 
             List<Map> mapList = new List<Map>();
-            for (int i = 0; i < MAX_MAP_COL_COUNT; i++)
+            for (int i = 0; i < MAX_MAP_ROW_COUNT; i++)
             {
-                for (int j = 0; j < MAX_MAP_ROW_COUNT; j++)
+                for (int j = 0; j < MAX_MAP_COL_COUNT; j++)
                 {
-                    mapList.Add(new Map(i * MAP_WIDTH, j * MAP_HEIGHT));
+                    mapList.Add(new Map(j * MAP_WIDTH, i * MAP_HEIGHT));
                 }
             }
             while (true)
