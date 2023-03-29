@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -93,16 +94,30 @@ namespace Console_Pokemon_Project
             int myMapNumber = ((startXLoc / MAP_WIDTH) + (startYLoc / MAP_HEIGHT) * totalMapColumeCount);// 몇번째 맵인지 확인
 
             // 상점 아이템 목록 생성
-            for (int i=0; i<4; i++)
+            // 장비 3개 먼저
+            for (int i=0; i<3; i++)
             {
-                shop.saleItems.Add(new Item(
-                    ItemInfo.itemInfos[i + (myMapNumber * 4)].name,
-                    ItemInfo.itemInfos[i + (myMapNumber * 4)].atk,
-                    ItemInfo.itemInfos[i + (myMapNumber * 4)].def,
-                    ItemInfo.itemInfos[i + (myMapNumber * 4)].price,
-                    ItemInfo.itemInfos[i + (myMapNumber * 4)].quantity)
+                shop.saleItems.Add(new EquipableItem(
+                    (ItemInfo.itemInfos[i + (myMapNumber * 4)] as EquipableItem).name,
+                    (ItemInfo.itemInfos[i + (myMapNumber * 4)] as EquipableItem).atk,
+                    (ItemInfo.itemInfos[i + (myMapNumber * 4)] as EquipableItem).def,
+                    (ItemInfo.itemInfos[i + (myMapNumber * 4)] as EquipableItem).price,
+                    (ItemInfo.itemInfos[i + (myMapNumber * 4)] as EquipableItem).equipType,
+                    (ItemInfo.itemInfos[i + (myMapNumber * 4)] as EquipableItem).quantity)
                     );
             }
+            // 나머지 소비
+            for (int i=0; i<1; i++)
+            {
+                shop.saleItems.Add(new ConsumableItem(
+                    (ItemInfo.itemInfos[i + (myMapNumber * 4) + 3] as ConsumableItem).name,
+                    (ItemInfo.itemInfos[i + (myMapNumber * 4) + 3] as ConsumableItem).atk,
+                    (ItemInfo.itemInfos[i + (myMapNumber * 4) + 3] as ConsumableItem).def,
+                    (ItemInfo.itemInfos[i + (myMapNumber * 4) + 3] as ConsumableItem).price,
+                    (ItemInfo.itemInfos[i + (myMapNumber * 4) + 3] as ConsumableItem).quantity
+                    ));
+            }
+            
         }
         // 현재 맵에 플레이어가 없으면 true 반환
         public bool UpdatePlayerLoc()
@@ -235,11 +250,9 @@ namespace Console_Pokemon_Project
                             }
                             if(CheckHereIsMonsterField() == true)
                             {
-                                Console.WriteLine("몬스터출현");
                                 Player.instance.isInBattle = true;
                                 return;
                             }
-                            
                             break;
                         }
                 }

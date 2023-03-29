@@ -50,8 +50,6 @@ namespace Console_Pokemon_Project
                 PokemonInfo.pokemon[monNum].avoidence,
                 level);
 
-            enemy.AddSkill();
-
             MeetPokemon();
         }
 

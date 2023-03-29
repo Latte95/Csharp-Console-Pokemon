@@ -33,6 +33,7 @@ namespace Console_Pokemon_Project
         public int def;
         public int speed;
         public int level;
+        public int money;
         public Inventory inven;
         public EquipmentSlot equipSlot;
         public int locX;
@@ -48,6 +49,7 @@ namespace Console_Pokemon_Project
             this.def = 1;
             this.speed = 80;
             this.level = 1;
+            this.money = 10000;
             equipSlot = new EquipmentSlot();
             inven = new Inventory();
             locX = 2;
