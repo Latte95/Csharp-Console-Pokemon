@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -70,7 +71,19 @@ namespace Console_Pokemon_Project
         }
         private void AddSkill(int skillIndex)
         {
-            List<Skill> tmpSkills = SkillInfo.PokemonSkills;
+            List<Skill> tmpSkills = new List<Skill>();
+
+            if (System.IO.File.Exists("PokemonSkills.json"))
+            {
+                string json = System.IO.File.ReadAllText("PokemonSkills.json");
+                tmpSkills = JsonConvert.DeserializeObject<List<Skill>>(json);
+            }
+            else
+            {
+                Console.WriteLine("스킬정보 파일없음");
+                return;
+            }
+
             skills.Add(new Skill(
                 tmpSkills[skillIndex].Name,
                 tmpSkills[skillIndex].Power,
