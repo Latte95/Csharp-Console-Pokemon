@@ -61,18 +61,22 @@ namespace Console_Pokemon_Project
                 mapInfo[0, i] = (char)TileType.WALL;
                 mapInfo[MAP_WIDTH-1, i] = (char)TileType.WALL;
             }
+            mapInfo[MAP_WIDTH / 2, 0] = (char)TileType.GROUND;
+            mapInfo[MAP_WIDTH / 2, MAP_HEIGHT-1] = (char)TileType.GROUND;
+            mapInfo[MAP_WIDTH-1, MAP_HEIGHT /2] = (char)TileType.GROUND;
+            mapInfo[0, MAP_HEIGHT / 2] = (char)TileType.GROUND;
 
-            lastPlayerLocX = Player.instance.locX;
-            lastPlayerLocY = Player.instance.locY;
+
 
             // 플레이어 위치
             UpdatePlayerLoc();
             
-            Screen.print(mapInfo, MAP_WIDTH);
+            Screen.Print(mapInfo);
         }
         public bool UpdatePlayerLoc()
         {
-            
+            int lastPlayerPosX = lastPlayerLocX - this.startXLoc;
+            int lastPlayerPosY = lastPlayerLocY - this.startYLoc;
             int playerPosX = Player.instance.locX - this.startXLoc;
             int playerPosY = Player.instance.locY - this.startYLoc;
 
@@ -82,15 +86,32 @@ namespace Console_Pokemon_Project
             {
                 return true;
             }
-            mapInfo[lastPlayerLocX, lastPlayerLocY] = (char)TileType.GROUND;
-            mapInfo[playerPosX, playerPosY] = (char)TileType.PLAYER;
 
-            lastPlayerLocX = Player.instance.locX;
-            lastPlayerLocY = Player.instance.locY;
+            // 현재 위치가 벽이면 이전위치로
+            if (CheckWall(playerPosX, playerPosY) == true)
+            {
+                Player.instance.locX = lastPlayerLocX;
+                Player.instance.locY = lastPlayerLocY;
+            }
+            else
+            {
+                mapInfo[lastPlayerPosX, lastPlayerPosY] = (char)TileType.GROUND;
+                mapInfo[playerPosX, playerPosY] = (char)TileType.PLAYER;
+
+                lastPlayerLocX = Player.instance.locX;
+                lastPlayerLocY = Player.instance.locY;
+            }
+            
             return false;
+        }
+        public bool CheckWall(int playerPosX, int playerPosY)
+        {   
+            return mapInfo[playerPosX, playerPosY] == (char)TileType.WALL;
         }
         public void WaitPlayerInput()
         {
+            lastPlayerLocX = Player.instance.locX;
+            lastPlayerLocY = Player.instance.locY;
             while (Player.instance.isWaitingInput)
             {
                 ConsoleKeyInfo keyInfo;
@@ -117,7 +138,7 @@ namespace Console_Pokemon_Project
                 {
                     return;
                 }
-                Screen.print(mapInfo, MAP_WIDTH);
+                Screen.Print(mapInfo);
             }
         }
 

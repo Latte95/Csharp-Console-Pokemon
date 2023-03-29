@@ -39,10 +39,18 @@ namespace Console_Pokemon_Project
 
         private Player()
         {
-
+            this.name = "Player";
+            this.hp = 100;
+            this.atk = 5;
+            this.def = 1;
+            equipSlot = new EquipmentSlot();
+            inven = new Inventory();
+            locX = 2;
+            locY = 2;
+            isWaitingInput = true;
         }
 
-        public Player(string name, int hp, int atk, int def)
+        private Player(string name, int hp, int atk, int def)
         {
             this.name = name;
             this.hp = hp;
@@ -50,9 +58,9 @@ namespace Console_Pokemon_Project
             this.def = def;
             equipSlot = new EquipmentSlot();
             inven = new Inventory();
-            locX = 0;
-            locY = 0;
-            isWaitingInput = false;
+            locX = 2;
+            locY = 2;
+            isWaitingInput = true;
         }
 
     }
