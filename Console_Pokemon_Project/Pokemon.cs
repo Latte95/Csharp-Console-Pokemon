@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
+using Newtonsoft.Json;
+using System.IO;
 
 namespace Console_Pokemon_Project
 {
@@ -48,7 +50,7 @@ namespace Console_Pokemon_Project
         {
             // 피카츄 = 0,1,2,3 파이리 = 8,9,10,11 꼬부기 = 8,12,13,14 이상해씨 = 4,5,6,7 나옹 = 8,13,15,16 
             // 푸린 = 16,17,11,0 괴력몬 = 18,19,20,21  포니타 = 10,11,21,22 팬텀 = 23,24,25,26 아쿠스타 =14,27,28,29
-            List<Skill> tmpSkills = SkillInfo.PokemonSkills;
+
             switch (this.name)
             {
                 case "피카츄":
@@ -115,7 +117,19 @@ namespace Console_Pokemon_Project
         }
         public void AddSkill(int skillIndex)
         {
-            List<Skill> tmpSkills = SkillInfo.PokemonSkills;
+            List<Skill> tmpSkills = new List<Skill>();
+
+            if (File.Exists("PokemonSkills.json"))
+            {
+                string json = File.ReadAllText("PokemonSkills.json");
+                tmpSkills = JsonConvert.DeserializeObject<List<Skill>>(json);
+            }
+            else
+            {
+                Console.WriteLine("스킬정보 파일없음");
+                return;
+            }
+
             skills.Add(new Skill(
                 tmpSkills[skillIndex].Name, 
                 tmpSkills[skillIndex].Power, 

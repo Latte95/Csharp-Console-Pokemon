@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
+using System.IO;
+using Newtonsoft.Json;
 
 namespace Console_Pokemon_Project
 {
@@ -39,18 +41,41 @@ namespace Console_Pokemon_Project
             int ranSpeed = random.Next(1, 10);
             int ranLevel = random.Next(1, 3);
 
-            int level = PokemonInfo.pokemon[monNum].level + ranLevel;
+            List<Pokemon> pokemons = new List<Pokemon>();
+            if(File.Exists("Pokemons.json"))
+            {
+                string json = File.ReadAllText("Pokemons.json");
+                pokemons = JsonConvert.DeserializeObject<List<Pokemon>>(json);
+            }
+            else
+            {
+                Console.WriteLine("포켓몬 정보 파일없음");
+            }
 
-            enemy = new Pokemon(PokemonInfo.pokemon[monNum].name,
-                PokemonInfo.pokemon[monNum].hp + ranHp + level * 3,
-                PokemonInfo.pokemon[monNum].att + ranAtt + level * 2,
-                PokemonInfo.pokemon[monNum].def + ranDef + level,
-                PokemonInfo.pokemon[monNum].speed + ranSpeed + level * 2,
-                PokemonInfo.pokemon[monNum].exp + level * 2,
-                PokemonInfo.pokemon[monNum].dropgold + level * 2,
-                PokemonInfo.pokemon[monNum].critical,
-                PokemonInfo.pokemon[monNum].avoidence,
+            int level = pokemons[monNum].level + ranLevel;
+
+            enemy = new Pokemon(pokemons[monNum].name,
+                pokemons[monNum].hp + ranHp + level * 3,
+                pokemons[monNum].att + ranAtt + level * 2,
+                pokemons[monNum].def + ranDef + level,
+                pokemons[monNum].speed + ranSpeed + level * 2,
+                pokemons[monNum].exp + level * 2,
+                pokemons[monNum].dropgold + level * 2,
+                pokemons[monNum].critical,
+                pokemons[monNum].avoidence,
                 level);
+            //int level = PokemonInfo.pokemon[monNum].level + ranLevel;
+
+            //enemy = new Pokemon(PokemonInfo.pokemon[monNum].name,
+            //    PokemonInfo.pokemon[monNum].hp + ranHp + level * 3,
+            //    PokemonInfo.pokemon[monNum].att + ranAtt + level * 2,
+            //    PokemonInfo.pokemon[monNum].def + ranDef + level,
+            //    PokemonInfo.pokemon[monNum].speed + ranSpeed + level * 2,
+            //    PokemonInfo.pokemon[monNum].exp + level * 2,
+            //    PokemonInfo.pokemon[monNum].dropgold + level * 2,
+            //    PokemonInfo.pokemon[monNum].critical,
+            //    PokemonInfo.pokemon[monNum].avoidence,
+            //    level);
 
             MeetPokemon();
         }

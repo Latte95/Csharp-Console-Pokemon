@@ -8,3 +8,14 @@ G:\GitHub\Csharp-Console-Pokemon\Console_Pokemon_Project\bin\Debug\Newtonsoft.Js
 G:\GitHub\Csharp-Console-Pokemon\Console_Pokemon_Project\obj\Debug\Console_Pokemon_Project.csproj.CopyComplete
 G:\GitHub\Csharp-Console-Pokemon\Console_Pokemon_Project\obj\Debug\Console_Pokemon_Project.exe
 G:\GitHub\Csharp-Console-Pokemon\Console_Pokemon_Project\obj\Debug\Console_Pokemon_Project.pdb
+D:\GitHub\Csharp-Console-Pokemon\Console_Pokemon_Project\bin\Debug\Console_Pokemon_Project.exe.config
+D:\GitHub\Csharp-Console-Pokemon\Console_Pokemon_Project\bin\Debug\Console_Pokemon_Project.exe
+D:\GitHub\Csharp-Console-Pokemon\Console_Pokemon_Project\bin\Debug\Console_Pokemon_Project.pdb
+D:\GitHub\Csharp-Console-Pokemon\Console_Pokemon_Project\bin\Debug\Newtonsoft.Json.dll
+D:\GitHub\Csharp-Console-Pokemon\Console_Pokemon_Project\bin\Debug\Newtonsoft.Json.xml
+D:\GitHub\Csharp-Console-Pokemon\Console_Pokemon_Project\obj\Debug\Console_Pokemon_Project.csproj.AssemblyReference.cache
+D:\GitHub\Csharp-Console-Pokemon\Console_Pokemon_Project\obj\Debug\Console_Pokemon_Project.csproj.SuggestedBindingRedirects.cache
+D:\GitHub\Csharp-Console-Pokemon\Console_Pokemon_Project\obj\Debug\Console_Pokemon_Project.csproj.CoreCompileInputs.cache
+D:\GitHub\Csharp-Console-Pokemon\Console_Pokemon_Project\obj\Debug\Console_Pokemon_Project.csproj.CopyComplete
+D:\GitHub\Csharp-Console-Pokemon\Console_Pokemon_Project\obj\Debug\Console_Pokemon_Project.exe
+D:\GitHub\Csharp-Console-Pokemon\Console_Pokemon_Project\obj\Debug\Console_Pokemon_Project.pdb
