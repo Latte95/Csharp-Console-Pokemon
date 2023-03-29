@@ -8,10 +8,76 @@ namespace Console_Pokemon_Project
 {
     class Shop
     {
+        const int CURSOR_X = Map.MAP_WIDTH + 2;
+        const int CURSOR_Y = (Screen.WINDOW_HEIGHT >> 1) + 2;
+        const int SHOP_X_LENGTH = Screen.WINDOW_WIDTH - CURSOR_X;
+        const int SHOP_Y_LENGTH = 4;
+
         public List<string> shopOption = new List<string> { "아이템 구매", "아이템 판매" };
+        private List<Item> saleItems;
 
         public Shop()
         {
+            saleItems = new List<Item>();
+
+            ShopAct();
+        }
+
+        public void ShopAct()
+        {
+            // 판매 or 구매
+            string whatAct;
+
+            whatAct = Menu.SelectMenu(CURSOR_X, CURSOR_Y, shopOption);
+            switch (whatAct)
+            {
+                case "아이템 구매":
+                    ShowSaleItems();
+                    break;
+
+                case "아이템 판매":
+                    ShowBuyItems();
+                    break;
+            }
+        }
+
+        public void ShowSaleItems()
+        {
+            RemoveShopContents();
+            Console.SetCursorPosition(CURSOR_X, CURSOR_Y);
+            if (saleItems.Count <= SHOP_Y_LENGTH)
+            {
+                for (int i = 0; i < saleItems.Count; i++)
+                {
+                    Console.SetCursorPosition(CURSOR_X, Console.CursorTop);
+                    Console.WriteLine(saleItems[i].name);
+                }
+            }
+            else
+            {
+                for (int i = 0; i < SHOP_Y_LENGTH; i++)
+                {
+                    Console.SetCursorPosition(CURSOR_X, Console.CursorTop);
+                    Console.WriteLine(saleItems[i].name);
+                }
+            }
+        }
+
+        public void ShowBuyItems()
+        {
+            RemoveShopContents();
+            Console.SetCursorPosition(CURSOR_X, CURSOR_Y);
+
+        }
+
+        public void RemoveShopContents()
+        {
+            Console.SetCursorPosition(CURSOR_X, CURSOR_Y);
+            for (int i = 0; i < 4; i++)
+            {
+                Console.SetCursorPosition(CURSOR_X, Console.CursorTop);
+                Console.WriteLine(new string('　', SHOP_X_LENGTH / 2 - 2));
+            }
         }
     }
 }
