@@ -61,6 +61,7 @@
     <Compile Include="Screen.cs" />
     <Compile Include="Shop.cs" />
     <Compile Include="Skill.cs" />
+    <Compile Include="SkillInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
