@@ -19,13 +19,11 @@ namespace Console_Pokemon_Project
         public Shop(List<Item> saleItems)
         {
             this.saleItems = saleItems;
+            ShopAct();
         }
 
-        public Shop()
+        public Shop() : this(new List<Item>())
         {
-            saleItems = new List<Item>();
-
-            ShopAct();
         }
 
         public void ShopAct()
@@ -46,6 +44,7 @@ namespace Console_Pokemon_Project
             }
         }
 
+        // 판매 아이템 출력 및 구매 아이템 선택
         public void ShowSaleItems()
         {
             RemoveShopContents();
@@ -68,6 +67,7 @@ namespace Console_Pokemon_Project
             }
         }
 
+        // 사용자 인벤토리 출력 및 판매 아이템 선택
         public void ShowBuyItems()
         {
             RemoveShopContents();
@@ -75,7 +75,8 @@ namespace Console_Pokemon_Project
 
         }
 
-        public void RemoveShopContents()
+        // 상점 화면 초기화
+        public void ClearShopContents()
         {
             Console.SetCursorPosition(CURSOR_X, CURSOR_Y);
             for (int i = 0; i < 4; i++)
