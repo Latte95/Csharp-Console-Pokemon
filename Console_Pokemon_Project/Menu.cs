@@ -72,24 +72,73 @@ namespace Console_Pokemon_Project
         private static void PrintMenu<T>(int dialoqueX, int dialoqueY, T menu) where T : List<string>
         {
             int menuLength = menu.Count;
+            int maxWidth = menu.Max(item => item.Length)*2+6;
+
+            Console.SetCursorPosition(dialoqueX, dialoqueY);
+            for (int y = dialoqueY; y < dialoqueY + menu.Count+2; y++)
+            {
+                Console.SetCursorPosition(dialoqueX, Console.CursorTop);
+                for (int x = dialoqueX; x < dialoqueX + maxWidth; x++)
+                {
+                    if (y.Equals(dialoqueY))
+                    {
+                        if (x.Equals(dialoqueX))
+                        {
+                            Console.Write("┍");
+                        }
+                        else if (x.Equals(dialoqueX + maxWidth-1))
+                        {
+                            Console.Write("┑");
+                        }
+                        else
+                        {
+                            Console.Write("━");
+                        }
+                    }
+                    else if (y.Equals(dialoqueY + menu.Count + 1))
+                    {
+                        if (x.Equals(dialoqueX))
+                        {
+                            Console.Write("┕");
+                        }
+                        else if (x.Equals(dialoqueX + maxWidth-1))
+                        {
+                            Console.Write("┙");
+                        }
+                        else
+                        {
+                            Console.Write("━");
+                        }
+                    }
+                    else
+                    {
+                        if (x.Equals(dialoqueX) || x.Equals(dialoqueX + maxWidth-1))
+                        {
+                            Console.SetCursorPosition(x, Console.CursorTop);
+                            Console.Write("│");
+                        }
+                    }
+                }
+                Console.WriteLine();
+            }
 
             for (int i = 0; i < menuLength; i++)
             {
                 // ▶ 위치를 고려하여 커서의 x위치에 2를 더해줌
-                Console.SetCursorPosition(dialoqueX + CURSOR_X_LENGTH, dialoqueY + i);
+                Console.SetCursorPosition(dialoqueX + CURSOR_X_LENGTH + 2, dialoqueY + i + 1);
                 Console.WriteLine(menu[i]);
             }
         }
 
         // 커서 위치 갱신
-        private static void PrintPointer(int newPosition, int oldPointerY, int dialoqueX, int dialoqueY)
+        public static void PrintPointer(int newPosition, int oldPointerY, int dialoqueX, int dialoqueY)
         {
             // 커서만 새로 그려주도록 구현
             // 원래 ▶가 있던 위치를 공백을 통해 지우고
-            Console.SetCursorPosition(dialoqueX, oldPointerY + dialoqueY);
+            Console.SetCursorPosition(dialoqueX + 2, oldPointerY + dialoqueY + 1);
             Console.Write("  ");
             // 옮겨진 위치에 ▶ 표시
-            Console.SetCursorPosition(dialoqueX, newPosition + dialoqueY);
+            Console.SetCursorPosition(dialoqueX + 2, newPosition + dialoqueY + 1);
             Console.Write("▶");
         }
     }

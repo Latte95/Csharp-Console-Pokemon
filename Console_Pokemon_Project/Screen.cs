@@ -31,8 +31,6 @@ namespace Console_Pokemon_Project
         const int BATTLE_PRINT_X = 0;
         const int BATTLE_PRINT_Y = 0;
 
-        public static List<string> shopOption = new List<string> { "새로하기", "불러오기", "게임 종료" };
-
         // 콘솔창 기본 설정
         public static void PreferencesWindow()
         {
@@ -40,26 +38,9 @@ namespace Console_Pokemon_Project
             Console.WindowWidth = WINDOW_WIDTH + 1;
             Console.WindowHeight = WINDOW_HEIGHT + 1;
             Console.CursorVisible = false;
-            Title();
+
         }
 
-        public static void Title()
-        {
-            string select;
-
-            select = Menu.SelectMenu(WINDOW_WIDTH>>1, 30, shopOption);
-            switch(select)
-            {
-                case "새로하기":
-                    GameManager.Start();
-                    break;
-                case "불러오기":
-                    GameManager.Start();
-                    break;
-                case "게임 종료":
-                    return;
-            }
-        }
 
         public static void Print(char[,] pixel)
         {
