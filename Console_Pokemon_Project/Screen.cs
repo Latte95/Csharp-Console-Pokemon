@@ -22,8 +22,8 @@ namespace Console_Pokemon_Project
         }
 
         // 콘솔 세팅 상수
-        const int WINDOW_WIDTH = 120;
-        const int WINDOW_HEIGHT = 45;
+        public const int WINDOW_WIDTH = 120;
+        public const int WINDOW_HEIGHT = 45;
         const string TITLE_NAME = "포켓 몬스터가 되지 못한 무언가";
         // 출력 위치 상수
         const int MAP_PRINT_X = 0;
