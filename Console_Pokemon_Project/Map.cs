@@ -263,11 +263,11 @@ namespace Console_Pokemon_Project
                 }
                 else
                 {
-                    if(CheckThereIsMonster() == true)
-                    {
-                        Player.instance.isInBattle = true;
-                        return;
-                    }
+                    //if(CheckThereIsMonster() == true)
+                    //{
+                    //    Player.instance.isInBattle = true;
+                    //    return;
+                    //}
                 }
             
                 Screen.Print(mapInfo);

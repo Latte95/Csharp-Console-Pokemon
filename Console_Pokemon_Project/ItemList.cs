@@ -54,7 +54,7 @@ namespace Console_Pokemon_Project
                         }
                         break;
                     case ConsoleKey.DownArrow:
-                        if (pointerY.Equals(ITEM_LENGTH - 1))
+                        if (pointerY.Equals(ITEM_LENGTH - 1) || pointerY.Equals(menu.Count - 1))
                         {
                             isDown = true;
                         }
@@ -107,9 +107,22 @@ namespace Console_Pokemon_Project
         // 메뉴 목록만 출력
         private static void PrintMenu<T>(int dialoqueX, int dialoqueY, T menu, int itemIndex) where T : List<Item>
         {
-            Shop.ClearShopContents();
-            for (int i = 0; i < menu.Count; i++)
+            if (dialoqueX.Equals(Shop.CURSOR_X) &&
+               dialoqueY.Equals(Shop.CURSOR_Y))
             {
+                Shop.ClearShopContents();
+            }
+            else if(dialoqueX.Equals(Battle.DIALOGUE_X) &&
+                dialoqueY.Equals(Battle.DIALOGUE_Y))
+            {
+                Battle.DialogueClear();
+            }
+            for (int i = 0; i < ITEM_LENGTH; i++)
+            {
+                if (i > menu.Count)
+                {
+                    break;
+                }
                 // ▶ 위치를 고려하여 커서의 x위치에 2를 더해줌
                 Console.SetCursorPosition(dialoqueX + CURSOR_X_LENGTH, dialoqueY + i);
 

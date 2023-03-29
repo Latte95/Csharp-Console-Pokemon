@@ -15,8 +15,8 @@ namespace Console_Pokemon_Project
             PokemonSkills.Add(new Skill("10만볼트", 90, 100, 15));
             PokemonSkills.Add(new Skill("아이언테일", 100, 75, 15));
             PokemonSkills.Add(new Skill("번개", 110, 70, 10));
-            PokemonSkills.Add(new Skill("잎날가르기", 55, 95, 25));
-            PokemonSkills.Add(new Skill("볼부비부비", 20, 100, 20));
+            PokemonSkills.Add(new Skill("볼부비부비", 55, 95, 25));
+            PokemonSkills.Add(new Skill("잎날가르기", 20, 100, 20));
             PokemonSkills.Add(new Skill("덩굴채찍", 45, 100, 25));
             PokemonSkills.Add(new Skill("매지컬리프", 60, 100, 20));
             PokemonSkills.Add(new Skill("기가드레인", 75, 100, 10));

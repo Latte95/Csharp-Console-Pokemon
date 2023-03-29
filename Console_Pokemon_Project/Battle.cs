@@ -11,8 +11,8 @@ namespace Console_Pokemon_Project
     {
         const int WINDOW_WIDTH = 120;
         const int WINDOW_HEIGHT = 45;
-        const int DIALOGUE_X = 4;
-        const int DIALOGUE_Y = WINDOW_HEIGHT - 10;
+        public const int DIALOGUE_X = 4;
+        public const int DIALOGUE_Y = WINDOW_HEIGHT - 10;
         const int DIALOGUE_WINDOW_WIDTH = 20;
         const int DIALOGUE_WINDOW_HEIGHT = 5;
 
@@ -21,6 +21,8 @@ namespace Console_Pokemon_Project
         // 승패에 따른 결과값 반환
         public char[,] pixel = new char[60, 45];
         public List<string> battle = new List<string> { "전투", "아이템 사용", "도망" };
+        public List<string> skillsStr = new List<string>();
+
         //public List<string> skill;
         public static Pokemon enemy;
 
@@ -98,6 +100,7 @@ namespace Console_Pokemon_Project
                     case "아이템 사용":
                         {
                             //아이템 사용칸
+                            ItemUse();
                             Console.WriteLine("");
                             break;
                         }
@@ -128,6 +131,14 @@ namespace Console_Pokemon_Project
                스킬 4개의 각각 데미지를 int skill1Dam , skill2dam, skill3Dam skill4Dam 로 저장
              
              */
+
+
+            foreach(Skill skill in Player.instance.skills)
+            {
+                skillsStr.Add(skill.Name);
+            }
+            DialogueClear();
+            Menu.SelectMenu(DIALOGUE_X, DIALOGUE_Y, skillsStr);
             int num = int.Parse(Console.ReadLine()); // 임시로 커서로 받아올 정보대신 입력으로 넣어놨음
             switch (num)
             {
@@ -254,7 +265,9 @@ namespace Console_Pokemon_Project
         }
         public void ItemUse()
         {
+            List<Item> tmpItem = Player.instance.inven.items;
 
+            ItemList.SelectMenu(DIALOGUE_X, DIALOGUE_Y, tmpItem);
         }
         public void Run() // 도망치기시 80%확률로 도망에 성공,
         {
@@ -297,7 +310,7 @@ namespace Console_Pokemon_Project
 
         }
 
-        public void DialogueClear()
+        public static void DialogueClear()
         {
             Console.SetCursorPosition(DIALOGUE_X, DIALOGUE_Y);
 

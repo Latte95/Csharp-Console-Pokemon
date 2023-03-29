@@ -40,6 +40,7 @@ namespace Console_Pokemon_Project
         public int locY;
         public bool isWaitingInput;
         public bool isInBattle;
+        public List<Skill> skills = new List<Skill>();
 
         private Player()
         {
@@ -56,6 +57,26 @@ namespace Console_Pokemon_Project
             locY = 2;
             isWaitingInput = true;
             isInBattle = false;
+
+            InitGetSkill();
+        }
+
+        private void InitGetSkill()
+        {
+            AddSkill(0);
+            AddSkill(1);
+            AddSkill(2);
+            AddSkill(3);
+        }
+        private void AddSkill(int skillIndex)
+        {
+            List<Skill> tmpSkills = SkillInfo.PokemonSkills;
+            skills.Add(new Skill(
+                tmpSkills[skillIndex].Name,
+                tmpSkills[skillIndex].Power,
+                tmpSkills[skillIndex].Hitrate,
+                tmpSkills[skillIndex].Pp)
+                );
         }
 
         private Player(string name, int hp, int atk, int def)

@@ -19,7 +19,10 @@ namespace Console_Pokemon_Project
 
         public Skill(string name, int power, int hitrate, int pp)
         {
-
+            Name = name;
+            Power = power;
+            Hitrate = hitrate;
+            Pp = pp;
         }
             public static List<Skill> PokemonSkills = new List<Skill>();
 

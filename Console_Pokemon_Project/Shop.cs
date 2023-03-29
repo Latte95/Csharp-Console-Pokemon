@@ -8,8 +8,8 @@ namespace Console_Pokemon_Project
 {
     class Shop
     {
-        const int CURSOR_X = Map.MAP_WIDTH + 2;
-        const int CURSOR_Y = (Screen.WINDOW_HEIGHT >> 1) + 2;
+        public const int CURSOR_X = Map.MAP_WIDTH + 2;
+        public const int CURSOR_Y = (Screen.WINDOW_HEIGHT >> 1) + 2;
         const int SHOP_X_LENGTH = Screen.WINDOW_WIDTH - CURSOR_X;
         const int SHOP_Y_LENGTH = 4;
 
