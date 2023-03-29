@@ -12,7 +12,7 @@ namespace Console_Pokemon_Project
         const int WINDOW_WIDTH = 120;
         const int WINDOW_HEIGHT = 45;
         const int DIALOGUE_X = 4;
-        const int DIALOGUE_Y = WINDOW_HEIGHT-10;
+        const int DIALOGUE_Y = WINDOW_HEIGHT - 10;
         const int DIALOGUE_WINDOW_WIDTH = 20;
         const int DIALOGUE_WINDOW_HEIGHT = 5;
 
@@ -43,9 +43,9 @@ namespace Console_Pokemon_Project
                 PokemonInfo.pokemon[monNum].hp + ranHp + level * 3,
                 PokemonInfo.pokemon[monNum].att + ranAtt + level * 2,
                 PokemonInfo.pokemon[monNum].def + ranDef + level,
-                PokemonInfo.pokemon[monNum].speed + ranSpeed + level* 2,
-                PokemonInfo.pokemon[monNum].exp + level* 2,
-                PokemonInfo.pokemon[monNum].dropgold + level* 2,
+                PokemonInfo.pokemon[monNum].speed + ranSpeed + level * 2,
+                PokemonInfo.pokemon[monNum].exp + level * 2,
+                PokemonInfo.pokemon[monNum].dropgold + level * 2,
                 PokemonInfo.pokemon[monNum].critical,
                 PokemonInfo.pokemon[monNum].avoidence,
                 level);
@@ -70,13 +70,8 @@ namespace Console_Pokemon_Project
                 Console.WriteLine("지나가던 {0}와 조우했다!", enemy.name);
                 Console.SetCursorPosition(DIALOGUE_X, Console.CursorTop);
                 Console.WriteLine("어떤 행동을 하시겠습니까?");
-                /*
-                 여기서 커서로 행동값의 정보를 받아옴
-                0=전투
-                1=아이템사용
-                2=도망
-                 */
                 Console.ReadKey(true);
+                DialogueClear();
 
                 string name = Menu.SelectMenu(DIALOGUE_X, DIALOGUE_Y, battle);
                 //int num = int.Parse(Console.ReadLine()); // 임시로 커서로 받아올 정보대신 입력으로 넣어놨음
@@ -303,5 +298,24 @@ namespace Console_Pokemon_Project
             }
 
         }
+
+        public void DialogueClear()
+        {
+            Console.SetCursorPosition(DIALOGUE_X, DIALOGUE_Y);
+
+            for (int i = 0; i < DIALOGUE_WINDOW_HEIGHT; i++)
+            {
+                for (int j = 0; j < DIALOGUE_WINDOW_WIDTH; j++)
+                {
+                    Console.Write("　");
+                }
+                Console.WriteLine();
+                Console.SetCursorPosition(DIALOGUE_X, Console.CursorTop);
+            }
+
+
+            Console.SetCursorPosition(DIALOGUE_X, DIALOGUE_Y);
+        }
+
     }
 }
