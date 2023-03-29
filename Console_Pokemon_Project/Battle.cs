@@ -30,9 +30,10 @@ namespace Console_Pokemon_Project
             bool isBattlePlay = true;
             while (isBattlePlay)
             {
-                Pokemon[] pokemon = new Pokemon[10];
+                //Pokemon[] pokemon = new Pokemon[10];
                 Random random = new Random();
                 int monNum = random.Next(10);
+                Pokemon pokemon = new Pokemon(monNum);
 
 
                 Console.WriteLine("지나가던 {0}와 조우했다!", pokemon[monNum].name);
