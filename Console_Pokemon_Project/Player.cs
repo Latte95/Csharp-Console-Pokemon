@@ -31,6 +31,8 @@ namespace Console_Pokemon_Project
         public int hp;
         public int atk;
         public int def;
+        public int speed;
+        public int level;
         public Inventory inven;
         public EquipmentSlot equipSlot;
         public int locX;
@@ -44,6 +46,8 @@ namespace Console_Pokemon_Project
             this.hp = 100;
             this.atk = 5;
             this.def = 1;
+            this.speed = 80;
+            this.level = 1;
             equipSlot = new EquipmentSlot();
             inven = new Inventory();
             locX = 2;

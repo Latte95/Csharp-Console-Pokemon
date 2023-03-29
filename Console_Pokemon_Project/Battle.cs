@@ -106,8 +106,8 @@ namespace Console_Pokemon_Project
                         }
                         else
                         {
-                        Console.WriteLine("{0} 의 {1} 공격!", Player.instance.name,Player.instance.skill1) ;
-                        pokemon[monNum].hp -= skill1Dam;
+                        Console.WriteLine("{0} 의 {1} 공격!", Player.instance.name, Player.instance.atk) ;
+                        
                         Console.WriteLine();
                         }
                         break; 
@@ -120,19 +120,22 @@ namespace Console_Pokemon_Project
                     { 
                         break; 
                     }
-                case 3: //여기서는 상대의 랭크를 다운시키는 스킬을 예시로 들어놨음 (추후변경예정)
+                case 3: 
                     {
-                        Console.WriteLine("{0} 의 {1}!" ,Player.instance.name, Player.instance.skill);
-                        Console.WriteLine("{0} 의 {1}이 하락했다", pokemon[monNum].name, pokemon[monNum].def);
-                        pokemon[monNum].def -= 
+                       
                         break; 
                     }
                 default: // 여기서는 랭업기를 예시로 들었음
                     {
-                        Console.WriteLine("{0} 의 {1}!", Player.instance.name , Player.instance.skill);
-                        Console.WriteLine("{0} 의 {1}이 상승했다",Player.instance.name, Player.instance.def );
-                        Player.instance.def += Player.instance.def /2;
-                        break;
+                        //여기는 랭다운기
+                       // Console.WriteLine("{0} 의 {1}!", Player.instance.name, Player.instance.skill);
+                       // Console.WriteLine("{0} 의 {1}이 하락했다", pokemon[monNum].name, pokemon[monNum].def);
+                       // pokemon[monNum].def -= 
+                       // 여기는 랭업기
+                       //Console.WriteLine("{0} 의 {1}!", Player.instance.name , Player.instance.skill);
+                       //Console.WriteLine("{0} 의 {1}이 상승했다",Player.instance.name, Player.instance.def );
+                       //Player.instance.def += Player.instance.def /2;
+                         break;
                     }
                    
             }
