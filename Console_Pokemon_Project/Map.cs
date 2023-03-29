@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -93,28 +94,42 @@ namespace Console_Pokemon_Project
             int totalMapColumeCount = 2; // 1줄에 맵 몇개 있는지
             int myMapNumber = ((startXLoc / MAP_WIDTH) + (startYLoc / MAP_HEIGHT) * totalMapColumeCount);// 몇번째 맵인지 확인
 
+            // json 파일 있는 경로
+            string path = Path.GetFullPath(Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..\.\JSON\"));
+
+            // 타입 저장 (Item의 파생클래스 단위로 저장 가능)
+            JsonSerializerSettings settings = new JsonSerializerSettings
+            {
+                TypeNameHandling = TypeNameHandling.Auto
+            };
+            // json파일 읽기
+            string jsonFromFile = File.ReadAllText(path + "itemInfos.json");
+
+            // json 파일 내용에서 객체로 역직렬화
+            List<Item> itemsInfos = JsonConvert.DeserializeObject<List<Item>>(jsonFromFile, settings);
+
             // 상점 아이템 목록 생성
             // 장비 3개 먼저
             for (int i=0; i<3; i++)
             {
                 shop.saleItems.Add(new EquipableItem(
-                    (ItemInfo.itemInfos[i + (myMapNumber * 4)] as EquipableItem).name,
-                    (ItemInfo.itemInfos[i + (myMapNumber * 4)] as EquipableItem).atk,
-                    (ItemInfo.itemInfos[i + (myMapNumber * 4)] as EquipableItem).def,
-                    (ItemInfo.itemInfos[i + (myMapNumber * 4)] as EquipableItem).price,
-                    (ItemInfo.itemInfos[i + (myMapNumber * 4)] as EquipableItem).equipType,
-                    (ItemInfo.itemInfos[i + (myMapNumber * 4)] as EquipableItem).quantity)
+                    (itemsInfos[i + (myMapNumber * 4)] as EquipableItem).name,
+                    (itemsInfos[i + (myMapNumber * 4)] as EquipableItem).atk,
+                    (itemsInfos[i + (myMapNumber * 4)] as EquipableItem).def,
+                    (itemsInfos[i + (myMapNumber * 4)] as EquipableItem).price,
+                    (itemsInfos[i + (myMapNumber * 4)] as EquipableItem).equipType,
+                    (itemsInfos[i + (myMapNumber * 4)] as EquipableItem).quantity)
                     );
             }
             // 나머지 소비
             for (int i=0; i<1; i++)
             {
                 shop.saleItems.Add(new ConsumableItem(
-                    (ItemInfo.itemInfos[i + (myMapNumber * 4) + 3] as ConsumableItem).name,
-                    (ItemInfo.itemInfos[i + (myMapNumber * 4) + 3] as ConsumableItem).atk,
-                    (ItemInfo.itemInfos[i + (myMapNumber * 4) + 3] as ConsumableItem).def,
-                    (ItemInfo.itemInfos[i + (myMapNumber * 4) + 3] as ConsumableItem).price,
-                    (ItemInfo.itemInfos[i + (myMapNumber * 4) + 3] as ConsumableItem).quantity
+                    (itemsInfos[i + (myMapNumber * 4) + 3] as ConsumableItem).name,
+                    (itemsInfos[i + (myMapNumber * 4) + 3] as ConsumableItem).atk,
+                    (itemsInfos[i + (myMapNumber * 4) + 3] as ConsumableItem).def,
+                    (itemsInfos[i + (myMapNumber * 4) + 3] as ConsumableItem).price,
+                    (itemsInfos[i + (myMapNumber * 4) + 3] as ConsumableItem).quantity
                     ));
             }
             

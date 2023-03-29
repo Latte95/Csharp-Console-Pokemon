@@ -1,5 +1,6 @@
 [
   {
+    "$type": "Console_Pokemon_Project.EquipableItem, Console_Pokemon_Project",
     "equipType": 2,
     "name": "몽둥이1",
     "atk": 5,
@@ -8,6 +9,7 @@
     "quantity": 1
   },
   {
+    "$type": "Console_Pokemon_Project.EquipableItem, Console_Pokemon_Project",
     "equipType": 2,
     "name": "칼1",
     "atk": 5,
@@ -16,6 +18,7 @@
     "quantity": 1
   },
   {
+    "$type": "Console_Pokemon_Project.EquipableItem, Console_Pokemon_Project",
     "equipType": 2,
     "name": "완드1",
     "atk": 5,
@@ -24,6 +27,7 @@
     "quantity": 1
   },
   {
+    "$type": "Console_Pokemon_Project.ConsumableItem, Console_Pokemon_Project",
     "name": "체력포션1",
     "atk": 0,
     "def": 0,
@@ -31,6 +35,7 @@
     "quantity": 3
   },
   {
+    "$type": "Console_Pokemon_Project.EquipableItem, Console_Pokemon_Project",
     "equipType": 2,
     "name": "몽둥이2",
     "atk": 5,
@@ -39,6 +44,7 @@
     "quantity": 1
   },
   {
+    "$type": "Console_Pokemon_Project.EquipableItem, Console_Pokemon_Project",
     "equipType": 2,
     "name": "칼2",
     "atk": 5,
@@ -47,6 +53,7 @@
     "quantity": 1
   },
   {
+    "$type": "Console_Pokemon_Project.EquipableItem, Console_Pokemon_Project",
     "equipType": 2,
     "name": "완드2",
     "atk": 5,
@@ -55,6 +62,7 @@
     "quantity": 1
   },
   {
+    "$type": "Console_Pokemon_Project.ConsumableItem, Console_Pokemon_Project",
     "name": "체력포션2",
     "atk": 0,
     "def": 0,
@@ -62,6 +70,7 @@
     "quantity": 1
   },
   {
+    "$type": "Console_Pokemon_Project.EquipableItem, Console_Pokemon_Project",
     "equipType": 2,
     "name": "몽둥이3",
     "atk": 5,
@@ -70,6 +79,7 @@
     "quantity": 1
   },
   {
+    "$type": "Console_Pokemon_Project.EquipableItem, Console_Pokemon_Project",
     "equipType": 2,
     "name": "칼3",
     "atk": 5,
@@ -78,6 +88,7 @@
     "quantity": 1
   },
   {
+    "$type": "Console_Pokemon_Project.EquipableItem, Console_Pokemon_Project",
     "equipType": 2,
     "name": "완드3",
     "atk": 5,
@@ -86,6 +97,7 @@
     "quantity": 1
   },
   {
+    "$type": "Console_Pokemon_Project.ConsumableItem, Console_Pokemon_Project",
     "name": "체력포션3",
     "atk": 0,
     "def": 0,
@@ -93,6 +105,7 @@
     "quantity": 1
   },
   {
+    "$type": "Console_Pokemon_Project.EquipableItem, Console_Pokemon_Project",
     "equipType": 2,
     "name": "몽둥이4",
     "atk": 5,
@@ -101,6 +114,7 @@
     "quantity": 1
   },
   {
+    "$type": "Console_Pokemon_Project.EquipableItem, Console_Pokemon_Project",
     "equipType": 2,
     "name": "칼4",
     "atk": 5,
@@ -109,6 +123,7 @@
     "quantity": 1
   },
   {
+    "$type": "Console_Pokemon_Project.EquipableItem, Console_Pokemon_Project",
     "equipType": 2,
     "name": "완드4",
     "atk": 5,
@@ -117,6 +132,7 @@
     "quantity": 1
   },
   {
+    "$type": "Console_Pokemon_Project.ConsumableItem, Console_Pokemon_Project",
     "name": "체력포션4",
     "atk": 0,
     "def": 0,
@@ -124,6 +140,7 @@
     "quantity": 1
   },
   {
+    "$type": "Console_Pokemon_Project.EquipableItem, Console_Pokemon_Project",
     "equipType": 2,
     "name": "몽둥이4",
     "atk": 5,
@@ -132,6 +149,7 @@
     "quantity": 1
   },
   {
+    "$type": "Console_Pokemon_Project.EquipableItem, Console_Pokemon_Project",
     "equipType": 2,
     "name": "칼4",
     "atk": 5,
@@ -140,6 +158,7 @@
     "quantity": 1
   },
   {
+    "$type": "Console_Pokemon_Project.EquipableItem, Console_Pokemon_Project",
     "equipType": 2,
     "name": "완드4",
     "atk": 5,
@@ -148,6 +167,7 @@
     "quantity": 1
   },
   {
+    "$type": "Console_Pokemon_Project.ConsumableItem, Console_Pokemon_Project",
     "name": "체력포션4",
     "atk": 0,
     "def": 0,
@@ -155,6 +175,7 @@
     "quantity": 1
   },
   {
+    "$type": "Console_Pokemon_Project.EquipableItem, Console_Pokemon_Project",
     "equipType": 2,
     "name": "몽둥이4",
     "atk": 5,
@@ -163,6 +184,7 @@
     "quantity": 1
   },
   {
+    "$type": "Console_Pokemon_Project.EquipableItem, Console_Pokemon_Project",
     "equipType": 2,
     "name": "칼4",
     "atk": 5,
@@ -171,6 +193,7 @@
     "quantity": 1
   },
   {
+    "$type": "Console_Pokemon_Project.EquipableItem, Console_Pokemon_Project",
     "equipType": 2,
     "name": "완드4",
     "atk": 5,
@@ -179,6 +202,7 @@
     "quantity": 1
   },
   {
+    "$type": "Console_Pokemon_Project.ConsumableItem, Console_Pokemon_Project",
     "name": "체력포션4",
     "atk": 0,
     "def": 0,
@@ -186,6 +210,7 @@
     "quantity": 1
   },
   {
+    "$type": "Console_Pokemon_Project.EquipableItem, Console_Pokemon_Project",
     "equipType": 2,
     "name": "몽둥이4",
     "atk": 5,
@@ -194,6 +219,7 @@
     "quantity": 1
   },
   {
+    "$type": "Console_Pokemon_Project.EquipableItem, Console_Pokemon_Project",
     "equipType": 2,
     "name": "칼4",
     "atk": 5,
@@ -202,6 +228,7 @@
     "quantity": 1
   },
   {
+    "$type": "Console_Pokemon_Project.EquipableItem, Console_Pokemon_Project",
     "equipType": 2,
     "name": "완드4",
     "atk": 5,
@@ -210,6 +237,7 @@
     "quantity": 1
   },
   {
+    "$type": "Console_Pokemon_Project.ConsumableItem, Console_Pokemon_Project",
     "name": "체력포션4",
     "atk": 0,
     "def": 0,
