@@ -22,7 +22,8 @@ namespace Console_Pokemon_Project
             GROUND = '　',
             WALL = '■',
             PLAYER = '●',
-            SHOP = '※'
+            SHOP = '＠',
+            MONSTER_FIELD = '※'
         }
 
         public const int MAP_WIDTH = 40;
@@ -49,6 +50,7 @@ namespace Console_Pokemon_Project
 
         public void InitMap()
         {
+            // 테두리는 벽, 그 안은 GROUND
             for (int i = 0; i < MAP_WIDTH; i++)
             {
                 for (int j = 0; j < MAP_HEIGHT; j++)
@@ -61,22 +63,28 @@ namespace Console_Pokemon_Project
                 mapInfo[i, 0] = (char)TileType.WALL;
                 mapInfo[i, MAP_HEIGHT - 1] = (char)TileType.WALL;
             }
-            for(int i=0; i<MAP_HEIGHT; i++)
+            for (int i = 0; i < MAP_HEIGHT; i++)
             {
                 mapInfo[0, i] = (char)TileType.WALL;
-                mapInfo[MAP_WIDTH-1, i] = (char)TileType.WALL;
+                mapInfo[MAP_WIDTH - 1, i] = (char)TileType.WALL;
             }
+
+            // 다음 맵으로 넘어갈 수 있는 위치
             mapInfo[MAP_WIDTH / 2, 0] = (char)TileType.GROUND;
-            mapInfo[MAP_WIDTH / 2, MAP_HEIGHT-1] = (char)TileType.GROUND;
-            mapInfo[MAP_WIDTH-1, MAP_HEIGHT /2] = (char)TileType.GROUND;
+            mapInfo[MAP_WIDTH / 2, MAP_HEIGHT - 1] = (char)TileType.GROUND;
+            mapInfo[MAP_WIDTH - 1, MAP_HEIGHT / 2] = (char)TileType.GROUND;
             mapInfo[0, MAP_HEIGHT / 2] = (char)TileType.GROUND;
 
-            shopLocX = MAP_WIDTH /2;
-            shopLocY = MAP_HEIGHT /2;
+            // 상점 위치
+            shopLocX = MAP_WIDTH / 2;
+            shopLocY = MAP_HEIGHT / 2;
             mapInfo[shopLocX, shopLocY] = (char)TileType.SHOP;
 
-            CreateShop();
+            // 몬스터 출현공간
+            mapInfo[4, 4] = (char)TileType.MONSTER_FIELD;
 
+            // 상점 생성
+            CreateShop();
         }
         private void CreateShop()
         {
@@ -84,19 +92,22 @@ namespace Console_Pokemon_Project
             int totalMapColumeCount = 2; // 1줄에 맵 몇개 있는지
             int myMapNumber = ((startXLoc / MAP_WIDTH) + (startYLoc / MAP_HEIGHT) * totalMapColumeCount);// 몇번째 맵인지 확인
 
-            for (int i=0; i<7; i++)
+            // 상점 아이템 목록 생성
+            for (int i=0; i<4; i++)
             {
                 shop.saleItems.Add(new Item(
-                    ItemInfo.itemInfos[i + (myMapNumber * 7)].name,
-                    ItemInfo.itemInfos[i + (myMapNumber * 7)].atk,
-                    ItemInfo.itemInfos[i + (myMapNumber * 7)].def,
-                    ItemInfo.itemInfos[i + (myMapNumber * 7)].price,
-                    ItemInfo.itemInfos[i + (myMapNumber * 7)].quantity)
+                    ItemInfo.itemInfos[i + (myMapNumber * 4)].name,
+                    ItemInfo.itemInfos[i + (myMapNumber * 4)].atk,
+                    ItemInfo.itemInfos[i + (myMapNumber * 4)].def,
+                    ItemInfo.itemInfos[i + (myMapNumber * 4)].price,
+                    ItemInfo.itemInfos[i + (myMapNumber * 4)].quantity)
                     );
             }
         }
+        // 현재 맵에 플레이어가 없으면 true 반환
         public bool UpdatePlayerLoc()
         {
+            // 플레이어 표시 위치를 전체 맵에서의 위치에서 현재 맵에서의 위치로 보정
             int lastPlayerPosX = lastPlayerLocX - this.startXLoc;
             int lastPlayerPosY = lastPlayerLocY - this.startYLoc;
             int playerPosX = Player.instance.locX - this.startXLoc;
@@ -118,19 +129,36 @@ namespace Console_Pokemon_Project
             }
             else
             {
+                if (mapInfo[playerPosX, playerPosY] == (char)TileType.MONSTER_FIELD)
+                {
+
+                }
                 mapInfo[lastPlayerPosX, lastPlayerPosY] = (char)TileType.GROUND;
                 mapInfo[playerPosX, playerPosY] = (char)TileType.PLAYER;
 
                 lastPlayerLocX = Player.instance.locX;
                 lastPlayerLocY = Player.instance.locY;
             }
-            
+
             return false;
         }
         public bool CheckBlock(int playerPosX, int playerPosY)
         {   
             return mapInfo[playerPosX, playerPosY] == (char)TileType.WALL || 
                 mapInfo[playerPosX, playerPosY] == (char)TileType.SHOP;
+        }
+        public bool CheckHereIsMonsterField()
+        {
+            // 임시 몬스터 출현 필드 검사
+            int playerPosX = Player.instance.locX - this.startXLoc;
+            int playerPosY = Player.instance.locY - this.startYLoc;
+
+            if (playerPosX == 4 && playerPosY == 4)
+            {
+                return true;
+            }
+
+            return false;
         }
         public bool CheckHereIsShop()
         {
@@ -139,6 +167,7 @@ namespace Console_Pokemon_Project
             int playerPosX = Player.instance.locX - this.startXLoc;
             int playerPosY = Player.instance.locY - this.startYLoc;
 
+            // 플레이어가 상점의 상하좌우 1칸에 위치할 떄
             if(playerPosX >= shopLocX - 1 && playerPosX <= shopLocX + 1 && playerPosY == shopLocY ||
                 playerPosY >= shopLocY - 1 && playerPosY <= shopLocY + 1 && playerPosX == shopLocX)
             {
@@ -150,9 +179,10 @@ namespace Console_Pokemon_Project
         public bool CheckThereIsMonster()
         {
             bool isThereMonster = false;
+
             int appearValue = random.Next(100);
 
-            if(appearValue < 5)
+            if(appearValue < 3)
             {
                 isThereMonster = true;
             }
@@ -203,6 +233,13 @@ namespace Console_Pokemon_Project
                             {
                                 shop.ShopAct();
                             }
+                            if(CheckHereIsMonsterField() == true)
+                            {
+                                Console.WriteLine("몬스터출현");
+                                Player.instance.isInBattle = true;
+                                return;
+                            }
+                            
                             break;
                         }
                 }

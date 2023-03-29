@@ -24,6 +24,7 @@ namespace Console_Pokemon_Project
 
         public Shop() : this(new List<Item>())
         {
+
         }
 
         public void ShopAct()
