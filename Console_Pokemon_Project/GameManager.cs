@@ -14,7 +14,7 @@ namespace Console_Pokemon_Project
         const int MAX_MAP_COL_COUNT = 2;
         public static void Start()
         {
-            Screen.PreferencesWindow();
+            //Screen.PreferencesWindow();
 
             List<Map> mapList = new List<Map>();
             for (int i = 0; i < MAX_MAP_ROW_COUNT; i++)

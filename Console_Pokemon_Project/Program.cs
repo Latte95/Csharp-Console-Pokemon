@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace Console_Pokemon_Project
 {
@@ -10,7 +11,8 @@ namespace Console_Pokemon_Project
     {
         static void Main(string[] args)
         {
-            GameManager.Start();
+            Screen.PreferencesWindow();
+            //GameManager.Start();
         }
     }
 }
