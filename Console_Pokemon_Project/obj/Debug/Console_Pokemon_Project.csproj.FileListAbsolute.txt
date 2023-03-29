@@ -1,0 +1,10 @@
+G:\GitHub\Csharp-Console-Pokemon\Console_Pokemon_Project\obj\Debug\Console_Pokemon_Project.csproj.AssemblyReference.cache
+G:\GitHub\Csharp-Console-Pokemon\Console_Pokemon_Project\obj\Debug\Console_Pokemon_Project.csproj.CoreCompileInputs.cache
+G:\GitHub\Csharp-Console-Pokemon\Console_Pokemon_Project\bin\Debug\Console_Pokemon_Project.exe.config
+G:\GitHub\Csharp-Console-Pokemon\Console_Pokemon_Project\bin\Debug\Console_Pokemon_Project.exe
+G:\GitHub\Csharp-Console-Pokemon\Console_Pokemon_Project\bin\Debug\Console_Pokemon_Project.pdb
+G:\GitHub\Csharp-Console-Pokemon\Console_Pokemon_Project\bin\Debug\Newtonsoft.Json.dll
+G:\GitHub\Csharp-Console-Pokemon\Console_Pokemon_Project\bin\Debug\Newtonsoft.Json.xml
+G:\GitHub\Csharp-Console-Pokemon\Console_Pokemon_Project\obj\Debug\Console_Pokemon_Project.csproj.CopyComplete
+G:\GitHub\Csharp-Console-Pokemon\Console_Pokemon_Project\obj\Debug\Console_Pokemon_Project.exe
+G:\GitHub\Csharp-Console-Pokemon\Console_Pokemon_Project\obj\Debug\Console_Pokemon_Project.pdb
