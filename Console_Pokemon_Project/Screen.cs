@@ -108,7 +108,7 @@ namespace Console_Pokemon_Project
 
         private static void DrawMenual()
         {
-            int menualCursorX = Map.MAP_WIDTH + 10;
+            int menualCursorX = Map.MAP_WIDTH*2 + 10;
             int menualCursorY = 5;
             // 줄 간격
             int blankYSpace = 2;
