@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Threading;
+
 namespace Console_Pokemon_Project
 {
     public class Pokemon
@@ -24,13 +26,22 @@ namespace Console_Pokemon_Project
         public char[] characterDisplayInfo;
         //public int special_Attack;
         //public int sepcial_Defence;
+        List<Skill> skill = Skill.PokemonSkills;
 
 
-        public Pokemon(int i)
+        public Pokemon(string name, int hp, int att, int def, int speed, int exp, int dropgold, int cri, int avoid, int level)
         {
-            List<Skill> skill = Skill.PokemonSkills;
-
-            PokemonInfo.pokemon[i];
+            this.name = name;
+            this.hp = hp;
+            this.att = att;
+            this.def = def;
+            this.speed = speed;
+            this.exp = exp;
+            this.dropgold = dropgold;
+            this.critical = cri;
+            this.avoidence = avoid;
+            this.level = level;
+            
         }
 
 
