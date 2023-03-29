@@ -35,7 +35,8 @@ namespace Console_Pokemon_Project
         public EquipmentSlot equipSlot;
         public int locX;
         public int locY;
-        public bool isWaitingInput = true;
+        public bool isWaitingInput;
+        public bool isInBattle;
 
         private Player()
         {
@@ -48,6 +49,7 @@ namespace Console_Pokemon_Project
             locX = 2;
             locY = 2;
             isWaitingInput = true;
+            isInBattle = false;
         }
 
         private Player(string name, int hp, int atk, int def)

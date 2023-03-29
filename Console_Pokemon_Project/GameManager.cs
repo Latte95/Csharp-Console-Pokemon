@@ -15,6 +15,7 @@ namespace Console_Pokemon_Project
         public static void Start()
         {
             Screen.PreferencesWindow();
+            
 
             List<Map> mapList = new List<Map>();
             for (int i = 0; i < MAX_MAP_COL_COUNT; i++)
@@ -54,6 +55,11 @@ namespace Console_Pokemon_Project
                     }
                 }
 
+                // 여기부터는 배틀차례
+                //if(Player.instance.isInBattle == true)
+                //{
+
+                //}
                 // Battle battle = new Battle();
 
                 //Screen.print(pixel);

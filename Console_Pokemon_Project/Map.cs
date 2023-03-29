@@ -33,6 +33,7 @@ namespace Console_Pokemon_Project
         public readonly int startYLoc;
         private int lastPlayerLocX;
         private int lastPlayerLocY;
+        private Shop shop;
 
         // 해당 Map의 위치 설정
         public Map(int startXLoc, int startYLoc)
@@ -66,7 +67,7 @@ namespace Console_Pokemon_Project
             mapInfo[MAP_WIDTH-1, MAP_HEIGHT /2] = (char)TileType.GROUND;
             mapInfo[0, MAP_HEIGHT / 2] = (char)TileType.GROUND;
 
-
+           
 
             // 플레이어 위치
             UpdatePlayerLoc();
@@ -134,10 +135,16 @@ namespace Console_Pokemon_Project
                         Player.instance.isWaitingInput = false;
                         break;
                 }
+                // 맵 밖으로 넘어갔으면 true
                 if(UpdatePlayerLoc() == true)
                 {
                     return;
                 }
+                //else if (몬스터 조우) 
+                //{
+                //   Player.instance.isInBattle = true;
+                //   return;
+                //}
                 Screen.Print(mapInfo);
             }
         }

@@ -16,6 +16,11 @@ namespace Console_Pokemon_Project
         public List<string> shopOption = new List<string> { "아이템 구매", "아이템 판매" };
         private List<Item> saleItems;
 
+        public Shop(List<Item> saleItems)
+        {
+            this.saleItems = saleItems;
+        }
+
         public Shop()
         {
             saleItems = new List<Item>();
