@@ -50,6 +50,8 @@ namespace Console_Pokemon_Project
                 PokemonInfo.pokemon[monNum].avoidence,
                 level);
 
+            enemy.AddSkill();
+
             MeetPokemon();
         }
 
@@ -77,10 +79,10 @@ namespace Console_Pokemon_Project
                 Console.ReadKey(true);
 
                 string name = Menu.SelectMenu(DIALOGUE_X, DIALOGUE_Y, battle);
-                int num = int.Parse(Console.ReadLine()); // 임시로 커서로 받아올 정보대신 입력으로 넣어놨음
-                switch (num)
+                //int num = int.Parse(Console.ReadLine()); // 임시로 커서로 받아올 정보대신 입력으로 넣어놨음
+                switch (name)
                 {
-                    case 0:
+                    case "전투":
                         {
                             //Console.WriteLine("어떤 스킬을 사용하시겠습니까?");
                             if (Player.instance.speed > enemy.speed) // 플레이어의 스피드가 빠를때 플레이어의 선공
@@ -100,13 +102,13 @@ namespace Console_Pokemon_Project
 
                             break;
                         }
-                    case 1:
+                    case "아이템 사용":
                         {
                             //아이템 사용칸
                             Console.WriteLine("");
                             break;
                         }
-                    case 2:
+                    case "도망":
                         {
                             Run();
                             break;

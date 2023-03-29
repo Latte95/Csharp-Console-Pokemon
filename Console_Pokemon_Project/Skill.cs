@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Console_Pokemon_Project
 {
-    class Skill
+    public class Skill
     {
         // 계산 없이
         // 계수

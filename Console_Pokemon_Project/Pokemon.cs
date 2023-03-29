@@ -26,7 +26,7 @@ namespace Console_Pokemon_Project
         public char[] characterDisplayInfo;
         //public int special_Attack;
         //public int sepcial_Defence;
-        List<Skill> skill = Skill.PokemonSkills;
+        public List<Skill> skill = new List<Skill>();
 
 
         public Pokemon(string name, int hp, int att, int def, int speed, int exp, int dropgold, int cri, int avoid, int level)
@@ -41,9 +41,21 @@ namespace Console_Pokemon_Project
             this.critical = cri;
             this.avoidence = avoid;
             this.level = level;
-            
+
+            AddSkill();
         }
 
+        public void AddSkill()
+        {
+            /*
+             * 
+             * switch(this.name)
+             * case 이거저거
+             * break;
+             * case 저거이거
+             * break;
+             */
+        }
 
 
         readonly static char[][,] MONSTER_DISPLAY_INFO_LIST = new char[][,]
