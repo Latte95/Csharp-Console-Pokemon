@@ -9,6 +9,8 @@ namespace Console_Pokemon_Project
     class ItemList
     {
         const int CURSOR_X_LENGTH = 2;
+        // 한번에 출력할 아이템 수
+        const int ITEM_LENGTH = 4;
 
         public static string SelectMenu<T>(int dialoqueX, int dialoqueY, T menu) where T : List<Item>
         {
@@ -16,8 +18,6 @@ namespace Console_Pokemon_Project
             int pointerY = 0;
             // ▶가 옮겨지기 전의 위치
             int oldPointerY = 0;
-            // 한번에 출력할 아이템 수
-            int itemLength = 4;
             // 맨위에 출력될 아이템 인덱스
             int itemIndex = 0;
             // 위를 눌렀는지 아래를 눌렀는지
@@ -44,7 +44,7 @@ namespace Console_Pokemon_Project
                 {
                     // ▶이동
                     case ConsoleKey.UpArrow:
-                        if(pointerY.Equals(0))
+                        if (pointerY.Equals(0))
                         {
                             isUp = true;
                         }
@@ -54,7 +54,7 @@ namespace Console_Pokemon_Project
                         }
                         break;
                     case ConsoleKey.DownArrow:
-                        if (pointerY.Equals(itemLength))
+                        if (pointerY.Equals(ITEM_LENGTH - 1))
                         {
                             isDown = true;
                         }
@@ -73,23 +73,24 @@ namespace Console_Pokemon_Project
                 }
 
                 // ▶ 위치가 바뀌었다면 ▶ 위치를 갱신함
-                if (pointerY != oldPointerY)
-                {
-                    // 바뀐 ▶의 위치를 새로 그려줌 
-                    PrintPointer(pointerY, oldPointerY, dialoqueX, dialoqueY);
-                }
+                //if (pointerY != oldPointerY)
+                //{
+                //    // 바뀐 ▶의 위치를 새로 그려줌 
+                //}
                 // 위를 눌렀는데 ▶ 위치가 그대로면 아이템 스크롤을 올려줌
-                else if (isUp.Equals(true))
+                if (isUp.Equals(true) && itemIndex > 0)
                 {
                     ItemScrollUp(ref itemIndex);
                     PrintMenu(dialoqueX, dialoqueY, menu, itemIndex);
                 }
                 // 아래를 눌렀는데 ▶ 위치가 그대로면 아이템 스크롤을 올려줌
-                else if (isDown.Equals(true))
+                else if (isDown.Equals(true) && itemIndex < menu.Count - ITEM_LENGTH)
                 {
                     ItemScrollDown(ref itemIndex);
                     PrintMenu(dialoqueX, dialoqueY, menu, itemIndex);
                 }
+
+                PrintPointer(pointerY, oldPointerY, dialoqueX, dialoqueY);
             }
         }
 
@@ -101,19 +102,17 @@ namespace Console_Pokemon_Project
         public static void ItemScrollDown(ref int itemIndex)
         {
             itemIndex++;
-
         }
 
         // 메뉴 목록만 출력
         private static void PrintMenu<T>(int dialoqueX, int dialoqueY, T menu, int itemIndex) where T : List<Item>
         {
-            int menuLength = menu.Count;
-
-            for (int i = 0; i < menuLength; i++)
+            Shop.ClearShopContents();
+            for (int i = 0; i < ITEM_LENGTH; i++)
             {
                 // ▶ 위치를 고려하여 커서의 x위치에 2를 더해줌
                 Console.SetCursorPosition(dialoqueX + CURSOR_X_LENGTH, dialoqueY + i);
-                Console.WriteLine(menu[i].name);
+                Console.WriteLine(menu[itemIndex + i].name);
             }
         }
 
