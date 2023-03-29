@@ -37,6 +37,7 @@ namespace Console_Pokemon_Project
         private Shop shop;
         private int shopLocX;
         private int shopLocY;
+        private Random random = new Random();
 
         // 해당 Map의 위치 설정
         public Map(int startXLoc, int startYLoc)
@@ -145,6 +146,18 @@ namespace Console_Pokemon_Project
 
             return isHereShop;
         }
+        public bool CheckThereIsMonster()
+        {
+            bool isThereMonster = false;
+            int appearValue = random.Next(100);
+
+            if(appearValue < 5)
+            {
+                isThereMonster = true;
+            }
+
+            return isThereMonster;
+        }
         public void WaitPlayerInput()
         {
             lastPlayerLocX = Player.instance.locX;
@@ -185,7 +198,7 @@ namespace Console_Pokemon_Project
                         }
                     case ConsoleKey.Spacebar:
                         {
-                            if(CheckHereIsShop()==true)
+                            if (CheckHereIsShop() == true)
                             {
                                 shop.ShopAct();
                             }
@@ -193,15 +206,19 @@ namespace Console_Pokemon_Project
                         }
                 }
                 // 맵 밖으로 넘어갔으면 true
-                if(UpdatePlayerLoc() == true)
+                if (UpdatePlayerLoc() == true)
                 {
                     return;
                 }
-                //else if (몬스터 조우) 
-                //{
-                //    Player.instance.isInBattle = true;
-                //    return;
-                //}
+                else
+                {
+                    if(CheckThereIsMonster() == true)
+                    {
+                        Player.instance.isInBattle = true;
+                        return;
+                    }
+                }
+            
                 Screen.Print(mapInfo);
             }
         }
