@@ -15,8 +15,8 @@ namespace Console_Pokemon_Project
         const int WINDOW_HEIGHT = 45;
         public const int DIALOGUE_X = 4;
         public const int DIALOGUE_Y = WINDOW_HEIGHT - 10;
-        const int DIALOGUE_WINDOW_WIDTH = 20;
-        const int DIALOGUE_WINDOW_HEIGHT = 5;
+        const int DIALOGUE_WINDOW_WIDTH = 30;
+        const int DIALOGUE_WINDOW_HEIGHT = 10;
 
         // 몬스터와 나의 체력등을 이용해 전투종료
         // 아이템사용 스킬사용 도망치기 선택
@@ -36,7 +36,7 @@ namespace Console_Pokemon_Project
 
             int monNum = random.Next(10);
             int ranHp = random.Next(1, 10);
-            int ranAtt = random.Next(1, 5);
+            int ranAtk = random.Next(1, 5);
             int ranDef = random.Next(1, 3);
             int ranSpeed = random.Next(1, 10);
             int ranLevel = random.Next(1, 3);
@@ -60,7 +60,7 @@ namespace Console_Pokemon_Project
 
             enemy = new Pokemon(pokemons[monNum].name,
                 pokemons[monNum].hp + ranHp + level * 3,
-                pokemons[monNum].att + ranAtt + level * 2,
+                pokemons[monNum].atk + ranAtk + level * 2,
                 pokemons[monNum].def + ranDef + level,
                 pokemons[monNum].speed + ranSpeed + level * 2,
                 pokemons[monNum].exp + level * 2,
@@ -94,9 +94,10 @@ namespace Console_Pokemon_Project
             bool isBattlePlay = true;
             while (isBattlePlay)
             {
-                //Pokemon[] pokemon = new Pokemon[10];
+
                 Console.SetCursorPosition(DIALOGUE_X, DIALOGUE_Y);
                 Console.WriteLine("지나가던 {0}와 조우했다!", enemy.name);
+                //Pokemon[] pokemon = new Pokemon[10];
                 Console.SetCursorPosition(DIALOGUE_X, Console.CursorTop);
                 Console.WriteLine("어떤 행동을 하시겠습니까?");
                 Console.ReadKey(true);
@@ -153,8 +154,11 @@ namespace Console_Pokemon_Project
             int avoidRan = ran.Next(100) + 1;
             int criRan = ran.Next(100) + 1;
             //데미지 계산식 = (스킬계수 * 공격력 * (레벨*2 /5 +2) / 방어 / 50 ) * 속성보정
-            //int dam = (skill * Player.instance.atk * (Player.instance.level * 2 / 5 + 2) / enemy.def / 50);
-            enemy.hp = enemy.hp - (Player.instance.atk - enemy.def); //임시로 간략하게 계산식을 넣어둠
+            int playerSkillDam0 = (Player.instance.skills[0].Power * Player.instance.atk * (Player.instance.level * 2 / 5 + 2) / enemy.def / 50);
+            int playerSkillDam1 = (Player.instance.skills[1].Power * Player.instance.atk * (Player.instance.level * 2 / 5 + 2) / enemy.def / 50);
+            int playerSkillDam2 = (Player.instance.skills[2].Power * Player.instance.atk * (Player.instance.level * 2 / 5 + 2) / enemy.def / 50);
+            int playerSkillDam3 = (Player.instance.skills[3].Power * Player.instance.atk * (Player.instance.level * 2 / 5 + 2) / enemy.def / 50);
+
 
             /* 스킬을 넣고 커서로 스킬을 정했을경우 
                스킬 4개의 각각 데미지를 int skill1Dam , skill2dam, skill3Dam skill4Dam 로 저장
@@ -162,135 +166,192 @@ namespace Console_Pokemon_Project
              */
 
 
-            foreach(Skill skill in Player.instance.skills)
+            foreach (Skill skill in Player.instance.skills)
             {
                 skillsStr.Add(skill.Name);
             }
+
             DialogueClear();
-            Menu.SelectMenu(DIALOGUE_X, DIALOGUE_Y, skillsStr);
-            int num = int.Parse(Console.ReadLine()); // 임시로 커서로 받아올 정보대신 입력으로 넣어놨음
-            switch (num)
+            string skillName = Menu.SelectMenu(DIALOGUE_X, DIALOGUE_Y, skillsStr);
+            DialogueClear();
+
+            if (Player.instance.hp != 0 && enemy.hp != 0)
             {
-                case 0:
+                if (skillName == Player.instance.skills[0].Name) // 맨위 0번스킬을 사용했을때
+                {
+                    if (100 <= avoidRan + enemy.avoidence) //플레이어의 공격이 빗나갔을때
                     {
-                        if (100 <= avoidRan + enemy.avoidence) //플레이어의 공격이 빗나갔을때
-                        {
-                            Console.WriteLine("공격이 빗나갔다!");
-                            break;
-                        }
-                        else // 플레이어의 공격이 성공했을때
-                        {
-                            Console.WriteLine("{0} 의 {1}!", Player.instance.name, enemy.name); // {1}를 추후 스킬.네임 으로변경 
-                            if (100 <= criRan + enemy.critical) //플레이어의 공격이 크리티컬이 터졌을때
-                            {
-                                int criDam = Player.instance.atk *= 2;
-                                Console.WriteLine("{0} 는 {1}의 데미지를 입었다.", enemy.name, criDam); // {1}을 추후 데미지계산값으로 변경
-                                Console.WriteLine("급소에 맞았다!");
-                                enemy.hp -= criDam;
-                            }
-                            else // 플레이어의 공격이 크리티컬이 안터졌을때
-                            {
-                                Console.WriteLine("{0} 는 {1}의 데미지를 입었다.", enemy.name, Player.instance.atk); // {1}을 추후 데미지계산값으로 변경
-                                enemy.hp -= Player.instance.atk;
-                            }
-                        }
-                        break;
+                        Console.Write("공격이 빗나갔다!");
+                        Console.ReadKey(true);
+                        Console.SetCursorPosition(DIALOGUE_X, DIALOGUE_Y);
+                        DialogueClear();
                     }
-                case 1:
+                    else// 플레이어의 공격이 성공했을때
                     {
-                        if (100 <= avoidRan + enemy.avoidence) //플레이어의 공격이 빗나갔을때
+                        Console.WriteLine("{0} 의 {1}!", Player.instance.name, Player.instance.skills[0].Name);
+                        if (100 <= criRan + enemy.critical) //플레이어의 공격이 크리티컬이 터졌을때
                         {
-                            Console.WriteLine("공격이 빗나갔다!");
-                            break;
+                            int criDam = playerSkillDam0 *= 2;
+                            Console.SetCursorPosition(DIALOGUE_X, Console.CursorTop);
+                            Console.WriteLine("{0}은 {1}의 데미지를 입었다.", enemy.name, criDam);
+                            Console.ReadKey(true);
+                            Console.SetCursorPosition(DIALOGUE_X, Console.CursorTop);
+                            Console.WriteLine("급소에 맞았다!");
+                            Console.SetCursorPosition(DIALOGUE_X, DIALOGUE_Y);
+                            DialogueClear();
+                            enemy.hp -= criDam;
+                            Player.instance.skills[0].Pp -= 1;
                         }
-                        else // 플레이어의 공격이 성공했을때
+                        else // 플레이어의 공격이 크리티컬이 안터졌을때
                         {
-                            Console.WriteLine("{0} 의 {1}!", Player.instance.name, Player.instance.atk); // {1}를 추후 스킬.네임 으로변경 
-                            if (100 <= criRan + enemy.critical) //플레이어의 공격이 크리티컬이 터졌을때
-                            {
-                                int criDam = Player.instance.atk *= 2;
-                                Console.WriteLine("{0} 는 {1}의 데미지를 입었다.", enemy.name, criDam); // {1}을 추후 데미지계산값으로 변경
-                                Console.WriteLine("급소에 맞았다!");
-                                enemy.hp -= criDam;
-                            }
-                            else // 플레이어의 공격이 크리티컬이 안터졌을때
-                            {
-                                Console.WriteLine("{0} 는 {1}의 데미지를 입었다.", enemy.name, Player.instance.atk); // {1}을 추후 데미지계산값으로 변경
-                                enemy.hp -= Player.instance.atk;
-                            }
+                            Console.SetCursorPosition(DIALOGUE_X, Console.CursorTop);
+                            Console.WriteLine("{0}은 {1}의 데미지를 입었다.", enemy.name, playerSkillDam0);
+                            Console.ReadKey(true);
+                            Console.SetCursorPosition(DIALOGUE_X, DIALOGUE_Y);
+                            DialogueClear();
+                            enemy.hp -= playerSkillDam0;
+                            Player.instance.skills[0].Pp -= 1;
                         }
-                        break;
                     }
-                case 2:
+
+                }
+                else if (skillName == Player.instance.skills[1].Name)
+                {
+                    if (100 <= avoidRan + enemy.avoidence) //플레이어의 공격이 빗나갔을때
                     {
-                        if (100 <= avoidRan + enemy.avoidence) //플레이어의 공격이 빗나갔을때
-                        {
-                            Console.WriteLine("공격이 빗나갔다!");
-                            break;
-                        }
-                        else // 플레이어의 공격이 성공했을때
-                        {
-                            Console.WriteLine("{0} 의 {1}!", Player.instance.name, Player.instance.atk); // {1}를 추후 스킬.네임 으로변경 
-                            if (100 <= criRan + enemy.critical) //플레이어의 공격이 크리티컬이 터졌을때
-                            {
-                                int criDam = Player.instance.atk *= 2;
-                                Console.WriteLine("{0} 는 {1}의 데미지를 입었다.", enemy.name, criDam); // {1}을 추후 데미지계산값으로 변경
-                                Console.WriteLine("급소에 맞았다!");
-                                enemy.hp -= criDam;
-                            }
-                            else // 플레이어의 공격이 크리티컬이 안터졌을때
-                            {
-                                Console.WriteLine("{0} 는 {1}의 데미지를 입었다.", enemy.name, Player.instance.atk); // {1}을 추후 데미지계산값으로 변경
-                                enemy.hp -= Player.instance.atk;
-                            }
-                        }
-                        break;
+                        Console.Write("공격이 빗나갔다!");
+                        Console.ReadKey(true);
+                        Console.SetCursorPosition(DIALOGUE_X, DIALOGUE_Y);
+                        DialogueClear();
                     }
-                case 3:
+                    else// 플레이어의 공격이 성공했을때
                     {
-                        if (100 <= avoidRan + enemy.avoidence) //플레이어의 공격이 빗나갔을때
+                        Console.WriteLine("{0} 의 {1}!", Player.instance.name, Player.instance.skills[1].Name);
+                        if (100 <= criRan + enemy.critical) //플레이어의 공격이 크리티컬이 터졌을때
                         {
-                            Console.WriteLine("공격이 빗나갔다!");
-                            break;
+                            int criDam = playerSkillDam1 *= 2;
+                            Console.SetCursorPosition(DIALOGUE_X, Console.CursorTop);
+                            Console.WriteLine("{0}은 {1}의 데미지를 입었다.", enemy.name, criDam);
+                            Console.ReadKey(true);
+                            Console.SetCursorPosition(DIALOGUE_X, Console.CursorTop);
+                            Console.WriteLine("급소에 맞았다!");
+                            Console.SetCursorPosition(DIALOGUE_X, DIALOGUE_Y);
+                            DialogueClear();
+                            enemy.hp -= criDam;
+                            Player.instance.skills[1].Pp -= 1;
                         }
-                        else // 플레이어의 공격이 성공했을때
+                        else // 플레이어의 공격이 크리티컬이 안터졌을때
                         {
-                            Console.WriteLine("{0} 의 {1}!", Player.instance.name, Player.instance.atk); // {1}를 추후 스킬.네임 으로변경 
-                            if (100 <= criRan + enemy.critical) //플레이어의 공격이 크리티컬이 터졌을때
-                            {
-                                int criDam = Player.instance.atk *= 2;
-                                Console.WriteLine("{0} 는 {1}의 데미지를 입었다.", enemy.name, criDam); // {1}을 추후 데미지계산값으로 변경
-                                Console.WriteLine("급소에 맞았다!");
-                                enemy.hp -= criDam;
-                            }
-                            else // 플레이어의 공격이 크리티컬이 안터졌을때
-                            {
-                                Console.WriteLine("{0} 는 {1}의 데미지를 입었다.", enemy.name, Player.instance.atk); // {1}을 추후 데미지계산값으로 변경
-                                enemy.hp -= Player.instance.atk;
-                            }
+                            Console.SetCursorPosition(DIALOGUE_X, Console.CursorTop);
+                            Console.WriteLine("{0}은 {1}의 데미지를 입었다.", enemy.name, playerSkillDam1);
+                            Console.ReadKey(true);
+                            Console.SetCursorPosition(DIALOGUE_X, DIALOGUE_Y);
+                            DialogueClear();
+                            enemy.hp -= playerSkillDam1;
+                            Player.instance.skills[0].Pp -= 1;
                         }
-                        break;
                     }
-                default: // 여기서는 랭업기를 예시로 들었음
+                }
+
+                else if (skillName == Player.instance.skills[2].Name)
+                {
+                    if (100 <= avoidRan + enemy.avoidence) //플레이어의 공격이 빗나갔을때
                     {
-                        //여기는 랭다운기
-                        // Console.WriteLine("{0} 의 {1}!", Player.instance.name, Player.instance.skill);
-                        // Console.WriteLine("{0} 의 {1}이 하락했다", enemy.name, enemy.def);
-                        // enemy.def -= 
-                        // 여기는 랭업기
-                        //Console.WriteLine("{0} 의 {1}!", Player.instance.name , Player.instance.skill);
-                        //Console.WriteLine("{0} 의 {1}이 상승했다",Player.instance.name, Player.instance.def );
-                        //Player.instance.def += Player.instance.def /2;
-                        break;
+                        Console.Write("공격이 빗나갔다!");
+                        Console.ReadKey(true);
+                        Console.SetCursorPosition(DIALOGUE_X, DIALOGUE_Y);
+                        DialogueClear();
                     }
+                    else// 플레이어의 공격이 성공했을때
+                    {
+                        Console.WriteLine("{0} 의 {1}!", Player.instance.name, Player.instance.skills[2].Name);
+                        if (100 <= criRan + enemy.critical) //플레이어의 공격이 크리티컬이 터졌을때
+                        {
+                            int criDam = playerSkillDam2 *= 2;
+                            Console.SetCursorPosition(DIALOGUE_X, Console.CursorTop);
+                            Console.WriteLine("{0}은 {1}의 데미지를 입었다.", enemy.name, criDam);
+                            Console.ReadKey(true);
+                            Console.SetCursorPosition(DIALOGUE_X, Console.CursorTop);
+                            Console.WriteLine("급소에 맞았다!");
+                            Console.SetCursorPosition(DIALOGUE_X, DIALOGUE_Y);
+                            DialogueClear();
+                            enemy.hp -= criDam;
+                            Player.instance.skills[2].Pp -= 1;
+                        }
+                        else // 플레이어의 공격이 크리티컬이 안터졌을때
+                        {
+                            Console.SetCursorPosition(DIALOGUE_X, Console.CursorTop);
+                            Console.WriteLine("{0}은 {1}의 데미지를 입었다.", enemy.name, playerSkillDam2);
+                            Console.ReadKey(true);
+                            Console.SetCursorPosition(DIALOGUE_X, DIALOGUE_Y);
+                            DialogueClear();
+                            enemy.hp -= playerSkillDam2;
+                            Player.instance.skills[2].Pp -= 1;
+                        }
+                    }
+                }
+                else if (skillName == Player.instance.skills[3].Name)
+                {
+                    if (100 <= avoidRan + enemy.avoidence) //플레이어의 공격이 빗나갔을때
+                    {
+                        Console.Write("공격이 빗나갔다!");
+                        Console.ReadKey(true);
+                        Console.SetCursorPosition(DIALOGUE_X, DIALOGUE_Y);
+                        DialogueClear();
+                    }
+                    else// 플레이어의 공격이 성공했을때
+                    {
+                        Console.WriteLine("{0} 의 {1}!", Player.instance.name, Player.instance.skills[3].Name);
+                        if (100 <= criRan + enemy.critical) //플레이어의 공격이 크리티컬이 터졌을때
+                        {
+                            int criDam = playerSkillDam3 *= 2;
+                            Console.SetCursorPosition(DIALOGUE_X, Console.CursorTop);
+                            Console.WriteLine("{0}은 {1}의 데미지를 입었다.", enemy.name, criDam);
+                            Console.ReadKey(true);
+                            Console.SetCursorPosition(DIALOGUE_X, Console.CursorTop);
+                            Console.WriteLine("급소에 맞았다!");
+                            Console.SetCursorPosition(DIALOGUE_X, DIALOGUE_Y);
+                            DialogueClear();
+                            enemy.hp -= criDam;
+                            Player.instance.skills[3].Pp -= 1;
+                        }
+                        else // 플레이어의 공격이 크리티컬이 안터졌을때
+                        {
+                            Console.SetCursorPosition(DIALOGUE_X, Console.CursorTop);
+                            Console.WriteLine("{0}은 {1}의 데미지를 입었다.", enemy.name, playerSkillDam3);
+                            Console.ReadKey(true);
+                            Console.SetCursorPosition(DIALOGUE_X, DIALOGUE_Y);
+                            DialogueClear();
+                            enemy.hp -= playerSkillDam3;
+                            Player.instance.skills[3].Pp -= 1;
+                        }
+                    }
+                }
+                // 여기서는 랭업기를 예시로 들었음
+
+                //여기는 랭다운기
+                // Console.WriteLine("{0} 의 {1}!", Player.instance.name, Player.instance.skill);
+                // Console.WriteLine("{0} 의 {1}이 하락했다", enemy.name, enemy.def);
+                // enemy.def -= 
+                // 여기는 랭업기
+                //Console.WriteLine("{0} 의 {1}!", Player.instance.name , Player.instance.skill);
+                //Console.WriteLine("{0} 의 {1}이 상승했다",Player.instance.name, Player.instance.def );
+                //Player.instance.def += Player.instance.def /2;
+
 
             }
         }
         public void MonsterAttack()
         {
+            Random ran = new Random();
+            int avoidRan = ran.Next(100) + 1;
+            int criRan = ran.Next(100) + 1;
+            //데미지 계산식 = (스킬계수 * 공격력 * (레벨*2 /5 +2) / 방어 / 50 ) * 속성보정
+            int monSkillDam0 = (enemy.skills[0].Power * enemy.atk * (enemy.level * 2 / 5 + 2) / enemy.def / 50);
+            int monSkillDam1 = (enemy.skills[1].Power * enemy.atk * (enemy.level * 2 / 5 + 2) / enemy.def / 50);
+            int monSkillDam2 = (enemy.skills[2].Power * enemy.atk * (enemy.level * 2 / 5 + 2) / enemy.def / 50);
+            int monSkillDam3 = (enemy.skills[3].Power * enemy.atk * (enemy.level * 2 / 5 + 2) / enemy.def / 50);
 
-            //int dam = (skill * enemy.att * (enemy.att * 2 / 5 + 2) / Player.instance.def / 50);
-            Player.instance.hp = Player.instance.hp - (enemy.att - Player.instance.def);
         }
         public void ItemUse()
         {
