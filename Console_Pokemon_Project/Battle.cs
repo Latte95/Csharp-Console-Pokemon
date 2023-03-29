@@ -111,7 +111,7 @@ namespace Console_Pokemon_Project
                         }
                         else // 플레이어의 공격이 성공했을때
                         {
-                            Console.WriteLine("{0} 의 {1}!", Player.instance.name ); // {1}를 추후 스킬.네임 으로변경 
+                            Console.WriteLine("{0} 의 {1}!", Player.instance.name , pokemon[monNum].name ); // {1}를 추후 스킬.네임 으로변경 
                             if (100 <= criRan+ pokemon[monNum].critical) //플레이어의 공격이 크리티컬이 터졌을때
                             {
                                 int criDam = Player.instance.atk *= 2;
