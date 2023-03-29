@@ -26,8 +26,7 @@ namespace Console_Pokemon_Project
         public char[] characterDisplayInfo;
         //public int special_Attack;
         //public int sepcial_Defence;
-        public List<Skill> skill = new List<Skill>();
-
+        public List<Skill> skills = new List<Skill>();
 
         public Pokemon(string name, int hp, int att, int def, int speed, int exp, int dropgold, int cri, int avoid, int level)
         {
@@ -42,19 +41,87 @@ namespace Console_Pokemon_Project
             this.avoidence = avoid;
             this.level = level;
 
-            AddSkill();
+            InitGetSkill();
         }
 
-        public void AddSkill()
+        public void InitGetSkill()
         {
-            /*
-             * 
-             * switch(this.name)
-             * case 이거저거
-             * break;
-             * case 저거이거
-             * break;
-             */
+            // 피카츄 = 0,1,2,3 파이리 = 8,9,10,11 꼬부기 = 8,12,13,14 이상해씨 = 4,5,6,7 나옹 = 8,13,15,16 
+            // 푸린 = 16,17,11,0 괴력몬 = 18,19,20,21  포니타 = 10,11,21,22 팬텀 = 23,24,25,26 아쿠스타 =14,27,28,29
+            List<Skill> tmpSkills = SkillInfo.PokemonSkills;
+            switch (this.name)
+            {
+                case "피카츄":
+                    AddSkill(0);
+                    AddSkill(1);
+                    AddSkill(2);
+                    AddSkill(3);
+                    break;
+                case "파이리":
+                    AddSkill(8);
+                    AddSkill(9);
+                    AddSkill(10);
+                    AddSkill(11);
+                    break;
+                case "꼬부기":
+                    AddSkill(8);
+                    AddSkill(12);
+                    AddSkill(13);
+                    AddSkill(14);
+                    break;
+                case "이상해씨":
+                    AddSkill(4);
+                    AddSkill(5);
+                    AddSkill(6);
+                    AddSkill(7);
+                    break;
+                case "나옹":
+                    AddSkill(8);
+                    AddSkill(13);
+                    AddSkill(15);
+                    AddSkill(16);
+                    break;
+                case "푸린":
+                    AddSkill(16);
+                    AddSkill(17);
+                    AddSkill(11);
+                    AddSkill(0);
+                    break;
+                case "괴력몬":
+                    AddSkill(18);
+                    AddSkill(19);
+                    AddSkill(20);
+                    AddSkill(21);
+                    break;
+                case "포니타":
+                    AddSkill(10);
+                    AddSkill(11);
+                    AddSkill(21);
+                    AddSkill(22);
+                    break;
+                case "팬텀":
+                    AddSkill(23);
+                    AddSkill(24);
+                    AddSkill(25);
+                    AddSkill(26);
+                    break;
+                case "아쿠스타":
+                    AddSkill(14);
+                    AddSkill(27);
+                    AddSkill(28);
+                    AddSkill(29);
+                    break;
+            }
+        }
+        public void AddSkill(int skillIndex)
+        {
+            List<Skill> tmpSkills = SkillInfo.PokemonSkills;
+            skills.Add(new Skill(
+                tmpSkills[skillIndex].Name, 
+                tmpSkills[skillIndex].Power, 
+                tmpSkills[skillIndex].Hitrate, 
+                tmpSkills[skillIndex].Pp)
+                );
         }
 
 
