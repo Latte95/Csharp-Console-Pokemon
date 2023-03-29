@@ -17,7 +17,7 @@ namespace Console_Pokemon_Project
 
 
         // 메뉴가 출력되어야 될 위치값을 dialoqueXY로 전달받음
-        public string SelectMenu<T>(int dialoqueX, int dialoqueY, T menu) where T : List<string>
+        public static string SelectMenu<T>(int dialoqueX, int dialoqueY, T menu) where T : List<string>
         {
             // 선택 포인터(▶) 위치를 제한하기 위한 변수
             int pointerY = 0;
@@ -69,7 +69,7 @@ namespace Console_Pokemon_Project
         }
 
         // 메뉴 목록만 출력
-        public void PrintMenu<T>(int dialoqueX, int dialoqueY, T menu) where T : List<string>
+        private static void PrintMenu<T>(int dialoqueX, int dialoqueY, T menu) where T : List<string>
         {
             int menuLength = menu.Count;
 
@@ -82,7 +82,7 @@ namespace Console_Pokemon_Project
         }
 
         // 커서 위치 갱신
-        static void PrintPointer(int newPosition, int oldPointerY, int dialoqueX, int dialoqueY)
+        private static void PrintPointer(int newPosition, int oldPointerY, int dialoqueX, int dialoqueY)
         {
             // 커서만 새로 그려주도록 구현
             // 원래 ▶가 있던 위치를 공백을 통해 지우고
