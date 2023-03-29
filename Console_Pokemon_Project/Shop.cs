@@ -104,7 +104,11 @@ namespace Console_Pokemon_Project
         public void SellItem(string itemName)
         {
             int itemIndex = Player.instance.inven.items.FindIndex(item => item.name == itemName);
-
+            if(itemIndex < 0)
+            {
+                Console.WriteLine("아이템 없음");
+                return;
+            }
             Item tmpItem = Player.instance.inven.items[itemIndex]; // 현재 팔 아이템
 
             if(tmpItem.quantity <= 0)
