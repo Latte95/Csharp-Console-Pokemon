@@ -16,7 +16,7 @@ namespace Console_Pokemon_Project
         public const int DIALOGUE_X = 4;
         public const int DIALOGUE_Y = WINDOW_HEIGHT - 10;
         const int DIALOGUE_WINDOW_WIDTH = 30;
-        const int DIALOGUE_WINDOW_HEIGHT = 5;
+        const int DIALOGUE_WINDOW_HEIGHT = 10;
 
         // 몬스터와 나의 체력등을 이용해 전투종료
         // 아이템사용 스킬사용 도망치기 선택
