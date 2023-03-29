@@ -108,7 +108,7 @@ namespace Console_Pokemon_Project
         private static void PrintMenu<T>(int dialoqueX, int dialoqueY, T menu, int itemIndex) where T : List<Item>
         {
             Shop.ClearShopContents();
-            for (int i = 0; i < ITEM_LENGTH; i++)
+            for (int i = 0; i < menu.Count; i++)
             {
                 // ▶ 위치를 고려하여 커서의 x위치에 2를 더해줌
                 Console.SetCursorPosition(dialoqueX + CURSOR_X_LENGTH, dialoqueY + i);

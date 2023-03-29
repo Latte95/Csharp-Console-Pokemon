@@ -9,7 +9,7 @@ namespace Console_Pokemon_Project
     public class Inventory
     {
         // 아이템
-        private List<Item> items;
+        public List<Item> items {  get; private set; }
 
         public Inventory()
         {
