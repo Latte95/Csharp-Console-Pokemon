@@ -26,6 +26,7 @@ namespace Console_Pokemon_Project
 
         public Battle()
         {
+            Console.Clear();
             Thread.Sleep(1);
             Random random = new Random();
 
