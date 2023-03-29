@@ -1,0 +1,182 @@
+[
+  {
+    "Name": "10만볼트",
+    "Power": 90,
+    "Hitrate": 100,
+    "Pp": 15
+  },
+  {
+    "Name": "아이언테일",
+    "Power": 100,
+    "Hitrate": 75,
+    "Pp": 15
+  },
+  {
+    "Name": "번개",
+    "Power": 110,
+    "Hitrate": 70,
+    "Pp": 10
+  },
+  {
+    "Name": "볼부비부비",
+    "Power": 55,
+    "Hitrate": 95,
+    "Pp": 25
+  },
+  {
+    "Name": "잎날가르기",
+    "Power": 20,
+    "Hitrate": 100,
+    "Pp": 20
+  },
+  {
+    "Name": "덩굴채찍",
+    "Power": 45,
+    "Hitrate": 100,
+    "Pp": 25
+  },
+  {
+    "Name": "매지컬리프",
+    "Power": 60,
+    "Hitrate": 100,
+    "Pp": 20
+  },
+  {
+    "Name": "기가드레인",
+    "Power": 75,
+    "Hitrate": 100,
+    "Pp": 10
+  },
+  {
+    "Name": "할퀴기",
+    "Power": 40,
+    "Hitrate": 100,
+    "Pp": 35
+  },
+  {
+    "Name": "불꽃세례",
+    "Power": 40,
+    "Hitrate": 100,
+    "Pp": 25
+  },
+  {
+    "Name": "불꽃엄니",
+    "Power": 65,
+    "Hitrate": 95,
+    "Pp": 15
+  },
+  {
+    "Name": "화염방사",
+    "Power": 90,
+    "Hitrate": 100,
+    "Pp": 15
+  },
+  {
+    "Name": "물대포",
+    "Power": 40,
+    "Hitrate": 100,
+    "Pp": 25
+  },
+  {
+    "Name": "물기",
+    "Power": 60,
+    "Hitrate": 100,
+    "Pp": 25
+  },
+  {
+    "Name": "하이드로펌프",
+    "Power": 110,
+    "Hitrate": 80,
+    "Pp": 5
+  },
+  {
+    "Name": "고양이돈받기",
+    "Power": 40,
+    "Hitrate": 100,
+    "Pp": 20
+  },
+  {
+    "Name": "치근거리기",
+    "Power": 90,
+    "Hitrate": 90,
+    "Pp": 10
+  },
+  {
+    "Name": "막치기",
+    "Power": 40,
+    "Hitrate": 100,
+    "Pp": 35
+  },
+  {
+    "Name": "스톤샤워",
+    "Power": 75,
+    "Hitrate": 90,
+    "Pp": 10
+  },
+  {
+    "Name": "깨트리다",
+    "Power": 75,
+    "Hitrate": 100,
+    "Pp": 15
+  },
+  {
+    "Name": "암석봉인",
+    "Power": 60,
+    "Hitrate": 95,
+    "Pp": 15
+  },
+  {
+    "Name": "화염자동차",
+    "Power": 60,
+    "Hitrate": 100,
+    "Pp": 25
+  },
+  {
+    "Name": "짓밟기",
+    "Power": 65,
+    "Hitrate": 100,
+    "Pp": 20
+  },
+  {
+    "Name": "섀도볼",
+    "Power": 80,
+    "Hitrate": 100,
+    "Pp": 15
+  },
+  {
+    "Name": "악의파동",
+    "Power": 80,
+    "Hitrate": 100,
+    "Pp": 15
+  },
+  {
+    "Name": "핥기",
+    "Power": 30,
+    "Hitrate": 100,
+    "Pp": 30
+  },
+  {
+    "Name": "섀도클로",
+    "Power": 70,
+    "Hitrate": 100,
+    "Pp": 15
+  },
+  {
+    "Name": "환상빔",
+    "Power": 65,
+    "Hitrate": 100,
+    "Pp": 20
+  },
+  {
+    "Name": "사이코키네시스",
+    "Power": 90,
+    "Hitrate": 100,
+    "Pp": 10
+  },
+  {
+    "Name": "파도타기",
+    "Power": 90,
+    "Hitrate": 100,
+    "Pp": 15
+  }
+]

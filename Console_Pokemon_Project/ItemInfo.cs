@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -37,16 +38,16 @@ namespace Console_Pokemon_Project
             itemInfos.Add(new EquipableItem("칼4", 5, 1, 1000, EquipableItem.EQUIPTYPE.WEAPON, 1));
             itemInfos.Add(new EquipableItem("완드4", 5, 1, 1000, EquipableItem.EQUIPTYPE.WEAPON, 1));
             itemInfos.Add(new ConsumableItem("체력포션4", 0, 0, 300, 1));
-            itemInfos.Add(new EquipableItem("몽둥이4", 5, 1, 1000, EquipableItem.EQUIPTYPE.WEAPON, 1));
-            itemInfos.Add(new EquipableItem("칼4", 5, 1, 1000, EquipableItem.EQUIPTYPE.WEAPON, 1));
-            itemInfos.Add(new EquipableItem("완드4", 5, 1, 1000, EquipableItem.EQUIPTYPE.WEAPON, 1));
-            itemInfos.Add(new ConsumableItem("체력포션4", 0, 0, 300, 1));
-            itemInfos.Add(new EquipableItem("몽둥이4", 5, 1, 1000, EquipableItem.EQUIPTYPE.WEAPON, 1));
-            itemInfos.Add(new EquipableItem("칼4", 5, 1, 1000, EquipableItem.EQUIPTYPE.WEAPON, 1));
-            itemInfos.Add(new EquipableItem("완드4", 5, 1, 1000, EquipableItem.EQUIPTYPE.WEAPON, 1));
-            itemInfos.Add(new ConsumableItem("체력포션4", 0, 0, 300, 1));
-            
 
+            itemInfos.Add(new EquipableItem("몽둥이4", 5, 1, 1000, EquipableItem.EQUIPTYPE.WEAPON, 1));
+            itemInfos.Add(new EquipableItem("칼4", 5, 1, 1000, EquipableItem.EQUIPTYPE.WEAPON, 1));
+            itemInfos.Add(new EquipableItem("완드4", 5, 1, 1000, EquipableItem.EQUIPTYPE.WEAPON, 1));
+            itemInfos.Add(new ConsumableItem("체력포션4", 0, 0, 300, 1));
+
+            itemInfos.Add(new EquipableItem("몽둥이4", 5, 1, 1000, EquipableItem.EQUIPTYPE.WEAPON, 1));
+            itemInfos.Add(new EquipableItem("칼4", 5, 1, 1000, EquipableItem.EQUIPTYPE.WEAPON, 1));
+            itemInfos.Add(new EquipableItem("완드4", 5, 1, 1000, EquipableItem.EQUIPTYPE.WEAPON, 1));
+            itemInfos.Add(new ConsumableItem("체력포션4", 0, 0, 300, 1));
         }
     }
 }

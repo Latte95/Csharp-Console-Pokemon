@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -73,9 +74,11 @@ namespace Console_Pokemon_Project
         {
             List<Skill> tmpSkills = new List<Skill>();
 
-            if (System.IO.File.Exists("PokemonSkills.json"))
+            string path = Path.GetFullPath(Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..\.\JSON\"));
+
+            if (System.IO.File.Exists(path + "PokemonSkills.json"))
             {
-                string json = System.IO.File.ReadAllText("PokemonSkills.json");
+                string json = System.IO.File.ReadAllText(path + "PokemonSkills.json");
                 tmpSkills = JsonConvert.DeserializeObject<List<Skill>>(json);
             }
             else

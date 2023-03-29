@@ -41,15 +41,19 @@ namespace Console_Pokemon_Project
             int ranSpeed = random.Next(1, 10);
             int ranLevel = random.Next(1, 3);
 
-            List<Pokemon> pokemons = new List<Pokemon>();
-            if(File.Exists("Pokemons.json"))
+            List<Pokemon> pokemons;
+
+            string path = Path.GetFullPath(Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..\.\JSON\"));
+
+            if (File.Exists(path + "Pokemons.json"))
             {
-                string json = File.ReadAllText("Pokemons.json");
+                string json = File.ReadAllText(path + "Pokemons.json");
                 pokemons = JsonConvert.DeserializeObject<List<Pokemon>>(json);
             }
             else
             {
                 Console.WriteLine("포켓몬 정보 파일없음");
+                return;
             }
 
             int level = pokemons[monNum].level + ranLevel;

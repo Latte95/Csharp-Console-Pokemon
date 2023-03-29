@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,7 +16,6 @@ namespace Console_Pokemon_Project
         public static void Start()
         {
             //Screen.PreferencesWindow();
-
             List<Map> mapList = new List<Map>();
             for (int i = 0; i < MAX_MAP_ROW_COUNT; i++)
             {

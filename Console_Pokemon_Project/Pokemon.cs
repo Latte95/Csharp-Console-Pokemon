@@ -117,11 +117,13 @@ namespace Console_Pokemon_Project
         }
         public void AddSkill(int skillIndex)
         {
-            List<Skill> tmpSkills = new List<Skill>();
+            List<Skill> tmpSkills;
 
-            if (File.Exists("PokemonSkills.json"))
+            string path = Path.GetFullPath(Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..\.\JSON\"));
+
+            if (File.Exists(path + "PokemonSkills.json"))
             {
-                string json = File.ReadAllText("PokemonSkills.json");
+                string json = File.ReadAllText(path + "PokemonSkills.json");
                 tmpSkills = JsonConvert.DeserializeObject<List<Skill>>(json);
             }
             else
