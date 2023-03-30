@@ -52,7 +52,7 @@ namespace Console_Pokemon_Project
             this.hp = 200;
             this.atk = 60;
             this.def = 30;
-            this.speed = 220;
+            this.speed = 50;
             this.level = 15;
             this.money = 10000;
             this.avoidence = 15;
