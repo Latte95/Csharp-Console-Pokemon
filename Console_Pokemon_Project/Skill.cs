@@ -12,17 +12,17 @@ namespace Console_Pokemon_Project
         // 계수
         // 명중률 같은 수치만 설정
 
-        public string Name { get; set; }
-        public int Power { get; set; }
-        public int Hitrate { get; set; }
-        public int Pp { get; set; }
+        public string name { get; set; }
+        public int power { get; set; }
+        public int hitrate { get; set; }
+        public int pp { get; set; }
 
         public Skill(string name, int power, int hitrate, int pp)
         {
-            Name = name;
-            Power = power;
-            Hitrate = hitrate;
-            Pp = pp;
+            name = name;
+            power = power;
+            hitrate = hitrate;
+            pp = pp;
         }
             public static List<Skill> PokemonSkills = new List<Skill>();
 
