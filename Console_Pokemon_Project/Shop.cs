@@ -13,7 +13,7 @@ namespace Console_Pokemon_Project
         const int SHOP_X_LENGTH = Screen.WINDOW_WIDTH - CURSOR_X;
         const int SHOP_Y_LENGTH = 4;
 
-        public List<string> shopOption = new List<string> { "아이템 구매", "아이템 판매" };
+        public List<string> shopOption = new List<string> { "아이템 구매", "아이템 판매", "게임 저장" };
         public List<Item> saleItems;
 
         public Shop(List<Item> saleItems)
@@ -41,6 +41,9 @@ namespace Console_Pokemon_Project
 
                 case "아이템 판매":
                     ShowBuyItems();
+                    break;
+                case "게임 저장":
+
                     break;
             }
             ClearShopContents();
