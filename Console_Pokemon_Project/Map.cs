@@ -48,6 +48,7 @@ namespace Console_Pokemon_Project
         // 해당 Map의 위치 설정
         public Map(string name, int startXLoc, int startYLoc)
         {
+            this.name = name;
             this.startXLoc = startXLoc;
             this.startYLoc = startYLoc;
             InitMap();
@@ -195,6 +196,7 @@ namespace Console_Pokemon_Project
 
             printInfo[playerPosX, playerPosY] = (char)TileType.PLAYER;
             gameInfo.ShowPlayerStat();
+            gameInfo.ShowMapName(this.name);
             return false;
         }
         public bool CheckBlock(int playerPosX, int playerPosY)
