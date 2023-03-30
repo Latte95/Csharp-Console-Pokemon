@@ -77,8 +77,9 @@ namespace Console_Pokemon_Project
             // 풀 배치
             int thisMapIndex = (this.startYLoc / MAP_HEIGHT) * 2 + (this.startXLoc / MAP_WIDTH);
 
-            int grassStartPosX = thisMapIndex * MAP_WIDTH / 2;
-            int grassStartPosY = thisMapIndex * MAP_HEIGHT / 2;
+            int grassStartPosX = thisMapIndex * MAP_WIDTH / 2 + 1;
+            int grassStartPosY = thisMapIndex * MAP_HEIGHT / 2 + 1;
+
             for (int i = grassStartPosX; i < MAP_WIDTH / 2; i++)
             {
                 for (int j = grassStartPosY; j < MAP_HEIGHT / 2; j++)
@@ -277,7 +278,6 @@ namespace Console_Pokemon_Project
                         }
                     case ConsoleKey.Escape:
                         {
-                            Player.instance.isWaitingInput = false;
                             GameInfo gameInfo = new GameInfo();
                             gameInfo.ChooseInfoMenu();
                             return;

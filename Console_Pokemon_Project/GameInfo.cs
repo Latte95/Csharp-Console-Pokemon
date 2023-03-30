@@ -20,7 +20,6 @@ namespace Console_Pokemon_Project
 
         }
 
-
         public void ChooseInfoMenu()
         {
             // 판매 or 구매
@@ -43,7 +42,24 @@ namespace Console_Pokemon_Project
         {
             Console.SetCursorPosition(CURSOR_X, CURSOR_Y);
             Console.SetCursorPosition(CURSOR_X, Console.CursorTop);
-            Menu.SelectMenu(CURSOR_X, CURSOR_Y, Player.instance.inven.items);
+            string itemName = Menu.SelectMenu(CURSOR_X, CURSOR_Y, Player.instance.inven.items);
+
+            int itemIndex = Player.instance.inven.items.FindIndex(item => item.name == itemName);
+            if(itemIndex < 0)
+            {
+                return;
+            }
+            Item selectedItem = Player.instance.inven.items[itemIndex];
+
+            if(selectedItem is EquipableItem)
+            {
+                Player.instance.equipSlot.EquipItem(selectedItem as EquipableItem);
+            }
+            else if(selectedItem is ConsumableItem)
+            {
+                //미구현
+                //selectedItem.quantity--;
+            }
         }
         private void ShowEquipments()
         {
@@ -62,7 +78,7 @@ namespace Console_Pokemon_Project
                 }
                 else
                 {
-                    equipmentNames.Add(equipments[i].ToString());
+                    equipmentNames.Add(Player.instance.equipSlot.equipSlots[equipments[i]].name);
                 }
             }
             if(equipmentNames.Count <= 0)
@@ -71,7 +87,7 @@ namespace Console_Pokemon_Project
                 return;
             }
 
-            Menu.SelectMenu(CURSOR_X, CURSOR_Y, equipments);
+            Menu.SelectMenu(CURSOR_X, CURSOR_Y, equipmentNames);
         }
     }
 }
