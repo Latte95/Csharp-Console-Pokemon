@@ -10,7 +10,7 @@ namespace Console_Pokemon_Project
 {
     class Program
     {
-        public static List<string> titleOption = new List<string> { "새로하기", "불러오기", "게임 종료" };
+        public static List<string> titleOption = new List<string> { "새로하기", "불러오기", "게임 종료", "게임 종료", "게임 종료", "게임 종료" };
 
         static void Main(string[] args)
         {
@@ -22,7 +22,7 @@ namespace Console_Pokemon_Project
         {
             string select;
 
-            select = Menu.SelectMenu((Screen.WINDOW_WIDTH >> 1)-10, 30, titleOption);
+            select = Menu.SelectMenu((Screen.WINDOW_WIDTH >> 2)-10, 30, titleOption);
             switch (select)
             {
                 case "새로하기":
