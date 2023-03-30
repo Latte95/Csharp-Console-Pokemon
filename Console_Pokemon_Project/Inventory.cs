@@ -42,6 +42,7 @@ namespace Console_Pokemon_Project
                 if (!isExist)
                 {
                     items.Add(addItem);
+                    addItem.quantity = 1;
                 }
             }
             // 장비 아이템을 추가할 땐
@@ -73,7 +74,7 @@ namespace Console_Pokemon_Project
                         if (existing.quantity > delItem.quantity)
                         {
                             // 해당 개수만큼만 삭제하고
-                            existing.quantity -= delItem.quantity;
+                            existing.quantity--;
                         }
                         // 보유한 수만큼 삭제하면
                         else if (existing.quantity.Equals(delItem.quantity))
