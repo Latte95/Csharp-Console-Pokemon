@@ -12,6 +12,9 @@ namespace Console_Pokemon_Project
         public const int CURSOR_Y = (Screen.WINDOW_HEIGHT >> 1) + 2;
         const int SHOP_X_LENGTH = Screen.WINDOW_WIDTH - CURSOR_X;
         const int SHOP_Y_LENGTH = 4;
+        public const int PLAYER_OPTION_MENU_POS_X = 83;
+        public const int PLAYER_OPTION_MENU_POS_Y = 1;
+        
 
         public List<string> infoMenu = new List<string> { "인벤토리", "장비창" };
 
@@ -46,9 +49,21 @@ namespace Console_Pokemon_Project
         }
         public void ShowPlayerStat()
         {
-            Console.SetCursorPosition(80, 30);
-            Console.WriteLine("ㅁㄴㅇㄻㄴㅇㄹ");
-        }
+            Console.SetCursorPosition(PLAYER_OPTION_MENU_POS_X, PLAYER_OPTION_MENU_POS_Y);
+            Console.WriteLine($"{Player.instance.name}의 스탯");
+            Console.SetCursorPosition(PLAYER_OPTION_MENU_POS_X, PLAYER_OPTION_MENU_POS_Y + 1);
+            Console.WriteLine($"HP:{Player.instance.hp, 3}/{Player.instance.maxHp}");
+            Console.SetCursorPosition(PLAYER_OPTION_MENU_POS_X, PLAYER_OPTION_MENU_POS_Y + 2);
+            Console.WriteLine($"ATK:{Player.instance.atk,3}");
+            Console.SetCursorPosition(PLAYER_OPTION_MENU_POS_X, PLAYER_OPTION_MENU_POS_Y + 3);
+            Console.WriteLine($"DEF:{Player.instance.def,3}");
+            Console.SetCursorPosition(PLAYER_OPTION_MENU_POS_X, PLAYER_OPTION_MENU_POS_Y + 4);
+            Console.WriteLine($"SPEED:{Player.instance.speed,3}");
+            Console.SetCursorPosition(PLAYER_OPTION_MENU_POS_X, PLAYER_OPTION_MENU_POS_Y + 5);
+            Console.WriteLine($"LEVEL:{Player.instance.level,3}");
+            Console.SetCursorPosition(PLAYER_OPTION_MENU_POS_X, PLAYER_OPTION_MENU_POS_Y + 6);
+            Console.WriteLine($"MONEY:{Player.instance.money,3}");
+    }
         private void ShowInventory()
         {
             Console.SetCursorPosition(CURSOR_X, Console.CursorTop);

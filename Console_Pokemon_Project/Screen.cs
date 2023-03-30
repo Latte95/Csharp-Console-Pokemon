@@ -63,7 +63,7 @@ namespace Console_Pokemon_Project
                     }
                     else
                     {
-                        line.Append("　");
+                        //line.Append("　");
                     }
                 }
 
