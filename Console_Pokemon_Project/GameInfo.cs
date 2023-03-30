@@ -130,11 +130,12 @@ namespace Console_Pokemon_Project
             {
                 if (Player.instance.equipSlot.equipSlots[equipments[i]] is null)
                 {
+                    equipmentNames.Add($"{equipments[i]}\t- 없음");
                     continue;
                 }
                 else
                 {
-                    equipmentNames.Add(Player.instance.equipSlot.equipSlots[equipments[i]].name);
+                    equipmentNames.Add($"{equipments[i]}\t- " + Player.instance.equipSlot.equipSlots[equipments[i]].name);
                 }
             }
             if(equipmentNames.Count <= 0)
@@ -145,7 +146,27 @@ namespace Console_Pokemon_Project
                 return;
             }
 
-            Menu.SelectMenu(CURSOR_X, CURSOR_Y, equipmentNames);
+            string selectedType = Menu.SelectMenu(CURSOR_X, CURSOR_Y, equipmentNames);
+            if(selectedType == null)
+            {
+                return;
+            }
+            if(selectedType.StartsWith(EquipableItem.EQUIPTYPE.HEAD.ToString()))
+            {
+                Player.instance.equipSlot.UnequipItem(Player.instance.equipSlot.equipSlots[EquipableItem.EQUIPTYPE.HEAD]);
+            }
+            else if(selectedType.StartsWith(EquipableItem.EQUIPTYPE.BODY.ToString()))
+            {
+                Player.instance.equipSlot.UnequipItem(Player.instance.equipSlot.equipSlots[EquipableItem.EQUIPTYPE.BODY]);
+            }
+            else if (selectedType.StartsWith(EquipableItem.EQUIPTYPE.WEAPON.ToString()))
+            {
+                Player.instance.equipSlot.UnequipItem(Player.instance.equipSlot.equipSlots[EquipableItem.EQUIPTYPE.WEAPON]);
+            }
+            else if(selectedType.StartsWith(EquipableItem.EQUIPTYPE.FOOT.ToString()))
+            {
+                Player.instance.equipSlot.UnequipItem(Player.instance.equipSlot.equipSlots[EquipableItem.EQUIPTYPE.FOOT]);
+            }
         }
         private void ClearInfoMenu()
         {
