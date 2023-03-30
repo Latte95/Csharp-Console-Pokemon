@@ -542,10 +542,26 @@ namespace Console_Pokemon_Project
         }
         public void ItemUse()
         {
-            List<Item> tmpItem = Player.instance.inven.items;
+            List<Item> tmpItem = new List<Item>();
+            foreach (Item item in Player.instance.inven.items)
+            {
+                if (item is ConsumableItem)
+                {
+                    tmpItem.Add(item);
+                }
+            }
 
             DialogueClear();
-            Menu.SelectMenu(DIALOGUE_X, DIALOGUE_Y, tmpItem);
+            string itemName = Menu.SelectMenu(DIALOGUE_X, DIALOGUE_Y, tmpItem);
+            switch (itemName)
+            {
+                case "체력포션1":
+                    {
+                        Player.instance.hp += 50;
+                        break;
+                    }
+            }
+
         }
         public bool Run() // 도망치기시 80%확률로 도망에 성공,
         {
