@@ -8,7 +8,7 @@ namespace Console_Pokemon_Project
 {
     class GameInfo
     {
-        public const int CURSOR_X = 40;
+        public const int CURSOR_X = 40+2;
         public const int CURSOR_Y = (Screen.WINDOW_HEIGHT >> 1) + 2;
         const int SHOP_X_LENGTH = Screen.WINDOW_WIDTH - CURSOR_X;
         const int SHOP_Y_LENGTH = 4;
@@ -30,10 +30,6 @@ namespace Console_Pokemon_Project
             while (true)
             {
                 whatAct = Menu.SelectMenu(CURSOR_X, CURSOR_Y, infoMenu);
-                if (string.IsNullOrEmpty(whatAct))
-                {
-                    break;
-                }
                 switch (whatAct)
                 {
                     case "인벤토리":
@@ -45,25 +41,47 @@ namespace Console_Pokemon_Project
                         break;
                 }
                 ClearInfoMenu();
+                if (string.IsNullOrEmpty(whatAct))
+                {
+                    break;
+                }
             }
+        }
+        public void ShowMapName(string name)
+        {
+            Console.SetCursorPosition(PLAYER_OPTION_MENU_POS_X + 3, PLAYER_OPTION_MENU_POS_Y);
+            Console.WriteLine(name);
         }
         public void ShowPlayerStat()
         {
-            Console.SetCursorPosition(PLAYER_OPTION_MENU_POS_X, PLAYER_OPTION_MENU_POS_Y);
-            Console.WriteLine($"{Player.instance.name}의 스탯");
-            Console.SetCursorPosition(PLAYER_OPTION_MENU_POS_X, PLAYER_OPTION_MENU_POS_Y + 1);
-            Console.WriteLine($"HP:{Player.instance.hp, 3}/{Player.instance.maxHp}");
-            Console.SetCursorPosition(PLAYER_OPTION_MENU_POS_X, PLAYER_OPTION_MENU_POS_Y + 2);
-            Console.WriteLine($"ATK:{Player.instance.atk,3}");
-            Console.SetCursorPosition(PLAYER_OPTION_MENU_POS_X, PLAYER_OPTION_MENU_POS_Y + 3);
-            Console.WriteLine($"DEF:{Player.instance.def,3}");
+            Console.SetCursorPosition(PLAYER_OPTION_MENU_POS_X, PLAYER_OPTION_MENU_POS_Y+3);
+            DisplayWithBlank($"{Player.instance.name}의 스탯");
+            
             Console.SetCursorPosition(PLAYER_OPTION_MENU_POS_X, PLAYER_OPTION_MENU_POS_Y + 4);
-            Console.WriteLine($"SPEED:{Player.instance.speed,3}");
+            DisplayWithBlank($"HP:{Player.instance.hp,3}/{Player.instance.maxHp}");
+
             Console.SetCursorPosition(PLAYER_OPTION_MENU_POS_X, PLAYER_OPTION_MENU_POS_Y + 5);
-            Console.WriteLine($"LEVEL:{Player.instance.level,3}");
+            DisplayWithBlank($"ATK:{Player.instance.atk,3}");
+
             Console.SetCursorPosition(PLAYER_OPTION_MENU_POS_X, PLAYER_OPTION_MENU_POS_Y + 6);
-            Console.WriteLine($"MONEY:{Player.instance.money,3}");
-    }
+            DisplayWithBlank($"DEF:{Player.instance.def,3}");
+
+            Console.SetCursorPosition(PLAYER_OPTION_MENU_POS_X, PLAYER_OPTION_MENU_POS_Y + 7);
+            DisplayWithBlank($"SPEED:{Player.instance.speed,3}");
+
+            Console.SetCursorPosition(PLAYER_OPTION_MENU_POS_X, PLAYER_OPTION_MENU_POS_Y + 8);
+            DisplayWithBlank($"LEVEL:{Player.instance.level,3}");
+
+            Console.SetCursorPosition(PLAYER_OPTION_MENU_POS_X, PLAYER_OPTION_MENU_POS_Y + 9);
+            DisplayWithBlank($"MONEY:{Player.instance.money,6}");
+        }
+        private void DisplayWithBlank(string str)
+        {
+            int strSize = Encoding.Default.GetBytes(str).Length;
+            int halfCharCount = str.Length * 2 - strSize;
+
+            Console.Write(str.PadRight(18, ' ')+"│");
+        }
         private void ShowInventory()
         {
             Console.SetCursorPosition(CURSOR_X, Console.CursorTop);
