@@ -103,11 +103,17 @@ namespace Console_Pokemon_Project
         private void ShowInventory()
         {
             Console.SetCursorPosition(CURSOR_X, Console.CursorTop);
+
+            // 인벤토리의 아이템 목록을 보여주고 선택한 내용 문자열로 받음
             string itemName = Menu.SelectMenu(CURSOR_X, CURSOR_Y, Player.instance.inven.items);
 
+            // 해당 문자열 (아이템이름)이 플레이어 인벤토리의 몇번째 인덱스인지 탐색
             int itemIndex = Player.instance.inven.items.FindIndex(item => item.name == itemName);
             if(itemIndex < 0)
             {
+                Console.SetCursorPosition(CURSOR_X * 2, CURSOR_Y + infoMenu.Count - 1);
+                Console.WriteLine("아이템 없음");
+                Console.ReadKey(true);
                 return;
             }
             Item selectedItem = Player.instance.inven.items[itemIndex];
@@ -118,8 +124,20 @@ namespace Console_Pokemon_Project
             }
             else if(selectedItem is ConsumableItem)
             {
-                //미구현
-                //selectedItem.quantity--;
+                if(selectedItem.quantity > 0)
+                {
+                    selectedItem.quantity--;
+                    Player.instance.hp += 50;
+                    if (Player.instance.hp > Player.instance.maxHp)
+                    {
+                        Player.instance.hp = Player.instance.maxHp;
+                    }
+                }
+                if(selectedItem.quantity <= 0)
+                {
+                    Player.instance.inven.RemoveItem(selectedItem);
+                }
+                
             }
         }
         private void ShowEquipments()
@@ -158,19 +176,39 @@ namespace Console_Pokemon_Project
             }
             if(selectedType.StartsWith(EquipableItem.EQUIPTYPE.HEAD.ToString()))
             {
-                Player.instance.equipSlot.UnequipItem(Player.instance.equipSlot.equipSlots[EquipableItem.EQUIPTYPE.HEAD]);
+                EquipableItem item = Player.instance.equipSlot.equipSlots[EquipableItem.EQUIPTYPE.HEAD];
+                if(item is null)
+                {
+                    return;
+                }
+                Player.instance.equipSlot.UnequipItem(item);
             }
             else if(selectedType.StartsWith(EquipableItem.EQUIPTYPE.BODY.ToString()))
             {
-                Player.instance.equipSlot.UnequipItem(Player.instance.equipSlot.equipSlots[EquipableItem.EQUIPTYPE.BODY]);
+                EquipableItem item = Player.instance.equipSlot.equipSlots[EquipableItem.EQUIPTYPE.BODY];
+                if(item is null)
+                {
+                    return;
+                }
+                Player.instance.equipSlot.UnequipItem(item);
             }
             else if (selectedType.StartsWith(EquipableItem.EQUIPTYPE.WEAPON.ToString()))
             {
-                Player.instance.equipSlot.UnequipItem(Player.instance.equipSlot.equipSlots[EquipableItem.EQUIPTYPE.WEAPON]);
+                EquipableItem item = Player.instance.equipSlot.equipSlots[EquipableItem.EQUIPTYPE.WEAPON];
+                if(item is null)
+                {
+                    return;
+                }
+                Player.instance.equipSlot.UnequipItem(item);
             }
             else if(selectedType.StartsWith(EquipableItem.EQUIPTYPE.FOOT.ToString()))
             {
-                Player.instance.equipSlot.UnequipItem(Player.instance.equipSlot.equipSlots[EquipableItem.EQUIPTYPE.FOOT]);
+                EquipableItem item = Player.instance.equipSlot.equipSlots[EquipableItem.EQUIPTYPE.FOOT];
+                if(item is null)
+                {
+                    return;
+                }
+                Player.instance.equipSlot.UnequipItem(item);
             }
         }
         private void ClearInfoMenu()

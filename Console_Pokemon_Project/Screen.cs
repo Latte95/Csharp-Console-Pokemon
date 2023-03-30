@@ -158,7 +158,7 @@ namespace Console_Pokemon_Project
             Console.Write("이동 : ◀  ▶");
             Console.SetCursorPosition(menualCursorX, menualCursorY);
             Console.Write("         ▼");
-            menualCursorY += blankYSpace;
+            menualCursorY ++;
             Console.SetCursorPosition(menualCursorX, menualCursorY);
             Console.Write("선택 : Space Bar");
             menualCursorY += blankYSpace;
@@ -167,7 +167,8 @@ namespace Console_Pokemon_Project
             menualCursorY += blankYSpace;
             Console.SetCursorPosition(menualCursorX, menualCursorY);
             Console.Write("플레이어 : ★");
-            Console.SetCursorPosition(menualCursorX, menualCursorY++);
+            menualCursorY+=blankYSpace;
+            Console.SetCursorPosition(menualCursorX, menualCursorY);
             Console.Write("상점 : ＠");
         }
     }

@@ -23,6 +23,7 @@ namespace Console_Pokemon_Project
         {
             GROUND = '　',
             GRASS = '♣',
+            RECTTILE = '▨',
             WALL = '■',
             PLAYER = '★',
             SHOP = '＠',
@@ -79,12 +80,33 @@ namespace Console_Pokemon_Project
             // 풀 배치
             int thisMapIndex = (this.startYLoc / MAP_HEIGHT) * 2 + (this.startXLoc / MAP_WIDTH);
 
-            int grassStartPosX = thisMapIndex * MAP_WIDTH / 2 + 1;
-            int grassStartPosY = thisMapIndex * MAP_HEIGHT / 2 + 1;
+            //int grassStartPosX = thisMapIndex * MAP_WIDTH / 2 + 1;
+            //int grassStartPosY = thisMapIndex * MAP_HEIGHT / 2 + 1;
 
-            for (int i = grassStartPosX; i < MAP_WIDTH / 2; i++)
+            int grassStartPosX;
+            int grassStartPosY;
+
+            if (thisMapIndex % 2 == 0)
             {
-                for (int j = grassStartPosY; j < MAP_HEIGHT / 2; j++)
+                grassStartPosX = 1;
+            }
+            else
+            {
+                grassStartPosX = 21;
+            }
+            if(thisMapIndex / 2 == 0)
+            {
+                grassStartPosY = 1;
+            }
+            else
+            {
+                grassStartPosY = 23;
+            }
+            
+
+            for (int i = grassStartPosX; i < MAP_WIDTH / 2 + grassStartPosX-2; i++)
+            {
+                for (int j = grassStartPosY; j < MAP_HEIGHT / 2 + grassStartPosY - 1; j++)
                 {
                     if ((i % 2 == 0) && (j % 2 == 0))
                     {
@@ -96,6 +118,43 @@ namespace Console_Pokemon_Project
                     }
                 }
             }
+
+            // 몬스터존  배치
+            int monsterZoneStartPosX;
+            int monsterZoneStartPosY;
+
+            if (thisMapIndex % 2 == 0)
+            {
+                monsterZoneStartPosX = 21;
+            }
+            else
+            {
+                monsterZoneStartPosX = 1;
+            }
+            if (thisMapIndex / 2 == 0)
+            {
+                monsterZoneStartPosY = 23;
+            }
+            else
+            {
+                monsterZoneStartPosY = 1;
+            }
+
+            for (int i = monsterZoneStartPosX; i < MAP_WIDTH / 2 + monsterZoneStartPosX - 2; i++)
+            {
+                for (int j = monsterZoneStartPosY; j < MAP_HEIGHT / 2 + monsterZoneStartPosY - 1; j++)
+                {
+                    if ((i % 2 == 0) && (j % 2 == 0))
+                    {
+                        mapInfo[i, j] = (char)TileType.RECTTILE;
+                    }
+                    else if ((i % 2 == 1) && (j % 2 == 1))
+                    {
+                        mapInfo[i, j] = (char)TileType.RECTTILE;
+                    }
+                }
+            }
+
 
             // 다음 맵으로 넘어갈 수 있는 위치
             mapInfo[MAP_WIDTH / 2, 0] = (char)TileType.GROUND;
@@ -237,11 +296,18 @@ namespace Console_Pokemon_Project
         {
             bool isThereMonster = false;
 
-            int appearValue = random.Next(100);
+            int playerPosX = Player.instance.locX - this.startXLoc;
+            int playerPosY = Player.instance.locY - this.startYLoc;
 
-            if(appearValue < 3)
+            if(mapInfo[playerPosX, playerPosY] == (char)TileType.GRASS ||
+                mapInfo[playerPosX, playerPosY] == (char)TileType.RECTTILE)
             {
-                isThereMonster = true;
+                int appearValue = random.Next(100);
+
+                if (appearValue < 2)
+                {
+                    isThereMonster = true;
+                }
             }
 
             return isThereMonster;
@@ -306,11 +372,11 @@ namespace Console_Pokemon_Project
                 }
                 else
                 {
-                    //if(CheckThereIsMonster() == true)
-                    //{
-                    //    Player.instance.isInBattle = true;
-                    //    return;
-                    //}
+                    if (CheckThereIsMonster() == true)
+                    {
+                        Player.instance.isInBattle = true;
+                        return;
+                    }
                 }
                 Screen.Print(printInfo);
             }
