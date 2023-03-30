@@ -11,17 +11,18 @@ namespace Console_Pokemon_Project
 {
     class Battle
     {
-        const int WINDOW_WIDTH = 120;
-        const int WINDOW_HEIGHT = 45;
+        const int BATTLE_WIDTH = Screen.WINDOW_WIDTH / 2;
+        const int BATTLE_HEIGHT = Screen.WINDOW_HEIGHT;
+
         public const int DIALOGUE_X = 4;
-        public const int DIALOGUE_Y = WINDOW_HEIGHT - 10;
+        public const int DIALOGUE_Y = BATTLE_HEIGHT - 10;
         const int DIALOGUE_WINDOW_WIDTH = 30;
         const int DIALOGUE_WINDOW_HEIGHT = 10;
 
         // 몬스터와 나의 체력등을 이용해 전투종료
         // 아이템사용 스킬사용 도망치기 선택
         // 승패에 따른 결과값 반환
-        public char[,] pixel = new char[60, 45];
+        public static char[,] pixel = new char[BATTLE_WIDTH, BATTLE_HEIGHT];
         public List<string> battle = new List<string> { "전투", "아이템 사용", "도망" };
 
         //public List<string> skill;
@@ -68,7 +69,9 @@ namespace Console_Pokemon_Project
                 pokemons[monNum].dropgold + level * 2,
                 pokemons[monNum].critical,
                 pokemons[monNum].avoidence,
-                level);
+                level,
+                pokemons[monNum].characterDisplayInfo
+                );
 
             foreach (Skill skill in Player.instance.skills)
             {
@@ -78,17 +81,15 @@ namespace Console_Pokemon_Project
 
         }
 
-        public void BattleFrame()
-        {
-            //for(int y = 0; y<)
-        }
-
         public void MeetPokemon()
         {
+            
             bool isBattlePlay = true; // 배틀전체 실행값
-
             int updateState = 0;
-
+            BattleFrame();
+            MonsterGraphic();
+           // MonsterGraphic();
+            Screen.Print(pixel);
             Console.SetCursorPosition(DIALOGUE_X, DIALOGUE_Y);
             Console.WriteLine("지나가던 {0}와 조우했다!", enemy.name);
             Console.ReadKey(true);
@@ -165,7 +166,7 @@ namespace Console_Pokemon_Project
                                 continue;
                             }
                             MonsterAttack();
-                            
+
                             Console.WriteLine("");
                             break;
                         }
@@ -182,6 +183,9 @@ namespace Console_Pokemon_Project
                 }
                 Console.Clear();
 
+
+                Player.instance.isInBattle = false;
+                Player.instance.isWaitingInput = true;
             }
         }
         public string PlayerSelect()
@@ -548,9 +552,6 @@ namespace Console_Pokemon_Project
 
 
             }
-
-            Player.instance.isInBattle = false;
-            Player.instance.isWaitingInput = true;
         }
 
         public bool ItemUse(int updateState)
@@ -608,7 +609,7 @@ namespace Console_Pokemon_Project
                         DialogueClear();
 
                         Console.WriteLine("체력 포션을 사용하였다.");
-                        Console.WriteLine("{0} 이 {1}만큼 회복되었다.",Player.instance.name , 50);
+                        Console.WriteLine("{0} 이 {1}만큼 회복되었다.", Player.instance.name, 50);
                         Player.instance.hp += 50;
                         if (Player.instance.hp > Player.instance.maxHp) { Player.instance.hp = Player.instance.maxHp; }
                         // 소모품 개수 닳게할공간
@@ -692,7 +693,7 @@ namespace Console_Pokemon_Project
         {
             Console.SetCursorPosition(DIALOGUE_X, DIALOGUE_Y);
 
-            for (int i = 0; i < DIALOGUE_WINDOW_HEIGHT; i++)
+            for (int i = 0; i < DIALOGUE_WINDOW_HEIGHT-1; i++)
             {
                 for (int j = 0; j < DIALOGUE_WINDOW_WIDTH; j++)
                 {
@@ -708,15 +709,15 @@ namespace Console_Pokemon_Project
 
         public static void Display()
         {
-            Console.SetCursorPosition(20, 3);
+            Console.SetCursorPosition(44, 3);
             Console.WriteLine("Lv : {0} ", enemy.level); // 몬스터의 Lv표시
-            Console.SetCursorPosition(20, 5);
+            Console.SetCursorPosition(44, 5);
             Console.WriteLine("HP : {0} / {1, -3}", enemy.hp, enemy.maxHp); // 몬스터의 hp표시
-            Console.SetCursorPosition(80, 23);
+            Console.SetCursorPosition(60, 26);
             Console.WriteLine("Lv : {0} ", Player.instance.level); //플레이어의 Lv표시
-            Console.SetCursorPosition(80, 25);
+            Console.SetCursorPosition(60, 28);
             Console.WriteLine("HP : {0, -3} / {1, -3}", Player.instance.hp, Player.instance.maxHp);  //플레이어의 hp표시
-            Console.SetCursorPosition(80, 27);
+            Console.SetCursorPosition(60, 30);
             Console.WriteLine("EXP : {0, -3} / {1, -3}", Player.instance.exp, Player.instance.upExp[Player.instance.level]);  //플레이어의 hp표시
 
             // 여기서 몬스터 그래픽 //
@@ -760,13 +761,21 @@ namespace Console_Pokemon_Project
         }
         public static void MonsterGraphic()
         {
-            int monsterPosX = 20;
             for (int y = 0; y < 24; y++)
             {
-                Console.SetCursorPosition(monsterPosX, Console.CursorTop+y);
+                
                 for (int x = 0; x < 24; x++)
                 {
-                    Console.Write(enemy.characterDisplayInfo[y,x]);
+                    char c;
+                    if(!enemy.characterDisplayInfo[y, x].Equals(' '))
+                    {
+                        c = (char)(enemy.characterDisplayInfo[y, x] + 0xFEE0);
+                    }
+                    else
+                    {
+                        c = '　';
+                    }
+                    pixel[(Screen.WINDOW_WIDTH>>1) - 24+x-1, y + 1] = c;
                 }
             }
 
