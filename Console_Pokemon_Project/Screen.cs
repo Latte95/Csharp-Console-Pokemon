@@ -144,21 +144,23 @@ namespace Console_Pokemon_Project
             }
         }
 
-        private static void DrawMenual(string mapName)
+        public static void DrawMenual()
         {
-            int menualCursorX = Map.MAP_WIDTH*2 + 10;
-            int menualCursorY = 5;
+            int menualCursorX = Map.MAP_WIDTH*2 + 24;
+            int menualCursorY = 4;
             // 줄 간격
             int blankYSpace = 2;
-            Console.SetCursorPosition(menualCursorX, 0);
-            Console.Write(mapName);
+            //Console.SetCursorPosition(menualCursorX, 0);
+            //Console.Write(mapName);
             Console.SetCursorPosition(menualCursorX, menualCursorY++);
-            Console.Write("         ↑");
+            Console.Write("         ▲");
+            Console.SetCursorPosition(menualCursorX, menualCursorY++);
+            Console.Write("이동 : ◀  ▶");
             Console.SetCursorPosition(menualCursorX, menualCursorY);
-            Console.Write("이동 : ←↓→");
+            Console.Write("         ▼");
             menualCursorY += blankYSpace;
             Console.SetCursorPosition(menualCursorX, menualCursorY);
-            Console.Write("선택 : 엔터");
+            Console.Write("선택 : Space Bar");
             menualCursorY += blankYSpace;
             Console.SetCursorPosition(menualCursorX, menualCursorY);
             Console.Write("메뉴 : ESC");

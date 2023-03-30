@@ -49,7 +49,7 @@ namespace Console_Pokemon_Project
         }
         public void ShowMapName(string name)
         {
-            Console.SetCursorPosition(PLAYER_OPTION_MENU_POS_X + 3, PLAYER_OPTION_MENU_POS_Y);
+            Console.SetCursorPosition(PLAYER_OPTION_MENU_POS_X + 14, PLAYER_OPTION_MENU_POS_Y);
             Console.WriteLine(name);
         }
         public void ShowPlayerStat()
@@ -74,13 +74,24 @@ namespace Console_Pokemon_Project
 
             Console.SetCursorPosition(PLAYER_OPTION_MENU_POS_X, PLAYER_OPTION_MENU_POS_Y + 9);
             DisplayWithBlank($"MONEY:{Player.instance.money,6}");
+
+            Console.SetCursorPosition(PLAYER_OPTION_MENU_POS_X + 2, Screen.WINDOW_HEIGHT / 2);
+            Console.Write("================================");
+
+            Screen.DrawMenual();
         }
         private void DisplayWithBlank(string str)
         {
+            // 반각문자 숫자까지 고려해서 여백 처리
             int strSize = Encoding.Default.GetBytes(str).Length;
             int halfCharCount = str.Length * 2 - strSize;
-
-            Console.Write(str.PadRight(18, ' ')+"│");
+            
+            Console.Write(str.PadRight(9 + halfCharCount/2, '　'));
+            if(halfCharCount %2 == 1)
+            {
+                Console.Write(" ");
+            }
+            Console.Write("│");
         }
         private void ShowInventory()
         {
