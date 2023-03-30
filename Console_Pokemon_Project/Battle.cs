@@ -13,7 +13,6 @@ namespace Console_Pokemon_Project
     {
         const int BATTLE_WIDTH = Screen.WINDOW_WIDTH / 2;
         const int BATTLE_HEIGHT = Screen.WINDOW_HEIGHT;
-
         public const int DIALOGUE_X = 4;
         public const int DIALOGUE_Y = BATTLE_HEIGHT - 10;
         const int DIALOGUE_WINDOW_WIDTH = 30;
@@ -701,14 +700,34 @@ namespace Console_Pokemon_Project
             Console.SetCursorPosition(DIALOGUE_X, DIALOGUE_Y);
         }
 
-        public static void Display()
+        public static void Display() //플레이어와 몬스터의 상태창을 띄워주는 메서드 (상수좀 바꿔줘야될듯?)
         {
-            Console.SetCursorPosition(48, 2);
+            int monHpBar = (enemy.maxHp / 10) ;
+
+            Console.SetCursorPosition(44, 2);
             Console.WriteLine("이름 : {0} ", enemy.name); // 몬스터의 Lv표시
-            Console.SetCursorPosition(48, 4);
+            Console.SetCursorPosition(44, 4);
             Console.WriteLine("Lv : {0} ", enemy.level); // 몬스터의 Lv표시
-            Console.SetCursorPosition(48, 6);
-            Console.WriteLine("HP : {0 ,-3} / {1, -3}", enemy.hp, enemy.maxHp); // 몬스터의 hp표시
+
+
+            Console.SetCursorPosition(44, 6);
+            Console.BackgroundColor = ConsoleColor.Gray;
+            for (int i=0; i< enemy.hp/monHpBar; i++)
+            {
+                Console.Write("　");
+            }
+            Console.BackgroundColor = ConsoleColor.Black;
+            for (int i=0; i<11-enemy.hp /monHpBar; i++)
+            {
+                Console.Write("　");
+            }
+            Console.ResetColor();
+
+            // 몬스터의 hp표시
+            Console.SetCursorPosition(44,7);
+            Console.WriteLine("HP : {0 ,-3} / {1, -3}", enemy.hp, enemy.maxHp); 
+
+
             Console.SetCursorPosition(56, 28);
             Console.WriteLine("Lv : {0} ", Player.instance.level); //플레이어의 Lv표시
             Console.SetCursorPosition(56, 30);

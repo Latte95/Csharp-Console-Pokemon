@@ -47,8 +47,8 @@ namespace Console_Pokemon_Project
 
             string playerJson = JsonConvert.SerializeObject(Player.instance, Formatting.Indented);
             File.WriteAllText(path + "saveData.json", playerJson);
-            string ShopJson = JsonConvert.SerializeObject(Map.shop.saleItems, Formatting.Indented, settings);
-            File.WriteAllText(path + "itemInfos.json", ShopJson);
+            //string ShopJson = JsonConvert.SerializeObject(Map.shop.saleItems, Formatting.Indented, settings);
+            //File.WriteAllText(path + "itemInfos.json", ShopJson);
         }
     }
 }

@@ -1,37 +1,35 @@
 {
   "name": "Player",
   "maxHp": 200,
-  "hp": 200,
+  "hp": 186,
   "atk": 444,
-  "def": 30,
+  "def": 35,
   "speed": 50,
   "level": 15,
-  "money": 9000,
+  "money": 11178,
   "avoidence": 15,
   "critical": 3,
-  "exp": 0,
+  "exp": 488,
   "inven": {
-    "items": [
-      {
-        "equipType": 2,
-        "name": "몽둥이4",
-        "atk": 5,
-        "def": 1,
-        "price": 1000,
-        "quantity": 1
-      }
-    ]
+    "items": []
   },
   "equipSlot": {
     "equipSlots": {
-      "HEAD": null,
+      "HEAD": {
+        "equipType": 0,
+        "name": "파란두건",
+        "atk": 0,
+        "def": 5,
+        "price": 300,
+        "quantity": 1
+      },
       "BODY": null,
       "WEAPON": null,
       "FOOT": null
     }
   },
-  "locX": 19,
-  "locY": 22,
+  "locX": 21,
+  "locY": 21,
   "isWaitingInput": true,
   "isInBattle": false,
   "upExp": [

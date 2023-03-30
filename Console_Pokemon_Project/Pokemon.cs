@@ -51,7 +51,7 @@ namespace Console_Pokemon_Project
         public void InitGetSkill()
         {
             // 피카츄 = 0,1,2,3 파이리 = 8,9,10,11 꼬부기 = 8,12,13,14 이상해씨 = 4,5,6,7 나옹 = 8,13,15,16 
-            // 푸린 = 16,17,11,0 괴력몬 = 18,19,20,21  포니타 = 10,11,21,22 팬텀 = 23,24,25,26 아쿠스타 =14,27,28,29
+            // 푸린 = 16,17,0,28 괴력몬 = 18,19,20,21  포니타 = 10,11,21,22 팬텀 = 23,24,25,26 아쿠스타 =14,27,28,29
 
             switch (this.name)
             {
@@ -88,8 +88,8 @@ namespace Console_Pokemon_Project
                 case "푸린":
                     AddSkill(16);
                     AddSkill(17);
-                    AddSkill(11);
                     AddSkill(0);
+                    AddSkill(28);
                     break;
                 case "괴력몬":
                     AddSkill(18);

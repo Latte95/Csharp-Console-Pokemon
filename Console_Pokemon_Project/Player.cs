@@ -55,9 +55,9 @@ namespace Console_Pokemon_Project
             this.name = "Player";
             this.maxHp = 200;
             this.hp = 200;
-            this.atk = 444;
+            this.atk = 125;
             this.def = 30;
-            this.speed = 50;
+            this.speed = 75;
             this.level = 15;
             this.money = 10000;
             this.avoidence = 15;
@@ -134,9 +134,9 @@ namespace Console_Pokemon_Project
         private void InitGetSkill()
         {
             AddSkill(0);
-            AddSkill(1);
-            AddSkill(2);
-            AddSkill(3);
+            AddSkill(16);
+            AddSkill(13);
+            AddSkill(14);
         }
         private void AddSkill(int skillIndex)
         {
