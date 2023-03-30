@@ -555,9 +555,13 @@ namespace Console_Pokemon_Project
             string itemName = Menu.SelectMenu(DIALOGUE_X, DIALOGUE_Y, tmpItem);
             switch (itemName)
             {
-                case "체력포션1":
+                case "체력포션":
                     {
+                        Console.WriteLine("체력 포션을 사용하였다.");
+                        Console.WriteLine("{0} 이 {1}만큼 회복되었다.",Player.instance.name , 50);
                         Player.instance.hp += 50;
+                        if (Player.instance.hp > Player.instance.maxHp) { Player.instance.hp = Player.instance.maxHp; }
+                        // 소모품 개수 닳게할공간
                         break;
                     }
             }
