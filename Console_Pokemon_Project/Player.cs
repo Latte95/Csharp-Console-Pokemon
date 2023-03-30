@@ -30,6 +30,7 @@ namespace Console_Pokemon_Project
         }
 
         public string name;
+        public int maxHp;
         public int hp;
         public int atk;
         public int def;
@@ -49,6 +50,7 @@ namespace Console_Pokemon_Project
         private Player()
         {
             this.name = "Player";
+            this.maxHp = 200;
             this.hp = 200;
             this.atk = 60;
             this.def = 30;

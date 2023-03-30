@@ -59,7 +59,8 @@ namespace Console_Pokemon_Project
             int level = pokemons[monNum].level + ranLevel;
 
             enemy = new Pokemon(pokemons[monNum].name,
-                pokemons[monNum].hp + ranHp + level * 3,
+                pokemons[monNum].maxHp + ranHp + level * 3,
+                pokemons[monNum].hp + ranHp + level * 3,    // 현재체력
                 pokemons[monNum].atk + ranAtk + level * 2,
                 pokemons[monNum].def + ranDef + level,
                 pokemons[monNum].speed + ranSpeed + level * 2,
@@ -95,14 +96,7 @@ namespace Console_Pokemon_Project
                 Console.WriteLine("{0}는 지시를 기다리고있다.", Player.instance.name);
                 Console.SetCursorPosition(DIALOGUE_X, Console.CursorTop);
                 Console.WriteLine("어떤 행동을 하시겠습니까?");
-                Console.SetCursorPosition(20, 3);
-                Console.WriteLine("Lv : {0} ", enemy.level); //레벨칸표시
-                Console.SetCursorPosition(20, 5);
-                Console.WriteLine("HP : {0} / {1}", enemy.hp,enemy.hp); // 임시로 넣어놓음 나중엔 위에 추가할것
-                Console.SetCursorPosition(80, 23);
-                Console.WriteLine("Lv : {0} ", Player.instance.level); 
-                Console.SetCursorPosition(80, 25);
-                Console.WriteLine("HP : {0} / 200", Player.instance.hp); // 임시로 넣어놓음 나중엔 위에 추가할것
+                Display();
                 Console.ReadKey(true);
                 DialogueClear();
 
@@ -573,6 +567,8 @@ namespace Console_Pokemon_Project
 
             if (enemy.hp <= 0)
             {
+                Console.Clear();
+                Display();
                 Console.SetCursorPosition(DIALOGUE_X, DIALOGUE_Y);
                 Console.WriteLine("{0}의 체력이 0이 되었다.", enemy.name);
                 Console.SetCursorPosition(DIALOGUE_X, Console.CursorTop);
@@ -611,5 +607,16 @@ namespace Console_Pokemon_Project
             Console.SetCursorPosition(DIALOGUE_X, DIALOGUE_Y);
         }
 
+        public static void Display()
+        {
+            Console.SetCursorPosition(20, 3);
+            Console.WriteLine("Lv : {0} ", enemy.level); // 몬스터의 Lv표시
+            Console.SetCursorPosition(20, 5);
+            Console.WriteLine("HP : {0} / {1}", enemy.hp, enemy.maxHp); // 몬스터의 hp표시
+            Console.SetCursorPosition(80, 23);
+            Console.WriteLine("Lv : {0} ", Player.instance.level); //플레이어의 Lv표시
+            Console.SetCursorPosition(80, 25);
+            Console.WriteLine("HP : {0} / {1}", Player.instance.hp, Player.instance.maxHp);  //플레이어의 hp표시
+        }
     }
 }

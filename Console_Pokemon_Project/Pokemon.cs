@@ -16,6 +16,7 @@ namespace Console_Pokemon_Project
 
         // 하나의 생성자로 이름값에 따라 스탯 별개
         public string name;
+        public int maxHp;
         public int hp;
         public int atk;
         public int def;
@@ -30,9 +31,10 @@ namespace Console_Pokemon_Project
         //public int sepcial_Defence;
         public List<Skill> skills = new List<Skill>();
 
-        public Pokemon(string name, int hp, int atk, int def, int speed, int exp, int dropgold, int cri, int avoid, int level)
+        public Pokemon(string name, int maxHp, int hp, int atk, int def, int speed, int exp, int dropgold, int cri, int avoid, int level)
         {
             this.name = name;
+            this.maxHp = maxHp;
             this.hp = hp;
             this.atk = atk;
             this.def = def;
