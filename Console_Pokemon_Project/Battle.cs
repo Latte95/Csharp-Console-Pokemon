@@ -23,8 +23,7 @@ namespace Console_Pokemon_Project
         // 승패에 따른 결과값 반환
         public char[,] pixel = new char[60, 45];
         public List<string> battle = new List<string> { "전투", "아이템 사용", "도망" };
-        public List<string> skillsStr = new List<string>();
-
+        
         //public List<string> skill;
         public static Pokemon enemy;
 
@@ -69,11 +68,6 @@ namespace Console_Pokemon_Project
                 pokemons[monNum].critical,
                 pokemons[monNum].avoidence,
                 level);
-
-            foreach (Skill skill in Player.instance.skills)
-            {
-                skillsStr.Add(skill.name);
-            }
 
         }
 
@@ -153,7 +147,7 @@ namespace Console_Pokemon_Project
         public string PlayerSelect()
         {
             DialogueClear();
-            string skillName = Menu.SelectMenu(DIALOGUE_X, DIALOGUE_Y, skillsStr);
+            string skillName = Menu.SelectMenu(DIALOGUE_X, DIALOGUE_Y, Player.instance.skills);
             return skillName;
 
         }
@@ -248,7 +242,7 @@ namespace Console_Pokemon_Project
                             Console.ReadKey(true);
                             DialogueClear();
                             enemy.hp -= playerSkillDam1;
-                            Player.instance.skills[0].pp -= 1;
+                            Player.instance.skills[1].pp -= 1;
                             if (enemy.hp < 0) { enemy.hp = 0; }
                         }
                     }

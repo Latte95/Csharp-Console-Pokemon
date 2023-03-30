@@ -92,6 +92,10 @@ namespace Console_Pokemon_Project
                         {
                             return item.name;
                         }
+                        else if (menu[pointerY] is Skill skill)
+                        {
+                            return skill.name;
+                        }
                         else if (menu[pointerY] is string str)
                         {
                             return str;
@@ -212,7 +216,7 @@ namespace Console_Pokemon_Project
                 // 아이템이면 출력할 것
                 if (menu[menuIndex + i] is Item itemName)
                 {
-                    Console.WriteLine($"{itemName.name} - {itemName.quantity}");
+                    Console.WriteLine($"{itemName.name} - {itemName.quantity}개");
                 }
                 // 스킬이면 출력할 것
                 else if(menu[menuIndex + i] is Skill skillName)
