@@ -35,6 +35,8 @@ namespace Console_Pokemon_Project
             }
             // 새로운 아이템 착용한 뒤
             equipSlots[type] = item;
+            Player.instance.atk += item.atk;
+            Player.instance.def += item.def;
             // 인벤토리에서 해당 아이템은 제거
             inventory.RemoveItem(item);
 
@@ -42,72 +44,13 @@ namespace Console_Pokemon_Project
 
         public void UnequipItem(EquipableItem item)
         {
+            Player.instance.atk -= item.atk;
+            Player.instance.def -= item.def;
             Inventory inventory = Player.instance.inven;
             // 장비하고 있는 슬롯을 비우고
             equipSlots[item.equipType] = null;
             // 인벤토리에 해당 장비를 추가
             inventory.AddItem(item);
         }
-
-
-            //public void Equip(EquipableItem item)
-            //{
-            //    int type = (int)item.equipType;
-
-            //    EquipableItem tmpItem = new EquipableItem(item.name, item.atk, item.def, item.equipType, item.price);
-            //    item = equipInfo[type];
-            //    equipInfo[type] = tmpItem;
-            //}
-            //public void EquipFromInven(int invenIndex)
-            //{
-            //    EquipableItem tmpItem = this.inven.itemList[invenIndex] as EquipableItem;
-
-            //    // 인벤 장착 선택한 아이템이 장비템이 아니면 종료
-            //    if (tmpItem is null)
-            //    {
-            //        return;
-            //    }
-            //    // 선택 인덱스가 아이템 리스트크기를 넘으면 종료
-            //    if (invenIndex >= this.inven.itemList.Count)
-            //    {
-            //        return;
-            //    }
-
-            //    // 현재 장착중인 장비가 없으면 인벤토리에 추가할 아이템 없음
-            //    EquipableItem myEquipItem = this.equipInfo[(int)tmpItem.equipType];
-
-            //    // 장비창에 있는 아이템은 인벤토리로 넣고
-            //    if (myEquipItem is null == false)
-            //    {
-            //        this.inven.itemList.Add(equipInfo[(int)tmpItem.equipType]);
-            //    }
-            //    // 장착
-            //    Equip(tmpItem);
-            //    // 장비창으로 들어간 아이템은 인벤토리에서 삭제
-            //    this.inven.itemList.RemoveAt(invenIndex);
-            //}
-            //public int SumEquipAtk()
-            //{
-            //    int sum = 0;
-            //    int typeCount = Enum.GetValues(typeof(EquipableItem.EQUIPTYPE)).Length; // EQUIPTYPE의 총 개수
-            //    for (int i = 0; i < typeCount; i++)
-            //    {
-            //        if (this.equipInfo[i] == null)
-            //            continue;
-            //        sum += this.equipInfo[i].atk;
-            //    }
-            //    return sum;
-            //}
-            //public int SumEquipDef()
-            //{
-            //    int sum = 0;
-            //    for (int i = 0; i < 4; i++)
-            //    {
-            //        if (this.equipInfo[i] == null)
-            //            continue;
-            //        sum += this.equipInfo[i].def;
-            //    }
-            //    return sum;
-            //}
         }
     }
