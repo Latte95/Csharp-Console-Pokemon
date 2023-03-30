@@ -709,15 +709,15 @@ namespace Console_Pokemon_Project
 
         public static void Display()
         {
-            Console.SetCursorPosition(20, 3);
+            Console.SetCursorPosition(44, 3);
             Console.WriteLine("Lv : {0} ", enemy.level); // 몬스터의 Lv표시
-            Console.SetCursorPosition(20, 5);
+            Console.SetCursorPosition(44, 5);
             Console.WriteLine("HP : {0} / {1, -3}", enemy.hp, enemy.maxHp); // 몬스터의 hp표시
-            Console.SetCursorPosition(80, 23);
+            Console.SetCursorPosition(60, 26);
             Console.WriteLine("Lv : {0} ", Player.instance.level); //플레이어의 Lv표시
-            Console.SetCursorPosition(80, 25);
+            Console.SetCursorPosition(60, 28);
             Console.WriteLine("HP : {0, -3} / {1, -3}", Player.instance.hp, Player.instance.maxHp);  //플레이어의 hp표시
-            Console.SetCursorPosition(80, 27);
+            Console.SetCursorPosition(60, 30);
             Console.WriteLine("EXP : {0, -3} / {1, -3}", Player.instance.exp, Player.instance.upExp[Player.instance.level]);  //플레이어의 hp표시
 
             // 여기서 몬스터 그래픽 //
@@ -761,13 +761,21 @@ namespace Console_Pokemon_Project
         }
         public static void MonsterGraphic()
         {
-            int monsterPosX = 20;
             for (int y = 0; y < 24; y++)
             {
-                Console.SetCursorPosition(monsterPosX, Console.CursorTop+y);
+                
                 for (int x = 0; x < 24; x++)
                 {
-                    Console.Write(enemy.characterDisplayInfo[y,x]);
+                    char c;
+                    if(!enemy.characterDisplayInfo[y, x].Equals(' '))
+                    {
+                        c = (char)(enemy.characterDisplayInfo[y, x] + 0xFEE0);
+                    }
+                    else
+                    {
+                        c = '　';
+                    }
+                    pixel[(Screen.WINDOW_WIDTH>>1) - 24+x-1, y + 1] = c;
                 }
             }
 
