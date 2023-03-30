@@ -76,16 +76,18 @@ namespace Console_Pokemon_Project
         public void BuyItem(string itemName)
         {
             int itemIndex = saleItems.FindIndex(item => item.name == itemName);
+            if(itemIndex < 0)
+            {
+                return;
+            }
 
             Item tmpItem = saleItems[itemIndex]; // 현재 살 아이템
             if (tmpItem.quantity <= 0)
             {
-                Console.WriteLine("수량부족");
                 return;
             }
             else if (Player.instance.money < tmpItem.price)
-            {
-                Console.WriteLine("돈 부족");
+            {   
                 return;
             }
             if (tmpItem is EquipableItem)

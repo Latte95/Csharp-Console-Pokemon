@@ -61,10 +61,10 @@ namespace Console_Pokemon_Project
                     {
                         line.Append(pixel[x, y]);
                     }
-                    //else
-                    //{
-                    //    line.Append("　");
-                    //}
+                    else
+                    {
+                        line.Append("　");
+                    }
                 }
 
                 int cursorXPosition = 0;
