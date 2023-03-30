@@ -40,6 +40,7 @@ namespace Console_Pokemon_Project
             int ranSpeed = random.Next(1, 10);
             int ranLevel = random.Next(1, 3);
 
+
             List<Pokemon> pokemons;
 
             string path = Path.GetFullPath(Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..\.\JSON\"));
@@ -73,7 +74,7 @@ namespace Console_Pokemon_Project
             {
                 skill.pp = skill.maxPp;
             }
-            
+
 
         }
 
@@ -85,11 +86,12 @@ namespace Console_Pokemon_Project
         public void MeetPokemon()
         {
             bool isBattlePlay = true; // 배틀전체 실행값
+
             Console.SetCursorPosition(DIALOGUE_X, DIALOGUE_Y);
             Console.WriteLine("지나가던 {0}와 조우했다!", enemy.name);
             Console.ReadKey(true);
             DialogueClear();
-            
+
             while (isBattlePlay)
             {
 
@@ -120,7 +122,7 @@ namespace Console_Pokemon_Project
                                     break;
                                 }
                             }
-                            if(isPp)
+                            if (isPp)
                             {
                                 break;
                             }
@@ -142,6 +144,7 @@ namespace Console_Pokemon_Project
                                 if (isBattlePlay == false) { break; }
                                 PlayerAttack(skillName);
                                 isBattlePlay = CheckMonsterAlive();
+                                PlayerLevelUp(Player.instance.upExp);
                             }
 
                             break;
@@ -539,10 +542,26 @@ namespace Console_Pokemon_Project
         }
         public void ItemUse()
         {
-            List<Item> tmpItem = Player.instance.inven.items;
+            List<Item> tmpItem = new List<Item>();
+            foreach (Item item in Player.instance.inven.items)
+            {
+                if (item is ConsumableItem)
+                {
+                    tmpItem.Add(item);
+                }
+            }
 
             DialogueClear();
-            Menu.SelectMenu(DIALOGUE_X, DIALOGUE_Y, tmpItem);
+            string itemName = Menu.SelectMenu(DIALOGUE_X, DIALOGUE_Y, tmpItem);
+            switch (itemName)
+            {
+                case "체력포션1":
+                    {
+                        Player.instance.hp += 50;
+                        break;
+                    }
+            }
+
         }
         public bool Run() // 도망치기시 80%확률로 도망에 성공,
         {
@@ -602,7 +621,7 @@ namespace Console_Pokemon_Project
                 Console.WriteLine("{0}는 exp{1}과 {2}g를 얻었다!", Player.instance.name, enemy.exp, enemy.dropgold);
                 Console.ReadKey(true);
                 Player.instance.money += enemy.dropgold;
-                //Player.instance.exp += enemy.exp;
+                Player.instance.exp += enemy.exp;
                 //맵에서 커서움직이게하는 bool = true (추후수정)
 
                 return false;  //배틀실행종료
@@ -642,6 +661,8 @@ namespace Console_Pokemon_Project
             Console.WriteLine("Lv : {0} ", Player.instance.level); //플레이어의 Lv표시
             Console.SetCursorPosition(80, 25);
             Console.WriteLine("HP : {0, -3} / {1, -3}", Player.instance.hp, Player.instance.maxHp);  //플레이어의 hp표시
+            Console.SetCursorPosition(80, 27);
+            Console.WriteLine("EXP : {0, -3} / {1, -3}", Player.instance.exp, Player.instance.upExp[Player.instance.level]);  //플레이어의 hp표시
         }
 
         public static void CanSkill(string skillName)
@@ -650,6 +671,22 @@ namespace Console_Pokemon_Project
 
             Console.SetCursorPosition(DIALOGUE_X, DIALOGUE_Y);
             Console.WriteLine("스킬의 PP가 부족하여 사용하실 수 없습니다.");
+
+        }
+        public static void PlayerLevelUp(int[] upExp)
+        {
+            if (Player.instance.exp >= upExp[Player.instance.level])
+            {
+                Player.instance.exp -= upExp[Player.instance.level];
+                Player.instance.level += 1;
+                DialogueClear();
+                Console.WriteLine("플레이어의 레벨이 상승했다.");
+                Console.SetCursorPosition(DIALOGUE_X, Console.CursorTop);
+                Console.WriteLine("현재 플레이어의 레벨 : {0}", Player.instance.level);
+                Console.ReadKey(true);
+            }
+
+
 
         }
     }

@@ -28,11 +28,11 @@
   },
   {
     "$type": "Console_Pokemon_Project.ConsumableItem, Console_Pokemon_Project",
-    "name": "체력포션1",
+    "name": "체력포션",
     "atk": 0,
     "def": 0,
     "price": 300,
-    "quantity": 3
+    "quantity": 1
   },
   {
     "$type": "Console_Pokemon_Project.EquipableItem, Console_Pokemon_Project",
@@ -63,7 +63,7 @@
   },
   {
     "$type": "Console_Pokemon_Project.ConsumableItem, Console_Pokemon_Project",
-    "name": "체력포션2",
+    "name": "체력포션",
     "atk": 0,
     "def": 0,
     "price": 300,
@@ -98,7 +98,7 @@
   },
   {
     "$type": "Console_Pokemon_Project.ConsumableItem, Console_Pokemon_Project",
-    "name": "체력포션3",
+    "name": "체력포션",
     "atk": 0,
     "def": 0,
     "price": 300,
@@ -133,7 +133,7 @@
   },
   {
     "$type": "Console_Pokemon_Project.ConsumableItem, Console_Pokemon_Project",
-    "name": "체력포션4",
+    "name": "체력포션",
     "atk": 0,
     "def": 0,
     "price": 300,
@@ -168,7 +168,7 @@
   },
   {
     "$type": "Console_Pokemon_Project.ConsumableItem, Console_Pokemon_Project",
-    "name": "체력포션4",
+    "name": "체력포션",
     "atk": 0,
     "def": 0,
     "price": 300,
