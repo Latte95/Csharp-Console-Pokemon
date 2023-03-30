@@ -8,8 +8,8 @@ using System.Threading.Tasks;
 
 namespace Console_Pokemon_Project
 {
-  public class Player
-  {
+    public class Player
+    {
         // 인벤토리 클래스
         // 아이템 클래스
         // 장비
@@ -21,7 +21,7 @@ namespace Console_Pokemon_Project
         {
             get
             {
-                if(_instance == null)
+                if (_instance == null)
                 {
                     _instance = new Player();
                 }
@@ -36,6 +36,8 @@ namespace Console_Pokemon_Project
         public int speed;
         public int level;
         public int money;
+        public int avoidence;
+        public int critical;
         public Inventory inven;
         public EquipmentSlot equipSlot;
         public int locX;
@@ -47,12 +49,14 @@ namespace Console_Pokemon_Project
         private Player()
         {
             this.name = "Player";
-            this.hp = 100;
-            this.atk = 5;
-            this.def = 1;
-            this.speed = 80;
-            this.level = 1;
+            this.hp = 200;
+            this.atk = 60;
+            this.def = 30;
+            this.speed = 220;
+            this.level = 15;
             this.money = 10000;
+            this.avoidence = 15;
+            this.critical = 3;
             equipSlot = new EquipmentSlot();
             inven = new Inventory();
             locX = 2;
