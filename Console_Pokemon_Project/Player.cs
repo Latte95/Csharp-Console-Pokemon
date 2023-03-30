@@ -97,7 +97,8 @@ namespace Console_Pokemon_Project
                 tmpSkills[skillIndex].name,
                 tmpSkills[skillIndex].power,
                 tmpSkills[skillIndex].hitrate,
-                tmpSkills[skillIndex].pp)
+                tmpSkills[skillIndex].pp,
+                tmpSkills[skillIndex].maxPp)
                 );
         }
 
