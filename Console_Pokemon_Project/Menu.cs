@@ -221,7 +221,7 @@ namespace Console_Pokemon_Project
                 // 스킬이면 출력할 것
                 else if(menu[menuIndex + i] is Skill skillName)
                 {
-                    Console.WriteLine($"{skillName.name} - {skillName.pp}");
+                    Console.WriteLine($"{skillName.name} - {skillName.pp} / {skillName.maxPp}");
                 }
                 // string이면 출력할 것
                 else if (menu[menuIndex + i] is string str)

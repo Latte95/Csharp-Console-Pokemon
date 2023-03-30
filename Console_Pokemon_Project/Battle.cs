@@ -23,7 +23,7 @@ namespace Console_Pokemon_Project
         // 승패에 따른 결과값 반환
         public char[,] pixel = new char[60, 45];
         public List<string> battle = new List<string> { "전투", "아이템 사용", "도망" };
-        
+
         //public List<string> skill;
         public static Pokemon enemy;
 
@@ -69,6 +69,12 @@ namespace Console_Pokemon_Project
                 pokemons[monNum].avoidence,
                 level);
 
+            foreach (Skill skill in Player.instance.skills)
+            {
+                skill.pp = skill.maxPp;
+            }
+            
+
         }
 
         public void BattleFrame()
@@ -78,13 +84,15 @@ namespace Console_Pokemon_Project
 
         public void MeetPokemon()
         {
-            bool isBattlePlay=true; // 배틀전체 실행값
+            bool isBattlePlay = true; // 배틀전체 실행값
             Console.SetCursorPosition(DIALOGUE_X, DIALOGUE_Y);
             Console.WriteLine("지나가던 {0}와 조우했다!", enemy.name);
             Console.ReadKey(true);
             DialogueClear();
+            
             while (isBattlePlay)
             {
+
 
                 Console.SetCursorPosition(DIALOGUE_X, DIALOGUE_Y);
                 Console.WriteLine("{0}는 지시를 기다리고있다.", Player.instance.name);
@@ -100,10 +108,27 @@ namespace Console_Pokemon_Project
                 switch (name)
                 {
                     case "전투":
+                        while (true)
+                        {
+                            bool isPp = false;
+                            skillName = PlayerSelect();
+                            foreach (Skill skill in Player.instance.skills)
+                            {
+                                if (skill.name.Equals(skillName) && skill.pp != 0)
+                                {
+                                    isPp = true;
+                                    break;
+                                }
+                            }
+                            if(isPp)
+                            {
+                                break;
+                            }
+                        }
+
                         {
                             if (Player.instance.speed > enemy.speed) // 플레이어의 스피드가 빠를때 플레이어의 선공
                             {
-                                skillName = PlayerSelect();
                                 PlayerAttack(skillName);
                                 isBattlePlay = CheckMonsterAlive();
                                 if (isBattlePlay == false) { break; }
@@ -112,7 +137,6 @@ namespace Console_Pokemon_Project
                             }
                             else // 몬스터의 스피드가 더 빠를때 몬스터의 선공
                             {
-                                skillName = PlayerSelect();
                                 MonsterAttack();
                                 isBattlePlay = CheckPlayerAlive();
                                 if (isBattlePlay == false) { break; }
@@ -141,7 +165,7 @@ namespace Console_Pokemon_Project
 
                 }
                 Console.Clear();
-                
+
             }
         }
         public string PlayerSelect()
@@ -175,6 +199,10 @@ namespace Console_Pokemon_Project
                 Console.SetCursorPosition(DIALOGUE_X, DIALOGUE_Y);
                 if (skillName == Player.instance.skills[0].name) // 0번스킬을 사용했을때
                 {
+                    if (Player.instance.skills[0].pp == 0)
+                    {
+
+                    }
                     if (Player.instance.skills[0].hitrate <= avoidRan + enemy.avoidence) //플레이어의 공격이 빗나갔을때
                     {
                         Console.Write("{0}의 공격이 빗나갔다!", Player.instance.name);
@@ -506,6 +534,8 @@ namespace Console_Pokemon_Project
 
             }
 
+            Player.instance.isInBattle = false;
+            Player.instance.isWaitingInput = true;
         }
         public void ItemUse()
         {
@@ -550,7 +580,7 @@ namespace Console_Pokemon_Project
                 Console.WriteLine("눈앞이 깜깜해졌다.");
                 Console.ReadKey(true);
                 return false;  //(전체 게임 실행 종료)
-                
+
             }
             else
             {
@@ -562,7 +592,7 @@ namespace Console_Pokemon_Project
 
             if (enemy.hp <= 0)
             {
-                
+
                 Display();
                 Console.SetCursorPosition(DIALOGUE_X, DIALOGUE_Y);
                 Console.WriteLine("{0}의 체력이 0이 되었다.", enemy.name);
@@ -574,7 +604,7 @@ namespace Console_Pokemon_Project
                 Player.instance.money += enemy.dropgold;
                 //Player.instance.exp += enemy.exp;
                 //맵에서 커서움직이게하는 bool = true (추후수정)
-                
+
                 return false;  //배틀실행종료
             }
             else
@@ -612,6 +642,15 @@ namespace Console_Pokemon_Project
             Console.WriteLine("Lv : {0} ", Player.instance.level); //플레이어의 Lv표시
             Console.SetCursorPosition(80, 25);
             Console.WriteLine("HP : {0, -3} / {1, -3}", Player.instance.hp, Player.instance.maxHp);  //플레이어의 hp표시
+        }
+
+        public static void CanSkill(string skillName)
+        {
+
+
+            Console.SetCursorPosition(DIALOGUE_X, DIALOGUE_Y);
+            Console.WriteLine("스킬의 PP가 부족하여 사용하실 수 없습니다.");
+
         }
     }
 }

@@ -16,13 +16,15 @@ namespace Console_Pokemon_Project
         public int power { get; set; }
         public int hitrate { get; set; }
         public int pp { get; set; }
+        public int maxPp { get; set; }
 
-        public Skill(string name, int power, int hitrate, int pp)
+        public Skill(string name, int power, int hitrate, int pp , int maxPp)
         {
             this.name = name;
             this.power = power;
             this.hitrate = hitrate;
             this.pp = pp;
+            this.maxPp = maxPp;
         }
             public static List<Skill> PokemonSkills = new List<Skill>();
 
