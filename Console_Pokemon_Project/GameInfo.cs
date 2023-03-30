@@ -33,10 +33,12 @@ namespace Console_Pokemon_Project
                 switch (whatAct)
                 {
                     case "인벤토리":
+                        ClearInfoMenu();
                         ShowInventory();
                         break;
 
                     case "장비창":
+                        ClearInfoMenu();
                         ShowEquipments();
                         break;
                 }
@@ -137,7 +139,7 @@ namespace Console_Pokemon_Project
             }
             if(equipmentNames.Count <= 0)
             {
-                Console.SetCursorPosition(CURSOR_X*2, CURSOR_Y+ infoMenu.Count+2);
+                Console.SetCursorPosition(CURSOR_X*2, CURSOR_Y + infoMenu.Count - 1);
                 Console.WriteLine("착용한 장비없음");
                 Console.ReadKey(true);
                 return;
