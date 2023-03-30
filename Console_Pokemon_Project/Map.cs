@@ -278,7 +278,8 @@ namespace Console_Pokemon_Project
                     case ConsoleKey.Escape:
                         {
                             Player.instance.isWaitingInput = false;
-                            
+                            GameInfo gameInfo = new GameInfo();
+                            gameInfo.ChooseInfoMenu();
                             return;
                         }
                     case ConsoleKey.Spacebar:

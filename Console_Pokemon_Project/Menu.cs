@@ -104,6 +104,15 @@ namespace Console_Pokemon_Project
                         {
                             return null;
                         }
+                    case ConsoleKey.Escape:
+                        if (menu[pointerY] is Skill skill2)
+                        {
+                            continue;
+                        }
+                        else
+                        {
+                            return null;
+                        }
                 }
                 if (isUp.Equals(true) && menuIndex > 0)
                 {
@@ -212,11 +221,16 @@ namespace Console_Pokemon_Project
             {
                 // ▶ 위치를 고려하여 커서의 x위치에 2를 더해줌
                 Console.SetCursorPosition(dialoqueX + CURSOR_X_LENGTH + 2, dialoqueY + i + 1);
-                
+
                 // 아이템이면 출력할 것
                 if (menu[menuIndex + i] is Item itemName)
                 {
                     Console.WriteLine($"{itemName.name} - {itemName.quantity}개");
+                }
+                // 소비템
+                else if (menu[menuIndex + i] is ConsumableItem consumableItemName)
+                {
+                    Console.WriteLine($"{consumableItemName.name} - {consumableItemName.quantity}개");
                 }
                 // 스킬이면 출력할 것
                 else if(menu[menuIndex + i] is Skill skillName)
