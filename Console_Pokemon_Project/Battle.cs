@@ -86,7 +86,7 @@ namespace Console_Pokemon_Project
         public void MeetPokemon()
         {
             bool isBattlePlay = true; // 배틀전체 실행값
-            int updateState=0;
+            int updateState = 0;
 
             Console.SetCursorPosition(DIALOGUE_X, DIALOGUE_Y);
             Console.WriteLine("지나가던 {0}와 조우했다!", enemy.name);
@@ -134,7 +134,10 @@ namespace Console_Pokemon_Project
                             {
                                 PlayerAttack(skillName);
                                 isBattlePlay = CheckMonsterAlive();
-                                if (isBattlePlay == false) { break; }
+                                if (isBattlePlay == false)
+                                {
+                                    break;
+                                }
                                 MonsterAttack();
                                 isBattlePlay = CheckPlayerAlive();
                             }
@@ -142,7 +145,10 @@ namespace Console_Pokemon_Project
                             {
                                 MonsterAttack();
                                 isBattlePlay = CheckPlayerAlive();
-                                if (isBattlePlay == false) { break; }
+                                if (isBattlePlay == false)
+                                {
+                                    break;
+                                }
                                 PlayerAttack(skillName);
                                 isBattlePlay = CheckMonsterAlive();
                                 PlayerLevelUp(Player.instance.upExp);
@@ -153,7 +159,11 @@ namespace Console_Pokemon_Project
                     case "아이템 사용":
                         {
                             //아이템 사용칸
-                            ItemUse(updateState);
+                            if (ItemUse(updateState) == false)
+                            {
+                                DialogueClear();
+                                continue;
+                            }
                             MonsterAttack();
                             break;
                         }
@@ -200,7 +210,6 @@ namespace Console_Pokemon_Project
             if (Player.instance.hp != 0 && enemy.hp != 0)
             {
                 DialogueClear();
-                Console.SetCursorPosition(DIALOGUE_X, DIALOGUE_Y);
                 if (skillName == Player.instance.skills[0].name) // 0번스킬을 사용했을때
                 {
                     if (Player.instance.skills[0].pp == 0)
@@ -541,7 +550,7 @@ namespace Console_Pokemon_Project
             Player.instance.isInBattle = false;
             Player.instance.isWaitingInput = true;
         }
-        public void ItemUse(int updateState)
+        public bool ItemUse(int updateState)
         {
             List<Item> tmpItems = new List<Item>();
             foreach (Item item in Player.instance.inven.items)
@@ -555,7 +564,15 @@ namespace Console_Pokemon_Project
             DialogueClear();
             string itemName = Menu.SelectMenu(DIALOGUE_X, DIALOGUE_Y, tmpItems);
 
-            Item selectedItem = tmpItems[tmpItems.FindIndex(item => item.name == itemName)];
+            int selectedIndex = tmpItems.FindIndex(item => item.name == itemName);
+            if (selectedIndex < 0)
+            {
+                Console.SetCursorPosition(DIALOGUE_X, DIALOGUE_Y);
+                Console.WriteLine("아이템을 못찾았어요");
+                DialogueClear();
+                return false;
+            }
+            Item selectedItem = tmpItems[selectedIndex];
 
             switch (itemName)
             {
@@ -565,25 +582,27 @@ namespace Console_Pokemon_Project
                         {
                             Console.SetCursorPosition(DIALOGUE_X, DIALOGUE_Y);
                             Console.WriteLine("아이템이 없어요");
-                            return;
+                            return false;
                         }
-                        updateState =50; // 회복양(포션에따라)
+                        updateState = 50; // 회복양(포션에따라)
                         DialogueClear();
                         Console.WriteLine("체력 포션을 사용하였다.");
-                        Console.SetCursorPosition(DIALOGUE_X,Console.CursorTop);
+                        Console.SetCursorPosition(DIALOGUE_X, Console.CursorTop);
                         Player.instance.hp += 50;
                         if (Player.instance.hp > Player.instance.maxHp) // 최대체력 제한
-                        { 
+                        {
                             updateState = updateState + Player.instance.maxHp - Player.instance.hp; //제한에 걸렸을시 출력량
                             Player.instance.hp = Player.instance.maxHp; //제한에 걸렸을이 최대체력으로 설정
                         }
-                        Console.WriteLine("{0} 이 {1}만큼 회복되었다.", Player.instance.name , updateState);
+                        Console.WriteLine("{0} 이 {1}만큼 회복되었다.", Player.instance.name, updateState);
                         // 소모품 개수 닳게할공간
                         Player.instance.inven.RemoveItem(selectedItem);
                         Console.ReadKey(true);
+                        DialogueClear();
                         break;
                     }
             }
+            return true;
 
         }
         public bool Run() // 도망치기시 80%확률로 도망에 성공,
