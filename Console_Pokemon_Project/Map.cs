@@ -40,6 +40,7 @@ namespace Console_Pokemon_Project
         private int lastPlayerLocX;
         private int lastPlayerLocY;
         private Shop shop;
+        private GameInfo gameInfo = new GameInfo();
         private int shopLocX;
         private int shopLocY;
         private Random random = new Random();
@@ -193,7 +194,7 @@ namespace Console_Pokemon_Project
             }
 
             printInfo[playerPosX, playerPosY] = (char)TileType.PLAYER;
-
+            gameInfo.ShowPlayerStat();
             return false;
         }
         public bool CheckBlock(int playerPosX, int playerPosY)
