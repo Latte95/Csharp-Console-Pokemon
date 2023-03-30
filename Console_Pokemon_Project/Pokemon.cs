@@ -26,12 +26,12 @@ namespace Console_Pokemon_Project
         public int critical;
         public int avoidence;
         public int level;
-        public char[] characterDisplayInfo;
+        public char[,] characterDisplayInfo;
         //public int special_Attack;
         //public int sepcial_Defence;
         public List<Skill> skills = new List<Skill>();
 
-        public Pokemon(string name, int maxHp, int hp, int atk, int def, int speed, int exp, int dropgold, int cri, int avoid, int level)
+        public Pokemon(string name, int maxHp, int hp, int atk, int def, int speed, int exp, int dropgold, int cri, int avoid, int level, char[,] characterDisplayInfo)
         {
             this.name = name;
             this.maxHp = maxHp;
@@ -44,6 +44,7 @@ namespace Console_Pokemon_Project
             this.critical = cri;
             this.avoidence = avoid;
             this.level = level;
+            this.characterDisplayInfo = characterDisplayInfo;
 
             InitGetSkill();
         }
@@ -144,7 +145,7 @@ namespace Console_Pokemon_Project
         }
 
 
-        readonly static char[][,] MONSTER_DISPLAY_INFO_LIST = new char[][,]
+        readonly public static char[][,] MONSTER_DISPLAY_INFO_LIST = new char[][,]
         {
 
             new char[,]
