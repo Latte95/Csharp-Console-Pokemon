@@ -88,7 +88,7 @@ namespace Console_Pokemon_Project
             int updateState = 0;
             BattleFrame();
             MonsterGraphic();
-            PlayerPraphic();
+            PlayerGraphic();
             // MonsterGraphic();
             Screen.Print(pixel);
             Console.SetCursorPosition(DIALOGUE_X, DIALOGUE_Y);
@@ -574,6 +574,7 @@ namespace Console_Pokemon_Project
             {
                 Console.SetCursorPosition(DIALOGUE_X, DIALOGUE_Y);
                 Console.WriteLine("아이템을 못찾았어요");
+                Console.ReadKey(true);
                 DialogueClear();
                 return false;
             }
@@ -702,9 +703,11 @@ namespace Console_Pokemon_Project
 
         public static void Display()
         {
-            Console.SetCursorPosition(48, 3);
+            Console.SetCursorPosition(48, 2);
+            Console.WriteLine("이름 : {0} ", enemy.name); // 몬스터의 Lv표시
+            Console.SetCursorPosition(48, 4);
             Console.WriteLine("Lv : {0} ", enemy.level); // 몬스터의 Lv표시
-            Console.SetCursorPosition(48, 5);
+            Console.SetCursorPosition(48, 6);
             Console.WriteLine("HP : {0 ,-3} / {1, -3}", enemy.hp, enemy.maxHp); // 몬스터의 hp표시
             Console.SetCursorPosition(56, 28);
             Console.WriteLine("Lv : {0} ", Player.instance.level); //플레이어의 Lv표시
@@ -763,7 +766,7 @@ namespace Console_Pokemon_Project
 
         }
 
-        public static void PlayerPraphic() //플레이어를 그리는 메서드
+        public static void PlayerGraphic() //플레이어를 그리는 메서드
         {
             for (int y = 0; y < 24; y++)
             {
