@@ -37,10 +37,18 @@ namespace Console_Pokemon_Project
 
         public static void Save(Player data)
         {
-            string path = Path.GetFullPath(Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..\.\JSON\" + "saveData.json"));
+            JsonSerializerSettings settings = new JsonSerializerSettings
+            {
+                TypeNameHandling = TypeNameHandling.Auto
+            };
+            string path = Path.GetFullPath(Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..\.\JSON\"));
+            Directory.CreateDirectory(Path.GetDirectoryName(path+ "saveData.json"));
+            Directory.CreateDirectory(Path.GetDirectoryName(path+ "itemInfos.json"));
 
-            string json = JsonConvert.SerializeObject(Player.instance, Formatting.Indented);
-            File.WriteAllText(path, json);
+            string playerJson = JsonConvert.SerializeObject(Player.instance, Formatting.Indented);
+            File.WriteAllText(path + "saveData.json", playerJson);
+            string ShopJson = JsonConvert.SerializeObject(Map.shop.saleItems, Formatting.Indented, settings);
+            File.WriteAllText(path + "itemInfos.json", ShopJson);
         }
     }
 }

@@ -6,12 +6,21 @@
   "def": 30,
   "speed": 50,
   "level": 15,
-  "money": 10000,
+  "money": 9000,
   "avoidence": 15,
   "critical": 3,
   "exp": 0,
   "inven": {
-    "items": []
+    "items": [
+      {
+        "equipType": 2,
+        "name": "몽둥이4",
+        "atk": 5,
+        "def": 1,
+        "price": 1000,
+        "quantity": 1
+      }
+    ]
   },
   "equipSlot": {
     "equipSlots": {
@@ -22,7 +31,7 @@
     }
   },
   "locX": 19,
-  "locY": 24,
+  "locY": 22,
   "isWaitingInput": true,
   "isInBattle": false,
   "upExp": [
