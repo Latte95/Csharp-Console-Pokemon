@@ -86,6 +86,7 @@ namespace Console_Pokemon_Project
         public void MeetPokemon()
         {
             bool isBattlePlay = true; // 배틀전체 실행값
+            int updateState=0;
 
             Console.SetCursorPosition(DIALOGUE_X, DIALOGUE_Y);
             Console.WriteLine("지나가던 {0}와 조우했다!", enemy.name);
@@ -152,8 +153,8 @@ namespace Console_Pokemon_Project
                     case "아이템 사용":
                         {
                             //아이템 사용칸
-                            ItemUse();
-                            Console.WriteLine("");
+                            ItemUse(updateState);
+                            MonsterAttack();
                             break;
                         }
                     case "도망":
@@ -540,7 +541,7 @@ namespace Console_Pokemon_Project
             Player.instance.isInBattle = false;
             Player.instance.isWaitingInput = true;
         }
-        public void ItemUse()
+        public void ItemUse(int updateState)
         {
             List<Item> tmpItem = new List<Item>();
             foreach (Item item in Player.instance.inven.items)
@@ -557,11 +558,19 @@ namespace Console_Pokemon_Project
             {
                 case "체력포션":
                     {
+                        updateState =50; // 회복양(포션에따라)
+                        DialogueClear();
                         Console.WriteLine("체력 포션을 사용하였다.");
-                        Console.WriteLine("{0} 이 {1}만큼 회복되었다.",Player.instance.name , 50);
+                        Console.SetCursorPosition(DIALOGUE_X,Console.CursorTop);
                         Player.instance.hp += 50;
-                        if (Player.instance.hp > Player.instance.maxHp) { Player.instance.hp = Player.instance.maxHp; }
+                        if (Player.instance.hp > Player.instance.maxHp) // 최대체력 제한
+                        { 
+                            updateState = updateState + Player.instance.maxHp - Player.instance.hp; //제한에 걸렸을시 출력량
+                            Player.instance.hp = Player.instance.maxHp; //제한에 걸렸을이 최대체력으로 설정
+                        }
+                        Console.WriteLine("{0} 이 {1}만큼 회복되었다.", Player.instance.name , updateState);
                         // 소모품 개수 닳게할공간
+                        Console.ReadKey(true);
                         break;
                     }
             }
