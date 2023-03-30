@@ -29,3 +29,13 @@ C:\Users\KGA_29\Documents\GitHub\Csharp-Console-Pokemon\Console_Pokemon_Project\
 C:\Users\KGA_29\Documents\GitHub\Csharp-Console-Pokemon\Console_Pokemon_Project\obj\Debug\Console_Pokemon_Project.csproj.CopyComplete
 C:\Users\KGA_29\Documents\GitHub\Csharp-Console-Pokemon\Console_Pokemon_Project\obj\Debug\Console_Pokemon_Project.exe
 C:\Users\KGA_29\Documents\GitHub\Csharp-Console-Pokemon\Console_Pokemon_Project\obj\Debug\Console_Pokemon_Project.pdb
+C:\Users\KGA\Documents\GitHub\Csharp-Console-Pokemon\Console_Pokemon_Project\Console_Pokemon_Project\obj\Debug\Console_Pokemon_Project.csproj.AssemblyReference.cache
+C:\Users\KGA\Documents\GitHub\Csharp-Console-Pokemon\Console_Pokemon_Project\Console_Pokemon_Project\obj\Debug\Console_Pokemon_Project.csproj.CoreCompileInputs.cache
+C:\Users\KGA\Documents\GitHub\Csharp-Console-Pokemon\Console_Pokemon_Project\Console_Pokemon_Project\obj\Debug\Console_Pokemon_Project.exe
+C:\Users\KGA\Documents\GitHub\Csharp-Console-Pokemon\Console_Pokemon_Project\Console_Pokemon_Project\obj\Debug\Console_Pokemon_Project.pdb
+C:\Users\KGA\Documents\GitHub\Csharp-Console-Pokemon\Console_Pokemon_Project\Console_Pokemon_Project\bin\Debug\Console_Pokemon_Project.exe.config
+C:\Users\KGA\Documents\GitHub\Csharp-Console-Pokemon\Console_Pokemon_Project\Console_Pokemon_Project\bin\Debug\Console_Pokemon_Project.exe
+C:\Users\KGA\Documents\GitHub\Csharp-Console-Pokemon\Console_Pokemon_Project\Console_Pokemon_Project\bin\Debug\Console_Pokemon_Project.pdb
+C:\Users\KGA\Documents\GitHub\Csharp-Console-Pokemon\Console_Pokemon_Project\Console_Pokemon_Project\bin\Debug\Newtonsoft.Json.dll
+C:\Users\KGA\Documents\GitHub\Csharp-Console-Pokemon\Console_Pokemon_Project\Console_Pokemon_Project\bin\Debug\Newtonsoft.Json.xml
+C:\Users\KGA\Documents\GitHub\Csharp-Console-Pokemon\Console_Pokemon_Project\Console_Pokemon_Project\obj\Debug\Console_Pokemon_Project.csproj.CopyComplete
