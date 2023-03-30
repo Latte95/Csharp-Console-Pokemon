@@ -105,7 +105,14 @@ namespace Console_Pokemon_Project
                             return null;
                         }
                     case ConsoleKey.Escape:
-                        return null;
+                        if (menu[pointerY] is Skill skill2)
+                        {
+                            continue;
+                        }
+                        else
+                        {
+                            return null;
+                        }
                 }
                 if (isUp.Equals(true) && menuIndex > 0)
                 {
