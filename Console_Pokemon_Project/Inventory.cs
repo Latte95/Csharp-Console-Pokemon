@@ -60,45 +60,25 @@ namespace Console_Pokemon_Project
         // 아이템 삭제 (판매, 해제, 버림, 사용 등등)
         public void RemoveItem(Item item)
         {
-            // 소비 아이템을 삭제할 땐
-            if (item is ConsumableItem)
+            if(items.Contains(item))
             {
-                ConsumableItem delItem = (ConsumableItem)item;
-                foreach (Item existItem in items)
+                if(item is ConsumableItem)
                 {
-                    // 인벤토리에 삭제할 아이템을 찾고
-                    if (existItem.name == delItem.name)
+                    // 수량 남아있으면 하나 제거
+                    if (item.quantity > 0)
                     {
-                        ConsumableItem existing = (ConsumableItem)existItem;
-                        // 삭제할 개수보다 많이 가지고 있으면
-                        if (existing.quantity > delItem.quantity)
-                        {
-                            // 해당 개수만큼만 삭제하고
-                            existing.quantity--;
-                        }
-                        // 보유한 수만큼 삭제하면
-                        else if (existing.quantity.Equals(delItem.quantity))
-                        {
-                            // 없애고
-                            items.Remove(existing);
-                        }
-                        // 더 많이 삭제하면?
-                        else
-                        {
-                            // 없앨지 취소할지? 수정
-                        }
-                        break;
+                        item.quantity--;
+                    }
+                    // 제거 후 수량 0 이하가 되면 아이템 목록에서 제거
+                    if(item.quantity <= 0)
+                    {
+                        items.Remove(item);
                     }
                 }
-            }
-            // 장비 아이템 삭제시엔 그냥 삭제
-            else if (item is EquipableItem)
-            {
-                items.Remove(item);
-            }
-            else
-            {
-                // 여기 아티팩트 구현? 수정
+                else
+                {
+                    items.Remove(item);
+                }
             }
         }
     }
