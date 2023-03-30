@@ -50,7 +50,7 @@ namespace Console_Pokemon_Project
         {
             Console.SetCursorPosition(CURSOR_X, CURSOR_Y);
             Console.SetCursorPosition(CURSOR_X, Console.CursorTop);
-            string choiceItem = ItemList.SelectMenu(CURSOR_X, CURSOR_Y, saleItems);
+            string choiceItem = Menu.SelectMenu(CURSOR_X, CURSOR_Y, saleItems);
 
             BuyItem(choiceItem);
         }
@@ -60,7 +60,7 @@ namespace Console_Pokemon_Project
         {
             ClearShopContents();
             Console.SetCursorPosition(CURSOR_X, CURSOR_Y);
-            string choiceItem = ItemList.SelectMenu(CURSOR_X, CURSOR_Y, Player.instance.inven.items);
+            string choiceItem = Menu.SelectMenu(CURSOR_X, CURSOR_Y, Player.instance.inven.items);
             SellItem(choiceItem);
         }
 
