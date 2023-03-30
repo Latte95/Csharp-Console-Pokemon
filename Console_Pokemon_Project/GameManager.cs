@@ -21,36 +21,39 @@ namespace Console_Pokemon_Project
             {
                 for (int j = 0; j < MAX_MAP_COL_COUNT; j++)
                 {
-                    mapList.Add(new Map(j * MAP_WIDTH, i * MAP_HEIGHT));
+                    mapList.Add(new Map($"{(i*MAX_MAP_COL_COUNT) + j+1}번째 맵", j * MAP_WIDTH, i * MAP_HEIGHT));
                 }
             }
             while (true)
             {
-                if (Player.instance.locX < 0)
+                if (Player.instance.isInBattle == false)
                 {
-                    Player.instance.locX = 0;
-                }
-                else if (Player.instance.locY < 0)
-                {
-                    Player.instance.locY = 0;
-                }
-                else if (Player.instance.locX > MAP_WIDTH * MAX_MAP_COL_COUNT - 1)
-                {
-                    Player.instance.locX = MAP_WIDTH * MAX_MAP_COL_COUNT - 1;
-                }
-                else if (Player.instance.locY > MAP_HEIGHT * MAX_MAP_ROW_COUNT - 1)
-                {
-                    Player.instance.locY = MAP_HEIGHT * MAX_MAP_ROW_COUNT - 1;
-                }
-
-                for (int i = 0; i < MAX_MAP_COL_COUNT * MAX_MAP_ROW_COUNT; i++)
-                {
-                    if (Player.instance.locX >= mapList[i].startXLoc &&
-                        Player.instance.locX < mapList[i].startXLoc + MAP_WIDTH &&
-                        Player.instance.locY >= mapList[i].startYLoc &&
-                        Player.instance.locY < mapList[i].startYLoc + MAP_HEIGHT)
+                    if (Player.instance.locX < 0)
                     {
-                        mapList[i].WaitPlayerInput();
+                        Player.instance.locX = 0;
+                    }
+                    else if (Player.instance.locY < 0)
+                    {
+                        Player.instance.locY = 0;
+                    }
+                    else if (Player.instance.locX > MAP_WIDTH * MAX_MAP_COL_COUNT - 1)
+                    {
+                        Player.instance.locX = MAP_WIDTH * MAX_MAP_COL_COUNT - 1;
+                    }
+                    else if (Player.instance.locY > MAP_HEIGHT * MAX_MAP_ROW_COUNT - 1)
+                    {
+                        Player.instance.locY = MAP_HEIGHT * MAX_MAP_ROW_COUNT - 1;
+                    }
+
+                    for (int i = 0; i < MAX_MAP_COL_COUNT * MAX_MAP_ROW_COUNT; i++)
+                    {
+                        if (Player.instance.locX >= mapList[i].startXLoc &&
+                            Player.instance.locX < mapList[i].startXLoc + MAP_WIDTH &&
+                            Player.instance.locY >= mapList[i].startYLoc &&
+                            Player.instance.locY < mapList[i].startYLoc + MAP_HEIGHT)
+                        {
+                            mapList[i].WaitPlayerInput();
+                        }
                     }
                 }
                 if (Player.instance.isInBattle == true)
