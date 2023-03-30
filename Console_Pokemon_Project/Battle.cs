@@ -88,6 +88,7 @@ namespace Console_Pokemon_Project
             int updateState = 0;
             BattleFrame();
             MonsterGraphic();
+            PlayerPraphic();
             // MonsterGraphic();
             Screen.Print(pixel);
             Console.SetCursorPosition(DIALOGUE_X, DIALOGUE_Y);
@@ -620,6 +621,7 @@ namespace Console_Pokemon_Project
                 Console.SetCursorPosition(DIALOGUE_X, DIALOGUE_Y);
                 Console.WriteLine("성공적으로 도망쳤다!");
                 Console.ReadKey(true);
+                Console.Clear();
                 return true; //(배틀 실행 종료) !run으로 처리
                 //맵에서 커서움직이게하는 bool = true (추후수정)
             }
@@ -644,6 +646,7 @@ namespace Console_Pokemon_Project
                 Console.SetCursorPosition(DIALOGUE_X, Console.CursorTop);
                 Console.WriteLine("눈앞이 깜깜해졌다.");
                 Console.ReadKey(true);
+                Console.Clear();
                 return false;  //(전체 게임 실행 종료)
 
             }
@@ -669,7 +672,7 @@ namespace Console_Pokemon_Project
                 Player.instance.money += enemy.dropgold;
                 Player.instance.exp += enemy.exp;
                 //맵에서 커서움직이게하는 bool = true (추후수정)
-
+                Console.Clear();
                 return false;  //배틀실행종료
             }
             else
@@ -699,44 +702,31 @@ namespace Console_Pokemon_Project
 
         public static void Display()
         {
-            Console.SetCursorPosition(43, 3);
+            Console.SetCursorPosition(48, 3);
             Console.WriteLine("Lv : {0} ", enemy.level); // 몬스터의 Lv표시
-            Console.SetCursorPosition(43, 5);
+            Console.SetCursorPosition(48, 5);
             Console.WriteLine("HP : {0 ,-3} / {1, -3}", enemy.hp, enemy.maxHp); // 몬스터의 hp표시
-            Console.SetCursorPosition(60, 26);
+            Console.SetCursorPosition(56, 28);
             Console.WriteLine("Lv : {0} ", Player.instance.level); //플레이어의 Lv표시
-            Console.SetCursorPosition(60, 28);
+            Console.SetCursorPosition(56, 30);
             Console.WriteLine("HP : {0, -3} / {1, -3}", Player.instance.hp, Player.instance.maxHp);  //플레이어의 hp표시
-            Console.SetCursorPosition(60, 30);
+            Console.SetCursorPosition(56, 32);
             Console.WriteLine("EXP : {0, -3} / {1, -3}", Player.instance.exp, Player.instance.upExp[Player.instance.level]);  //플레이어의 hp표시
 
-            // 여기서 몬스터 그래픽 //
-            // int x, y;
-            // for (x = playerX[0]; x <= playerX[1]; x++)
-            // {
-            //     for (y = playerY[0]; y <= playerY[1]; y++)
-            //     {
-            //         int playerGraphicX = x - playerX[0];
-            //         int playerGraphicY = y - playerY[0];
-            //
-            //         if (playerGraphicX >= 0 && playerGraphicX < player.PlayerGraphic.GetLength(1) &&
-            //             playerGraphicY >= 0 && playerGraphicY < player.PlayerGraphic.GetLength(0))
-            //         {
-            //             pixel[x, y] = player.PlayerGraphic[playerGraphicY, playerGraphicX];
-            //         }
-            //     }
-            // }
 
-            //할수있다면 트레이너 그래픽//
         }
 
-        public static void BattleFrame()
+        public static void BattleFrame() //배틀 전체 배경 생성 메서드
         {
             for (int y = 0; y < BATTLE_HEIGHT; y++)
             {
                 for (int x = 0; x < BATTLE_WIDTH; x++)
                 {
-                    if (x == 0 || x == BATTLE_WIDTH - 1 ||
+                    if (y==33)
+                    {
+                        pixel[x, y] = '□';
+                    }
+                    else if (x == 0 || x == BATTLE_WIDTH - 1 ||
                        y == 0 || y == BATTLE_HEIGHT - 1)
                     {
                         pixel[x, y] = '□';
@@ -745,11 +735,13 @@ namespace Console_Pokemon_Project
                     {
                         pixel[x, y] = '　';
                     }
+
                 }
+                
             }
 
         }
-        public static void MonsterGraphic()
+        public static void MonsterGraphic() //랜덤으로 호출된 몬스터를 그리는 메서드
         {
             for (int y = 0; y < 24; y++)
             {
@@ -771,6 +763,26 @@ namespace Console_Pokemon_Project
 
         }
 
+        public static void PlayerPraphic() //플레이어를 그리는 메서드
+        {
+            for (int y = 0; y < 24; y++)
+            {
+
+                for (int x = 0; x < 24; x++)
+                {
+                    char c;
+                    if (!Player.instance.characterDisplayInfo[y, x].Equals(' '))
+                    {
+                        c = (char)(Player.instance.characterDisplayInfo[y, x] + 0xFEE0);
+                    }
+                    else
+                    {
+                        c = '　';
+                    }
+                    pixel[(Screen.WINDOW_WIDTH >> 1) - 58 + x - 1, y + 9] = c;
+                }
+            }
+        }
         public static void CanSkill(string skillName)
         {
 
