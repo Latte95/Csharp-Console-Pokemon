@@ -72,7 +72,7 @@ namespace Console_Pokemon_Project
 
             foreach (Skill skill in Player.instance.skills)
             {
-                skillsStr.Add(skill.Name);
+                skillsStr.Add(skill.name);
             }
 
         }
@@ -164,10 +164,10 @@ namespace Console_Pokemon_Project
             int avoidRan = ran.Next(100) + 1;
             int criRan = ran.Next(100) + 1;
             //데미지 계산식 = (스킬계수 * 공격력 * (레벨*2 /5 +2) / 방어 / 50 ) * 속성보정
-            int playerSkillDam0 = (Player.instance.skills[0].Power * Player.instance.atk * (Player.instance.level * 2 / 5 + 2) / enemy.def / 50);
-            int playerSkillDam1 = (Player.instance.skills[1].Power * Player.instance.atk * (Player.instance.level * 2 / 5 + 2) / enemy.def / 50);
-            int playerSkillDam2 = (Player.instance.skills[2].Power * Player.instance.atk * (Player.instance.level * 2 / 5 + 2) / enemy.def / 50);
-            int playerSkillDam3 = (Player.instance.skills[3].Power * Player.instance.atk * (Player.instance.level * 2 / 5 + 2) / enemy.def / 50);
+            int playerSkillDam0 = (Player.instance.skills[0].power * Player.instance.atk * (Player.instance.level * 2 / 5 + 2) / enemy.def / 50);
+            int playerSkillDam1 = (Player.instance.skills[1].power * Player.instance.atk * (Player.instance.level * 2 / 5 + 2) / enemy.def / 50);
+            int playerSkillDam2 = (Player.instance.skills[2].power * Player.instance.atk * (Player.instance.level * 2 / 5 + 2) / enemy.def / 50);
+            int playerSkillDam3 = (Player.instance.skills[3].power * Player.instance.atk * (Player.instance.level * 2 / 5 + 2) / enemy.def / 50);
             if (playerSkillDam0 < 1) { playerSkillDam0 = 1; } //각 데미지별 최소데미지를 1로 설정
             if (playerSkillDam1 < 1) { playerSkillDam1 = 1; }
             if (playerSkillDam2 < 1) { playerSkillDam2 = 1; }
@@ -179,9 +179,9 @@ namespace Console_Pokemon_Project
             {
                 DialogueClear();
                 Console.SetCursorPosition(DIALOGUE_X, DIALOGUE_Y);
-                if (skillName == Player.instance.skills[0].Name) // 0번스킬을 사용했을때
+                if (skillName == Player.instance.skills[0].name) // 0번스킬을 사용했을때
                 {
-                    if (Player.instance.skills[0].Hitrate <= avoidRan + enemy.avoidence) //플레이어의 공격이 빗나갔을때
+                    if (Player.instance.skills[0].hitrate <= avoidRan + enemy.avoidence) //플레이어의 공격이 빗나갔을때
                     {
                         Console.Write("{0}의 공격이 빗나갔다!", Player.instance.name);
                         Console.ReadKey(true);
@@ -189,7 +189,7 @@ namespace Console_Pokemon_Project
                     }
                     else// 플레이어의 공격이 성공했을때
                     {
-                        Console.WriteLine("{0}의 {1}!", Player.instance.name, Player.instance.skills[0].Name);
+                        Console.WriteLine("{0}의 {1}!", Player.instance.name, Player.instance.skills[0].name);
                         if (100 <= criRan + enemy.critical) //플레이어의 공격이 크리티컬이 터졌을때
                         {
                             int criDam = playerSkillDam0 *= 2;
@@ -200,7 +200,7 @@ namespace Console_Pokemon_Project
                             Console.ReadKey(true);
                             DialogueClear();
                             enemy.hp -= criDam;
-                            Player.instance.skills[0].Pp -= 1;
+                            Player.instance.skills[0].pp -= 1;
                             if (enemy.hp < 0) { enemy.hp = 0; }
                         }
                         else // 플레이어의 공격이 크리티컬이 안터졌을때
@@ -210,15 +210,15 @@ namespace Console_Pokemon_Project
                             Console.ReadKey(true);
                             DialogueClear();
                             enemy.hp -= playerSkillDam0;
-                            Player.instance.skills[0].Pp -= 1;
+                            Player.instance.skills[0].pp -= 1;
                             if (enemy.hp < 0) { enemy.hp = 0; }
                         }
                     }
 
                 }
-                else if (skillName == Player.instance.skills[1].Name) //1번스킬을 사용했을때
+                else if (skillName == Player.instance.skills[1].name) //1번스킬을 사용했을때
                 {
-                    if (100 <= Player.instance.skills[1].Hitrate + enemy.avoidence) //플레이어의 공격이 빗나갔을때
+                    if (100 <= Player.instance.skills[1].hitrate + enemy.avoidence) //플레이어의 공격이 빗나갔을때
                     {
                         Console.Write("{0}의 공격이 빗나갔다!", Player.instance.name);
                         Console.ReadKey(true);
@@ -226,7 +226,7 @@ namespace Console_Pokemon_Project
                     }
                     else// 플레이어의 공격이 성공했을때
                     {
-                        Console.WriteLine("{0}의 {1}!", Player.instance.name, Player.instance.skills[1].Name);
+                        Console.WriteLine("{0}의 {1}!", Player.instance.name, Player.instance.skills[1].name);
                         if (100 <= criRan + enemy.critical) //플레이어의 공격이 크리티컬이 터졌을때
                         {
                             int criDam = playerSkillDam1 *= 2;
@@ -237,7 +237,7 @@ namespace Console_Pokemon_Project
                             Console.ReadKey(true);
                             DialogueClear();
                             enemy.hp -= criDam;
-                            Player.instance.skills[1].Pp -= 1;
+                            Player.instance.skills[1].pp -= 1;
                             if (enemy.hp < 0) { enemy.hp = 0; }
 
                         }
@@ -248,15 +248,15 @@ namespace Console_Pokemon_Project
                             Console.ReadKey(true);
                             DialogueClear();
                             enemy.hp -= playerSkillDam1;
-                            Player.instance.skills[0].Pp -= 1;
+                            Player.instance.skills[0].pp -= 1;
                             if (enemy.hp < 0) { enemy.hp = 0; }
                         }
                     }
                 }
 
-                else if (skillName == Player.instance.skills[2].Name) //2번스킬을 사용했을때
+                else if (skillName == Player.instance.skills[2].name) //2번스킬을 사용했을때
                 {
-                    if (Player.instance.skills[2].Hitrate <= avoidRan + enemy.avoidence) //플레이어의 공격이 빗나갔을때
+                    if (Player.instance.skills[2].hitrate <= avoidRan + enemy.avoidence) //플레이어의 공격이 빗나갔을때
                     {
                         Console.Write("{0}의 공격이 빗나갔다!", Player.instance.name);
                         Console.ReadKey(true);
@@ -264,7 +264,7 @@ namespace Console_Pokemon_Project
                     }
                     else// 플레이어의 공격이 성공했을때
                     {
-                        Console.WriteLine("{0}의 {1}!", Player.instance.name, Player.instance.skills[2].Name);
+                        Console.WriteLine("{0}의 {1}!", Player.instance.name, Player.instance.skills[2].name);
                         if (100 <= criRan + enemy.critical) //플레이어의 공격이 크리티컬이 터졌을때
                         {
                             int criDam = playerSkillDam2 *= 2;
@@ -275,7 +275,7 @@ namespace Console_Pokemon_Project
                             Console.ReadKey(true);
                             DialogueClear();
                             enemy.hp -= criDam;
-                            Player.instance.skills[2].Pp -= 1;
+                            Player.instance.skills[2].pp -= 1;
                             if (enemy.hp < 0) { enemy.hp = 0; }
                         }
                         else // 플레이어의 공격이 크리티컬이 안터졌을때
@@ -285,15 +285,15 @@ namespace Console_Pokemon_Project
                             Console.ReadKey(true);
                             DialogueClear();
                             enemy.hp -= playerSkillDam2;
-                            Player.instance.skills[2].Pp -= 1;
+                            Player.instance.skills[2].pp -= 1;
                             if (enemy.hp < 0) { enemy.hp = 0; }
                         }
                     }
                 }
-                else if (skillName == Player.instance.skills[3].Name) //3번스킬을 사용했을때
+                else if (skillName == Player.instance.skills[3].name) //3번스킬을 사용했을때
                 {
 
-                    if (Player.instance.skills[3].Hitrate <= avoidRan + enemy.avoidence) //플레이어의 공격이 빗나갔을때
+                    if (Player.instance.skills[3].hitrate <= avoidRan + enemy.avoidence) //플레이어의 공격이 빗나갔을때
                     {
                         Console.Write("{0}의 공격이 빗나갔다!", Player.instance.name);
                         Console.ReadKey(true);
@@ -301,7 +301,7 @@ namespace Console_Pokemon_Project
                     }
                     else// 플레이어의 공격이 성공했을때
                     {
-                        Console.WriteLine("{0}의 {1}!", Player.instance.name, Player.instance.skills[3].Name);
+                        Console.WriteLine("{0}의 {1}!", Player.instance.name, Player.instance.skills[3].name);
                         if (100 <= criRan + enemy.critical) //플레이어의 공격이 크리티컬이 터졌을때
                         {
                             int criDam = playerSkillDam3 *= 2;
@@ -312,7 +312,7 @@ namespace Console_Pokemon_Project
                             Console.ReadKey(true);
                             DialogueClear();
                             enemy.hp -= criDam;
-                            Player.instance.skills[3].Pp -= 1;
+                            Player.instance.skills[3].pp -= 1;
                             if (enemy.hp < 0) { enemy.hp = 0; }
                         }
                         else // 플레이어의 공격이 크리티컬이 안터졌을때
@@ -322,7 +322,7 @@ namespace Console_Pokemon_Project
                             Console.ReadKey(true);
                             DialogueClear();
                             enemy.hp -= playerSkillDam3;
-                            Player.instance.skills[3].Pp -= 1;
+                            Player.instance.skills[3].pp -= 1;
                             if (enemy.hp < 0) { enemy.hp = 0; }
                         }
                     }
@@ -348,23 +348,23 @@ namespace Console_Pokemon_Project
             int avoidRan = ran.Next(100) + 1;
             int criRan = ran.Next(100) + 1;
             //데미지 계산식 = (스킬계수 * 공격력 * (레벨*2 /5 +2) / 방어 / 50 ) * 속성보정
-            int monSkillDam0 = (enemy.skills[0].Power * enemy.atk * (enemy.level * 2 / 5 + 2) / enemy.def / 50);
-            int monSkillDam1 = (enemy.skills[1].Power * enemy.atk * (enemy.level * 2 / 5 + 2) / enemy.def / 50);
-            int monSkillDam2 = (enemy.skills[2].Power * enemy.atk * (enemy.level * 2 / 5 + 2) / enemy.def / 50);
-            int monSkillDam3 = (enemy.skills[3].Power * enemy.atk * (enemy.level * 2 / 5 + 2) / enemy.def / 50);
+            int monSkillDam0 = (enemy.skills[0].power * enemy.atk * (enemy.level * 2 / 5 + 2) / enemy.def / 50);
+            int monSkillDam1 = (enemy.skills[1].power * enemy.atk * (enemy.level * 2 / 5 + 2) / enemy.def / 50);
+            int monSkillDam2 = (enemy.skills[2].power * enemy.atk * (enemy.level * 2 / 5 + 2) / enemy.def / 50);
+            int monSkillDam3 = (enemy.skills[3].power * enemy.atk * (enemy.level * 2 / 5 + 2) / enemy.def / 50);
             if (monSkillDam0 < 1) { monSkillDam0 = 1; } //데미지별 최소데미지 1로 설정
             if (monSkillDam1 < 1) { monSkillDam1 = 1; }
             if (monSkillDam2 < 1) { monSkillDam2 = 1; }
             if (monSkillDam3 < 1) { monSkillDam3 = 1; }
 
-            Console.WriteLine(enemy.skills[ranSkill].Name);
+            Console.WriteLine(enemy.skills[ranSkill].name);
             if (Player.instance.hp != 0 && enemy.hp != 0)
             {
                 DialogueClear();
                 Console.SetCursorPosition(DIALOGUE_X, DIALOGUE_Y);
                 if (ranSkill == 0) // 0번스킬을 사용했을때
                 {
-                    if (enemy.skills[0].Hitrate <= avoidRan + Player.instance.avoidence) //몬스터의 공격이 빗나갔을때
+                    if (enemy.skills[0].hitrate <= avoidRan + Player.instance.avoidence) //몬스터의 공격이 빗나갔을때
                     {
                         Console.Write("{0}의 공격이 빗나갔다!", enemy.name);
                         Console.ReadKey(true);
@@ -372,7 +372,7 @@ namespace Console_Pokemon_Project
                     }
                     else// 플레이어의 공격이 성공했을때
                     {
-                        Console.WriteLine("{0}의 {1}!", enemy.name, enemy.skills[0].Name);
+                        Console.WriteLine("{0}의 {1}!", enemy.name, enemy.skills[0].name);
                         if (100 <= criRan + enemy.critical) //몬스터의 공격이 크리티컬이 터졌을때
                         {
                             int criDam = monSkillDam0 *= 2;
@@ -383,7 +383,7 @@ namespace Console_Pokemon_Project
                             Console.ReadKey(true);
                             DialogueClear();
                             Player.instance.hp -= criDam;
-                            enemy.skills[0].Pp -= 1;
+                            enemy.skills[0].pp -= 1;
                             if (Player.instance.hp < 0) { Player.instance.hp = 0; }
                         }
                         else // 몬스터의 공격이 크리티컬이 안터졌을때
@@ -393,7 +393,7 @@ namespace Console_Pokemon_Project
                             Console.ReadKey(true);
                             DialogueClear();
                             Player.instance.hp -= monSkillDam0;
-                            enemy.skills[0].Pp -= 1;
+                            enemy.skills[0].pp -= 1;
                             if (Player.instance.hp < 0) { Player.instance.hp = 0; }
                         }
                     }
@@ -401,7 +401,7 @@ namespace Console_Pokemon_Project
                 }
                 else if (ranSkill == 1) //1번스킬을 사용했을때
                 {
-                    if (enemy.skills[1].Hitrate <= avoidRan + Player.instance.avoidence) //몬스터의 공격이 빗나갔을때
+                    if (enemy.skills[1].hitrate <= avoidRan + Player.instance.avoidence) //몬스터의 공격이 빗나갔을때
                     {
                         Console.Write("{0}의 공격이 빗나갔다!", enemy.name);
                         Console.ReadKey(true);
@@ -409,7 +409,7 @@ namespace Console_Pokemon_Project
                     }
                     else// 플레이어의 공격이 성공했을때
                     {
-                        Console.WriteLine("{0}의 {1}!", enemy.name, enemy.skills[1].Name);
+                        Console.WriteLine("{0}의 {1}!", enemy.name, enemy.skills[1].name);
                         if (100 <= criRan + enemy.critical) //몬스터의 공격이 크리티컬이 터졌을때
                         {
                             int criDam = monSkillDam1 *= 2;
@@ -420,7 +420,7 @@ namespace Console_Pokemon_Project
                             Console.ReadKey(true);
                             DialogueClear();
                             Player.instance.hp -= criDam;
-                            enemy.skills[1].Pp -= 1;
+                            enemy.skills[1].pp -= 1;
                             if (Player.instance.hp < 0) { Player.instance.hp = 0; }
                         }
                         else // 몬스터의 공격이 크리티컬이 안터졌을때
@@ -430,7 +430,7 @@ namespace Console_Pokemon_Project
                             Console.ReadKey(true);
                             DialogueClear();
                             Player.instance.hp -= monSkillDam1;
-                            enemy.skills[1].Pp -= 1;
+                            enemy.skills[1].pp -= 1;
                             if (Player.instance.hp < 0) { Player.instance.hp = 0; }
                         }
                     }
@@ -438,7 +438,7 @@ namespace Console_Pokemon_Project
 
                 else if (ranSkill == 2) //2번스킬을 사용했을때
                 {
-                    if (enemy.skills[2].Hitrate <= avoidRan + Player.instance.avoidence) //몬스터의 공격이 빗나갔을때
+                    if (enemy.skills[2].hitrate <= avoidRan + Player.instance.avoidence) //몬스터의 공격이 빗나갔을때
                     {
                         Console.Write("{0}의 공격이 빗나갔다!", enemy.name);
                         Console.ReadKey(true);
@@ -446,7 +446,7 @@ namespace Console_Pokemon_Project
                     }
                     else// 플레이어의 공격이 성공했을때
                     {
-                        Console.WriteLine("{0}의 {1}!", enemy.name, enemy.skills[2].Name);
+                        Console.WriteLine("{0}의 {1}!", enemy.name, enemy.skills[2].name);
                         if (100 <= criRan + enemy.critical) //몬스터의 공격이 크리티컬이 터졌을때
                         {
                             int criDam = monSkillDam2 *= 2;
@@ -457,7 +457,7 @@ namespace Console_Pokemon_Project
                             Console.ReadKey(true);
                             DialogueClear();
                             Player.instance.hp -= criDam;
-                            enemy.skills[2].Pp -= 1;
+                            enemy.skills[2].pp -= 1;
                             if (Player.instance.hp < 0) { Player.instance.hp = 0; }
                         }
                         else // 몬스터의 공격이 크리티컬이 안터졌을때
@@ -467,14 +467,14 @@ namespace Console_Pokemon_Project
                             Console.ReadKey(true);
                             DialogueClear();
                             Player.instance.hp -= monSkillDam2;
-                            enemy.skills[2].Pp -= 1;
+                            enemy.skills[2].pp -= 1;
                             if (Player.instance.hp < 0) { Player.instance.hp = 0; }
                         }
                     }
                 }
                 else if (ranSkill == 3) //3번스킬을 사용했을때
                 {
-                    if (enemy.skills[3].Hitrate <= avoidRan + Player.instance.avoidence) //몬스터의 공격이 빗나갔을때
+                    if (enemy.skills[3].hitrate <= avoidRan + Player.instance.avoidence) //몬스터의 공격이 빗나갔을때
                     {
                         Console.Write("{0}의 공격이 빗나갔다!", enemy.name);
                         Console.ReadKey(true);
@@ -482,7 +482,7 @@ namespace Console_Pokemon_Project
                     }
                     else// 플레이어의 공격이 성공했을때
                     {
-                        Console.WriteLine("{0}의 {1}!", enemy.name, enemy.skills[0].Name);
+                        Console.WriteLine("{0}의 {1}!", enemy.name, enemy.skills[0].name);
                         if (100 <= criRan + enemy.critical) //몬스터의 공격이 크리티컬이 터졌을때
                         {
                             int criDam = monSkillDam3 *= 2;
@@ -493,7 +493,7 @@ namespace Console_Pokemon_Project
                             Console.ReadKey(true);
                             DialogueClear();
                             Player.instance.hp -= criDam;
-                            enemy.skills[3].Pp -= 1;
+                            enemy.skills[3].pp -= 1;
                             if (Player.instance.hp < 0) { Player.instance.hp = 0; }
                         }
                         else // 몬스터의 공격이 크리티컬이 안터졌을때
@@ -503,7 +503,7 @@ namespace Console_Pokemon_Project
                             Console.ReadKey(true);
                             DialogueClear();
                             Player.instance.hp -= monSkillDam3;
-                            enemy.skills[3].Pp -= 1;
+                            enemy.skills[3].pp -= 1;
                             if (Player.instance.hp < 0) { Player.instance.hp = 0; }
                         }
                     }

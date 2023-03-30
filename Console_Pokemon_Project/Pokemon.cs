@@ -135,10 +135,10 @@ namespace Console_Pokemon_Project
             }
 
             skills.Add(new Skill(
-                tmpSkills[skillIndex].Name, 
-                tmpSkills[skillIndex].Power, 
-                tmpSkills[skillIndex].Hitrate, 
-                tmpSkills[skillIndex].Pp)
+                tmpSkills[skillIndex].name, 
+                tmpSkills[skillIndex].power, 
+                tmpSkills[skillIndex].hitrate, 
+                tmpSkills[skillIndex].pp)
                 );
         }
 
