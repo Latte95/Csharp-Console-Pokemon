@@ -58,7 +58,16 @@ namespace Console_Pokemon_Project
         // 사용자 인벤토리 출력 및 판매 아이템 선택
         public void ShowBuyItems()
         {
-            ClearShopContents();
+            if (Player.instance.inven.items.Count <= 0)
+            {
+                Console.SetCursorPosition(CURSOR_X * 2, CURSOR_Y + shopOption.Count + 2);
+                Console.WriteLine("보유 아이템이 없습니다.");
+                Console.ReadKey(true);
+            }
+            else
+            {
+                ClearShopContents();
+            }
             Console.SetCursorPosition(CURSOR_X, CURSOR_Y);
             string choiceItem = Menu.SelectMenu(CURSOR_X, CURSOR_Y, Player.instance.inven.items);
             SellItem(choiceItem);
@@ -69,17 +78,17 @@ namespace Console_Pokemon_Project
             int itemIndex = saleItems.FindIndex(item => item.name == itemName);
 
             Item tmpItem = saleItems[itemIndex]; // 현재 살 아이템
-            if(tmpItem.quantity <= 0)
+            if (tmpItem.quantity <= 0)
             {
                 Console.WriteLine("수량부족");
                 return;
             }
-            else if(Player.instance.money < tmpItem.price)
+            else if (Player.instance.money < tmpItem.price)
             {
                 Console.WriteLine("돈 부족");
                 return;
             }
-            if(tmpItem is EquipableItem)
+            if (tmpItem is EquipableItem)
             {
                 Player.instance.inven.AddItem(new EquipableItem(
                 (tmpItem as EquipableItem).name,
@@ -89,7 +98,7 @@ namespace Console_Pokemon_Project
                 (tmpItem as EquipableItem).equipType,
                                                     1));
             }
-            else if(tmpItem is ConsumableItem)
+            else if (tmpItem is ConsumableItem)
             {
                 Player.instance.inven.AddItem(new ConsumableItem(
                     (tmpItem as ConsumableItem).name,
@@ -104,14 +113,14 @@ namespace Console_Pokemon_Project
         public void SellItem(string itemName)
         {
             int itemIndex = Player.instance.inven.items.FindIndex(item => item.name == itemName);
-            if(itemIndex < 0)
+            if (itemIndex < 0)
             {
                 Console.WriteLine("아이템 없음");
                 return;
             }
             Item tmpItem = Player.instance.inven.items[itemIndex]; // 현재 팔 아이템
 
-            if(tmpItem.quantity <= 0)
+            if (tmpItem.quantity <= 0)
             {
                 Console.WriteLine("수량부족");
                 return;
@@ -124,11 +133,13 @@ namespace Console_Pokemon_Project
         // 상점 화면 초기화
         public static void ClearShopContents()
         {
-            Console.SetCursorPosition(CURSOR_X, CURSOR_Y);
-            for (int i = 0; i < 4; i++)
+            for (int y = CURSOR_Y; y < Screen.WINDOW_HEIGHT; y++)
             {
-                Console.SetCursorPosition(CURSOR_X, Console.CursorTop);
-                Console.WriteLine(new string('　', SHOP_X_LENGTH / 2 - 2));
+                for (int x = CURSOR_X * 2; x < Screen.WINDOW_WIDTH; x += 2)
+                {
+                    Console.SetCursorPosition(x, y);
+                    Console.Write("　");
+                }
             }
         }
     }

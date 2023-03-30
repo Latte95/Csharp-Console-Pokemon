@@ -24,17 +24,24 @@ namespace Console_Pokemon_Project
         {
             // 판매 or 구매
             string whatAct;
-
-            whatAct = Menu.SelectMenu(CURSOR_X, CURSOR_Y, infoMenu);
-            switch (whatAct)
+            while (true)
             {
-                case "인벤토리":
-                    ShowInventory();
+                whatAct = Menu.SelectMenu(CURSOR_X, CURSOR_Y, infoMenu);
+                if (string.IsNullOrEmpty(whatAct))
+                {
                     break;
+                }
+                switch (whatAct)
+                {
+                    case "인벤토리":
+                        ShowInventory();
+                        break;
 
-                case "장비창":
-                    ShowEquipments();
-                    break;
+                    case "장비창":
+                        ShowEquipments();
+                        break;
+                }
+                ClearInfoMenu();
             }
         }
 
@@ -64,7 +71,7 @@ namespace Console_Pokemon_Project
         private void ShowEquipments()
         {
             Console.SetCursorPosition(CURSOR_X, CURSOR_Y);
-            Console.SetCursorPosition(CURSOR_X, Console.CursorTop);
+            //Console.SetCursorPosition(CURSOR_X, Console.CursorTop);
 
             List<EquipableItem.EQUIPTYPE> equipments = new List<EquipableItem.EQUIPTYPE>(Player.instance.equipSlot.equipSlots.Keys);
 
@@ -83,11 +90,24 @@ namespace Console_Pokemon_Project
             }
             if(equipmentNames.Count <= 0)
             {
+                Console.SetCursorPosition(CURSOR_X*2, CURSOR_Y+ infoMenu.Count+2);
                 Console.WriteLine("착용한 장비없음");
+                Console.ReadKey(true);
                 return;
             }
 
             Menu.SelectMenu(CURSOR_X, CURSOR_Y, equipmentNames);
+        }
+        private void ClearInfoMenu()
+        {
+            for (int y = CURSOR_Y; y < Screen.WINDOW_HEIGHT; y++)
+            {
+                for (int x = CURSOR_X*2; x < Screen.WINDOW_WIDTH; x += 2)
+                {
+                    Console.SetCursorPosition(x, y);
+                    Console.Write("　");
+                }
+            }
         }
     }
 }

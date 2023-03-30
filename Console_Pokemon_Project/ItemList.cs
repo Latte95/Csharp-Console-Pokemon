@@ -24,9 +24,10 @@ namespace Console_Pokemon_Project
             bool isUp;
             bool isDown;
 
-            Console.SetCursorPosition(dialoqueX + CURSOR_X_LENGTH + 2, dialoqueY + 1);
+            Console.SetCursorPosition(dialoqueX*2 + CURSOR_X_LENGTH + 2, dialoqueY + 1);
             if (itemIndex >= menu.Count)
             {
+                Console.SetCursorPosition(dialoqueX * 2, dialoqueY + menu.Count + 2);
                 Console.WriteLine("보유 아이템이 없습니다.");
                 Console.ReadKey(true);
                 return null;
