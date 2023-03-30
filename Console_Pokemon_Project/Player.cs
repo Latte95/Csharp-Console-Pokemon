@@ -54,7 +54,7 @@ namespace Console_Pokemon_Project
             this.name = "Player";
             this.maxHp = 200;
             this.hp = 200;
-            this.atk = 999;
+            this.atk = 444;
             this.def = 30;
             this.speed = 50;
             this.level = 15;
@@ -63,7 +63,7 @@ namespace Console_Pokemon_Project
             this.critical = 3;
             this.exp = 0;
             this.upExp = new int[100];
-                
+
             equipSlot = new EquipmentSlot();
             inven = new Inventory();
             locX = 2;

@@ -83,15 +83,15 @@ namespace Console_Pokemon_Project
 
         public void MeetPokemon()
         {
-            
+
             bool isBattlePlay = true; // 배틀전체 실행값
             int updateState = 0;
             BattleFrame();
             MonsterGraphic();
-           // MonsterGraphic();
+            // MonsterGraphic();
             Screen.Print(pixel);
             Console.SetCursorPosition(DIALOGUE_X, DIALOGUE_Y);
-            Console.WriteLine("지나가던 {0}와 조우했다!", enemy.name);
+            Console.WriteLine("지나가던 {0}와 조우했다! 공격력 {1}", enemy.name, Player.instance.atk);
             Console.ReadKey(true);
             DialogueClear();
 
@@ -181,7 +181,6 @@ namespace Console_Pokemon_Project
                         }
 
                 }
-                Console.Clear();
 
 
                 Player.instance.isInBattle = false;
@@ -603,7 +602,6 @@ namespace Console_Pokemon_Project
                             Player.instance.hp = Player.instance.maxHp; //제한에 걸렸을이 최대체력으로 설정
                         }
                         Console.WriteLine("{0} 이 {1}만큼 회복되었다.", Player.instance.name, updateState);
-                        // 소모품 개수 닳게할공간
                         Player.instance.inven.RemoveItem(selectedItem);
                         Console.ReadKey(true);
                         DialogueClear();
@@ -613,6 +611,7 @@ namespace Console_Pokemon_Project
                         Player.instance.hp += 50;
                         if (Player.instance.hp > Player.instance.maxHp) { Player.instance.hp = Player.instance.maxHp; }
                         // 소모품 개수 닳게할공간
+                        DialogueClear();
                         break;
                     }
             }
@@ -693,7 +692,7 @@ namespace Console_Pokemon_Project
         {
             Console.SetCursorPosition(DIALOGUE_X, DIALOGUE_Y);
 
-            for (int i = 0; i < DIALOGUE_WINDOW_HEIGHT-1; i++)
+            for (int i = 0; i < DIALOGUE_WINDOW_HEIGHT - 1; i++)
             {
                 for (int j = 0; j < DIALOGUE_WINDOW_WIDTH; j++)
                 {
@@ -709,9 +708,9 @@ namespace Console_Pokemon_Project
 
         public static void Display()
         {
-            Console.SetCursorPosition(44, 3);
+            Console.SetCursorPosition(43, 3);
             Console.WriteLine("Lv : {0} ", enemy.level); // 몬스터의 Lv표시
-            Console.SetCursorPosition(44, 5);
+            Console.SetCursorPosition(43, 5);
             Console.WriteLine("HP : {0} / {1, -3}", enemy.hp, enemy.maxHp); // 몬스터의 hp표시
             Console.SetCursorPosition(60, 26);
             Console.WriteLine("Lv : {0} ", Player.instance.level); //플레이어의 Lv표시
@@ -753,7 +752,7 @@ namespace Console_Pokemon_Project
                     }
                     else
                     {
-                        pixel[x, y] ='　';
+                        pixel[x, y] = '　';
                     }
                 }
             }
@@ -763,11 +762,11 @@ namespace Console_Pokemon_Project
         {
             for (int y = 0; y < 24; y++)
             {
-                
+
                 for (int x = 0; x < 24; x++)
                 {
                     char c;
-                    if(!enemy.characterDisplayInfo[y, x].Equals(' '))
+                    if (!enemy.characterDisplayInfo[y, x].Equals(' '))
                     {
                         c = (char)(enemy.characterDisplayInfo[y, x] + 0xFEE0);
                     }
@@ -775,7 +774,7 @@ namespace Console_Pokemon_Project
                     {
                         c = '　';
                     }
-                    pixel[(Screen.WINDOW_WIDTH>>1) - 24+x-1, y + 1] = c;
+                    pixel[(Screen.WINDOW_WIDTH >> 1) - 24 + x - 1, y + 1] = c;
                 }
             }
 
