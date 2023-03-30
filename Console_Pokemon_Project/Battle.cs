@@ -86,10 +86,8 @@ namespace Console_Pokemon_Project
         public void MeetPokemon()
         {
             bool isBattlePlay = true; // 배틀전체 실행값
-<<<<<<< HEAD
+
             int updateState = 0;
-=======
->>>>>>> bbfae71f1fac2518de012232056a7f1ba2a62fa5
 
             Console.SetCursorPosition(DIALOGUE_X, DIALOGUE_Y);
             Console.WriteLine("지나가던 {0}와 조우했다!", enemy.name);
@@ -98,8 +96,6 @@ namespace Console_Pokemon_Project
 
             while (isBattlePlay)
             {
-
-
                 Console.SetCursorPosition(DIALOGUE_X, DIALOGUE_Y);
                 Console.WriteLine("{0}는 지시를 기다리고있다.", Player.instance.name);
                 Console.SetCursorPosition(DIALOGUE_X, Console.CursorTop);
@@ -162,17 +158,15 @@ namespace Console_Pokemon_Project
                     case "아이템 사용":
                         {
                             //아이템 사용칸
-<<<<<<< HEAD
+
                             if (ItemUse(updateState) == false)
                             {
                                 DialogueClear();
                                 continue;
                             }
                             MonsterAttack();
-=======
-                            ItemUse();
+                            
                             Console.WriteLine("");
->>>>>>> bbfae71f1fac2518de012232056a7f1ba2a62fa5
                             break;
                         }
                     case "도망":
@@ -558,23 +552,20 @@ namespace Console_Pokemon_Project
             Player.instance.isInBattle = false;
             Player.instance.isWaitingInput = true;
         }
-<<<<<<< HEAD
+
         public bool ItemUse(int updateState)
-=======
-        public void ItemUse()
->>>>>>> bbfae71f1fac2518de012232056a7f1ba2a62fa5
         {
-            List<Item> tmpItem = new List<Item>();
+            List<Item> tmpItems = new List<Item>();
             foreach (Item item in Player.instance.inven.items)
             {
                 if (item is ConsumableItem)
                 {
-                    tmpItem.Add(item);
+                    tmpItems.Add(item);
                 }
             }
 
             DialogueClear();
-<<<<<<< HEAD
+
             string itemName = Menu.SelectMenu(DIALOGUE_X, DIALOGUE_Y, tmpItems);
 
             int selectedIndex = tmpItems.FindIndex(item => item.name == itemName);
@@ -587,14 +578,13 @@ namespace Console_Pokemon_Project
             }
             Item selectedItem = tmpItems[selectedIndex];
 
-=======
-            string itemName = Menu.SelectMenu(DIALOGUE_X, DIALOGUE_Y, tmpItem);
->>>>>>> bbfae71f1fac2518de012232056a7f1ba2a62fa5
+
+            string itemNames = Menu.SelectMenu(DIALOGUE_X, DIALOGUE_Y, tmpItems);
+
             switch (itemName)
             {
                 case "체력포션":
                     {
-<<<<<<< HEAD
                         if (selectedItem.quantity <= 0)
                         {
                             Console.SetCursorPosition(DIALOGUE_X, DIALOGUE_Y);
@@ -616,13 +606,12 @@ namespace Console_Pokemon_Project
                         Player.instance.inven.RemoveItem(selectedItem);
                         Console.ReadKey(true);
                         DialogueClear();
-=======
+
                         Console.WriteLine("체력 포션을 사용하였다.");
                         Console.WriteLine("{0} 이 {1}만큼 회복되었다.",Player.instance.name , 50);
                         Player.instance.hp += 50;
                         if (Player.instance.hp > Player.instance.maxHp) { Player.instance.hp = Player.instance.maxHp; }
                         // 소모품 개수 닳게할공간
->>>>>>> bbfae71f1fac2518de012232056a7f1ba2a62fa5
                         break;
                     }
             }
