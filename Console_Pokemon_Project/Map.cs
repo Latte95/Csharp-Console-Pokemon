@@ -22,7 +22,7 @@ namespace Console_Pokemon_Project
         public enum TileType
         {
             GROUND = '　',
-            GRASS = '＃',
+            GRASS = '♣',
             WALL = '■',
             PLAYER = '★',
             SHOP = '＠',
@@ -31,8 +31,8 @@ namespace Console_Pokemon_Project
 
         public const int MAP_WIDTH = 40;
         public const int MAP_HEIGHT = 45;
-        
 
+        public string name;
         public char[,] mapInfo = new char[MAP_WIDTH, MAP_HEIGHT]; // 맵 타일 정보
         public char[,] printInfo = new char[MAP_WIDTH, MAP_HEIGHT]; // screen으로 출력할 맵 캐릭터 배열
         public readonly int startXLoc;
@@ -45,7 +45,7 @@ namespace Console_Pokemon_Project
         private Random random = new Random();
 
         // 해당 Map의 위치 설정
-        public Map(int startXLoc, int startYLoc)
+        public Map(string name, int startXLoc, int startYLoc)
         {
             this.startXLoc = startXLoc;
             this.startYLoc = startYLoc;
@@ -73,15 +73,21 @@ namespace Console_Pokemon_Project
                 mapInfo[0, i] = (char)TileType.WALL;
                 mapInfo[MAP_WIDTH - 1, i] = (char)TileType.WALL;
             }
-            for(int i=1; i<MAP_WIDTH-1; i++)
+
+            // 풀 배치
+            int thisMapIndex = (this.startYLoc / MAP_HEIGHT) * 2 + (this.startXLoc / MAP_WIDTH);
+
+            int grassStartPosX = thisMapIndex * MAP_WIDTH / 2;
+            int grassStartPosY = thisMapIndex * MAP_HEIGHT / 2;
+            for (int i = grassStartPosX; i < MAP_WIDTH / 2; i++)
             {
-                for(int j=1; j<MAP_HEIGHT-1; j++)
+                for (int j = grassStartPosY; j < MAP_HEIGHT / 2; j++)
                 {
-                    if(i%2==0 && j%2==0)
+                    if ((i % 2 == 0) && (j % 2 == 0))
                     {
                         mapInfo[i, j] = (char)TileType.GRASS;
                     }
-                    else if(i%2==1 && j%2==1)
+                    else if ((i % 2 == 1) && (j % 2 == 1))
                     {
                         mapInfo[i, j] = (char)TileType.GRASS;
                     }
@@ -175,6 +181,9 @@ namespace Console_Pokemon_Project
             {
                 Player.instance.locX = lastPlayerLocX;
                 Player.instance.locY = lastPlayerLocY;
+
+                playerPosX = Player.instance.locX - this.startXLoc;
+                playerPosY = Player.instance.locY - this.startYLoc;
             }
             else
             {
@@ -269,7 +278,8 @@ namespace Console_Pokemon_Project
                     case ConsoleKey.Escape:
                         {
                             Player.instance.isWaitingInput = false;
-                            break;
+                            
+                            return;
                         }
                     case ConsoleKey.Spacebar:
                         {
