@@ -30,6 +30,7 @@ namespace Console_Pokemon_Project
         }
 
         public string name;
+        public int maxHp;
         public int hp;
         public int atk;
         public int def;
@@ -49,10 +50,11 @@ namespace Console_Pokemon_Project
         private Player()
         {
             this.name = "Player";
+            this.maxHp = 200;
             this.hp = 200;
             this.atk = 60;
             this.def = 30;
-            this.speed = 220;
+            this.speed = 50;
             this.level = 15;
             this.money = 10000;
             this.avoidence = 15;
@@ -92,10 +94,10 @@ namespace Console_Pokemon_Project
             }
 
             skills.Add(new Skill(
-                tmpSkills[skillIndex].Name,
-                tmpSkills[skillIndex].Power,
-                tmpSkills[skillIndex].Hitrate,
-                tmpSkills[skillIndex].Pp)
+                tmpSkills[skillIndex].name,
+                tmpSkills[skillIndex].power,
+                tmpSkills[skillIndex].hitrate,
+                tmpSkills[skillIndex].pp)
                 );
         }
 
