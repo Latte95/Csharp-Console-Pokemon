@@ -39,12 +39,14 @@ namespace Console_Pokemon_Project
         public int money;
         public int avoidence;
         public int critical;
+        public int exp;
         public Inventory inven;
         public EquipmentSlot equipSlot;
         public int locX;
         public int locY;
         public bool isWaitingInput;
         public bool isInBattle;
+        public int[] upExp;
         public List<Skill> skills = new List<Skill>();
 
         private Player()
@@ -52,13 +54,16 @@ namespace Console_Pokemon_Project
             this.name = "Player";
             this.maxHp = 200;
             this.hp = 200;
-            this.atk = 60;
+            this.atk = 999;
             this.def = 30;
             this.speed = 50;
             this.level = 15;
             this.money = 10000;
             this.avoidence = 15;
             this.critical = 3;
+            this.exp = 0;
+            this.upExp = new int[100];
+                
             equipSlot = new EquipmentSlot();
             inven = new Inventory();
             locX = 2;
@@ -67,7 +72,14 @@ namespace Console_Pokemon_Project
             isInBattle = false;
 
             InitGetSkill();
+
+            for (int i = 0; i < 100; i++) //플레이어의 레벨 필요경험치량
+            {
+                upExp[i] = 100 + ((i + 1) * 50);
+            }
+
         }
+
 
         private void InitGetSkill()
         {
