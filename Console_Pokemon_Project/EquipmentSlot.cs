@@ -9,7 +9,7 @@ namespace Console_Pokemon_Project
     public class EquipmentSlot
     {
         // 딕셔너리를 쓴 이유 : 키값을 하나밖에 못 갖으니까, 키값을 슬롯으로 활용
-        private Dictionary<EquipableItem.EQUIPTYPE, EquipableItem> equipSlots;
+        public Dictionary<EquipableItem.EQUIPTYPE, EquipableItem> equipSlots;
 
         public EquipmentSlot()
         {
