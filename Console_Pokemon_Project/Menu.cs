@@ -209,10 +209,17 @@ namespace Console_Pokemon_Project
                 // ▶ 위치를 고려하여 커서의 x위치에 2를 더해줌
                 Console.SetCursorPosition(dialoqueX + CURSOR_X_LENGTH + 2, dialoqueY + i + 1);
                 
+                // 아이템이면 출력할 것
                 if (menu[menuIndex + i] is Item itemName)
                 {
-                    Console.WriteLine(itemName.name);
+                    Console.WriteLine($"{itemName.name} - {itemName.quantity}");
                 }
+                // 스킬이면 출력할 것
+                else if(menu[menuIndex + i] is Skill skillName)
+                {
+                    Console.WriteLine($"{skillName.name} - {skillName.pp}");
+                }
+                // string이면 출력할 것
                 else if (menu[menuIndex + i] is string str)
                 {
                     Console.WriteLine(str);
