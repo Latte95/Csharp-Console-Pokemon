@@ -164,6 +164,11 @@ namespace Console_Pokemon_Project
             menualCursorY += blankYSpace;
             Console.SetCursorPosition(menualCursorX, menualCursorY);
             Console.Write("메뉴 : ESC");
+            menualCursorY += blankYSpace;
+            Console.SetCursorPosition(menualCursorX, menualCursorY);
+            Console.Write("플레이어 : ★");
+            Console.SetCursorPosition(menualCursorX, menualCursorY++);
+            Console.Write("상점 : ＠");
         }
     }
 }
