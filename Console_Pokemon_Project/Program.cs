@@ -31,6 +31,7 @@ namespace Console_Pokemon_Project
                     break;
                 case "불러오기":
                     Console.Clear();
+                    DataManager.Load();
                     //if()
                     GameManager.Start();
                     break;

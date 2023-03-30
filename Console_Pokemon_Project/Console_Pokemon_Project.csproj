@@ -48,13 +48,13 @@
   <ItemGroup>
     <Compile Include="Battle.cs" />
     <Compile Include="ConsumableItem.cs" />
+    <Compile Include="DataManager.cs" />
     <Compile Include="EquipableItem.cs" />
     <Compile Include="EquipmentSlot.cs" />
     <Compile Include="GameInfo.cs" />
     <Compile Include="GameManager.cs" />
     <Compile Include="Inventory.cs" />
     <Compile Include="Item.cs" />
-    <Compile Include="ItemList.cs" />
     <Compile Include="Map.cs" />
     <Compile Include="Menu.cs" />
     <Compile Include="Player.cs" />

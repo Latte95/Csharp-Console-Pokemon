@@ -105,7 +105,31 @@ namespace Console_Pokemon_Project
                     { '#', '#', '#', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '#', '.', '#', '#', '#', ' ', ' ', ' ', '=', '#', '#', '#', '#' }
             };
         }
+        // 플레이어 데이터 덮어 쓰는 함수
+        public void UpdateProperties(Player newPlayer)
+        {
+            this.name = newPlayer.name;
+            this.maxHp = newPlayer.maxHp;
+            this.hp = newPlayer.hp;
+            this.atk = newPlayer.atk;
+            this.def = newPlayer.def;
+            this.speed = newPlayer.speed;
+            this.level = newPlayer.level;
+            this.money = newPlayer.money;
+            this.avoidence = newPlayer.avoidence;
+            this.critical = newPlayer.critical;
+            this.exp = newPlayer.exp;
+            this.upExp = newPlayer.upExp;
+            equipSlot = newPlayer.equipSlot;
+            inven = newPlayer.inven;
+            locX = newPlayer.locX;
+            locY = newPlayer.locY;
+            isWaitingInput = newPlayer.isWaitingInput;
+            isInBattle = newPlayer.isInBattle;
 
+            skills = newPlayer.skills;
+            this.characterDisplayInfo = newPlayer.characterDisplayInfo;
+        }
 
         private void InitGetSkill()
         {

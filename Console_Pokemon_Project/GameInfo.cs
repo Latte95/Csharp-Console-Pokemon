@@ -16,7 +16,7 @@ namespace Console_Pokemon_Project
         public const int PLAYER_OPTION_MENU_POS_Y = 1;
         
 
-        public List<string> infoMenu = new List<string> { "인벤토리", "장비창" };
+        public List<string> infoMenu = new List<string> { "인벤토리", "장비창", "저장" };
 
         public GameInfo()
         {
@@ -41,6 +41,11 @@ namespace Console_Pokemon_Project
                         ClearInfoMenu();
                         ShowEquipments();
                         break;
+                    case "저장":
+                        ClearInfoMenu();
+                        DataManager.Save(Player.instance);
+                        break;
+
                 }
                 ClearInfoMenu();
                 if (string.IsNullOrEmpty(whatAct))
