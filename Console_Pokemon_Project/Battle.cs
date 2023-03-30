@@ -543,21 +543,30 @@ namespace Console_Pokemon_Project
         }
         public void ItemUse(int updateState)
         {
-            List<Item> tmpItem = new List<Item>();
+            List<Item> tmpItems = new List<Item>();
             foreach (Item item in Player.instance.inven.items)
             {
                 if (item is ConsumableItem)
                 {
-                    tmpItem.Add(item);
+                    tmpItems.Add(item);
                 }
             }
 
             DialogueClear();
-            string itemName = Menu.SelectMenu(DIALOGUE_X, DIALOGUE_Y, tmpItem);
+            string itemName = Menu.SelectMenu(DIALOGUE_X, DIALOGUE_Y, tmpItems);
+
+            Item selectedItem = tmpItems[tmpItems.FindIndex(item => item.name == itemName)];
+
             switch (itemName)
             {
                 case "체력포션":
                     {
+                        if (selectedItem.quantity <= 0)
+                        {
+                            Console.SetCursorPosition(DIALOGUE_X, DIALOGUE_Y);
+                            Console.WriteLine("아이템이 없어요");
+                            return;
+                        }
                         updateState =50; // 회복양(포션에따라)
                         DialogueClear();
                         Console.WriteLine("체력 포션을 사용하였다.");
@@ -570,6 +579,7 @@ namespace Console_Pokemon_Project
                         }
                         Console.WriteLine("{0} 이 {1}만큼 회복되었다.", Player.instance.name , updateState);
                         // 소모품 개수 닳게할공간
+                        Player.instance.inven.RemoveItem(selectedItem);
                         Console.ReadKey(true);
                         break;
                     }
