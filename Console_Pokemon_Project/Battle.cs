@@ -646,7 +646,7 @@ namespace Console_Pokemon_Project
             Console.SetCursorPosition(80, 25);
             Console.WriteLine("HP : {0, -3} / {1, -3}", Player.instance.hp, Player.instance.maxHp);  //플레이어의 hp표시
             Console.SetCursorPosition(80, 27);
-            Console.WriteLine("HP : {0, -3} / {1, -3}", Player.instance.exp, Player.instance.upExp);  //플레이어의 hp표시
+            Console.WriteLine("EXP : {0, -3} / {1, -3}", Player.instance.exp, Player.instance.upExp[Player.instance.level]);  //플레이어의 hp표시
         }
 
         public static void CanSkill(string skillName)
@@ -659,14 +659,15 @@ namespace Console_Pokemon_Project
         }
         public static void PlayerLevelUp(int[] upExp)
         {
-            if (Player.instance.exp == upExp[Player.instance.level])
+            if (Player.instance.exp >= upExp[Player.instance.level])
             {
-                Player.instance.level += 1;
                 Player.instance.exp -= upExp[Player.instance.level];
-                Console.SetCursorPosition(DIALOGUE_X, Console.CursorTop);
+                Player.instance.level += 1;
+                DialogueClear();
                 Console.WriteLine("플레이어의 레벨이 상승했다.");
                 Console.SetCursorPosition(DIALOGUE_X, Console.CursorTop);
                 Console.WriteLine("현재 플레이어의 레벨 : {0}", Player.instance.level);
+                Console.ReadKey(true);
             }
 
 

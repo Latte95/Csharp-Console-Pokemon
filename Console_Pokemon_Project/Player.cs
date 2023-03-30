@@ -54,7 +54,7 @@ namespace Console_Pokemon_Project
             this.name = "Player";
             this.maxHp = 200;
             this.hp = 200;
-            this.atk = 60;
+            this.atk = 999;
             this.def = 30;
             this.speed = 50;
             this.level = 15;
@@ -75,7 +75,7 @@ namespace Console_Pokemon_Project
 
             for (int i = 0; i < 100; i++) //플레이어의 레벨 필요경험치량
             {
-                Player.instance.upExp[i] = 100 + ((i + 1) * 50);
+                upExp[i] = 100 + ((i + 1) * 50);
             }
 
         }
