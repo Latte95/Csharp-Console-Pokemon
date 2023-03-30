@@ -60,7 +60,21 @@ namespace Console_Pokemon_Project
         // 아이템 삭제 (판매, 해제, 버림, 사용 등등)
         public void RemoveItem(Item item)
         {
-            // 소비 아이템을 삭제할 땐
+            if (items.Contains(item))
+            {
+                // 수량 존재하면 하나 삭제
+                if (item.quantity > 0)
+                {
+                    item.quantity--;
+                }
+                // 삭제 후 수량 0 이하면 아이템 목록에서 삭제
+                if(item.quantity <= 0)
+                {
+                    items.Remove(item);
+                }
+            }
+
+            /*// 소비 아이템을 삭제할 땐
             if (item is ConsumableItem)
             {
                 ConsumableItem delItem = (ConsumableItem)item;
@@ -90,9 +104,9 @@ namespace Console_Pokemon_Project
                         break;
                     }
                 }
-            }
+            }*/
             // 장비 아이템 삭제시엔 그냥 삭제
-            else if (item is EquipableItem)
+            if (item is EquipableItem)
             {
                 items.Remove(item);
             }
