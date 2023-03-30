@@ -43,6 +43,7 @@ namespace Console_Pokemon_Project
                     ShowBuyItems();
                     break;
             }
+            ClearShopContents();
         }
 
         // 판매 아이템 출력 및 구매 아이템 선택

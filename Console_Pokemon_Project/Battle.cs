@@ -401,7 +401,6 @@ namespace Console_Pokemon_Project
             if (Player.instance.hp != 0 && enemy.hp != 0)
             {
                 DialogueClear();
-                Console.SetCursorPosition(DIALOGUE_X, DIALOGUE_Y);
                 if (ranSkill == 0) // 0번스킬을 사용했을때
                 {
                     if (enemy.skills[0].hitrate <= avoidRan + Player.instance.avoidence) //몬스터의 공격이 빗나갔을때
@@ -409,14 +408,16 @@ namespace Console_Pokemon_Project
                         Console.Write("{0}의 공격이 빗나갔다!", enemy.name);
                         Console.ReadKey(true);
                         DialogueClear();
+
                     }
                     else// 플레이어의 공격이 성공했을때
                     {
                         Console.WriteLine("{0}의 {1}!", enemy.name, enemy.skills[0].name);
+                        Console.SetCursorPosition(DIALOGUE_X, Console.CursorTop);
+
                         if (100 <= criRan + enemy.critical) //몬스터의 공격이 크리티컬이 터졌을때
                         {
                             int criDam = monSkillDam0 *= 2;
-                            Console.SetCursorPosition(DIALOGUE_X, Console.CursorTop);
                             Console.WriteLine("{0}은 {1}의 데미지를 입었다.", Player.instance.name, criDam);
                             Console.SetCursorPosition(DIALOGUE_X, Console.CursorTop);
                             Console.WriteLine("급소에 맞았다!");
@@ -428,7 +429,6 @@ namespace Console_Pokemon_Project
                         }
                         else // 몬스터의 공격이 크리티컬이 안터졌을때
                         {
-                            Console.SetCursorPosition(DIALOGUE_X, Console.CursorTop);
                             Console.WriteLine("{0}은 {1}의 데미지를 입었다.", Player.instance.name, monSkillDam0);
                             Console.ReadKey(true);
                             DialogueClear();
@@ -450,10 +450,11 @@ namespace Console_Pokemon_Project
                     else// 플레이어의 공격이 성공했을때
                     {
                         Console.WriteLine("{0}의 {1}!", enemy.name, enemy.skills[1].name);
+                        Console.SetCursorPosition(DIALOGUE_X, Console.CursorTop);
+
                         if (100 <= criRan + enemy.critical) //몬스터의 공격이 크리티컬이 터졌을때
                         {
                             int criDam = monSkillDam1 *= 2;
-                            Console.SetCursorPosition(DIALOGUE_X, Console.CursorTop);
                             Console.WriteLine("{0}은 {1}의 데미지를 입었다.", Player.instance.name, criDam);
                             Console.SetCursorPosition(DIALOGUE_X, Console.CursorTop);
                             Console.WriteLine("급소에 맞았다!");
@@ -465,7 +466,6 @@ namespace Console_Pokemon_Project
                         }
                         else // 몬스터의 공격이 크리티컬이 안터졌을때
                         {
-                            Console.SetCursorPosition(DIALOGUE_X, Console.CursorTop);
                             Console.WriteLine("{0}은 {1}의 데미지를 입었다.", Player.instance.name, monSkillDam1);
                             Console.ReadKey(true);
                             DialogueClear();
@@ -487,10 +487,11 @@ namespace Console_Pokemon_Project
                     else// 플레이어의 공격이 성공했을때
                     {
                         Console.WriteLine("{0}의 {1}!", enemy.name, enemy.skills[2].name);
+                        Console.SetCursorPosition(DIALOGUE_X, Console.CursorTop);
+
                         if (100 <= criRan + enemy.critical) //몬스터의 공격이 크리티컬이 터졌을때
                         {
                             int criDam = monSkillDam2 *= 2;
-                            Console.SetCursorPosition(DIALOGUE_X, Console.CursorTop);
                             Console.WriteLine("{0}은 {1}의 데미지를 입었다.", Player.instance.name, criDam);
                             Console.SetCursorPosition(DIALOGUE_X, Console.CursorTop);
                             Console.WriteLine("급소에 맞았다!");
@@ -502,7 +503,6 @@ namespace Console_Pokemon_Project
                         }
                         else // 몬스터의 공격이 크리티컬이 안터졌을때
                         {
-                            Console.SetCursorPosition(DIALOGUE_X, Console.CursorTop);
                             Console.WriteLine("{0}은 {1}의 데미지를 입었다.", Player.instance.name, monSkillDam2);
                             Console.ReadKey(true);
                             DialogueClear();
@@ -523,10 +523,11 @@ namespace Console_Pokemon_Project
                     else// 플레이어의 공격이 성공했을때
                     {
                         Console.WriteLine("{0}의 {1}!", enemy.name, enemy.skills[0].name);
+                        Console.SetCursorPosition(DIALOGUE_X, Console.CursorTop);
+
                         if (100 <= criRan + enemy.critical) //몬스터의 공격이 크리티컬이 터졌을때
                         {
                             int criDam = monSkillDam3 *= 2;
-                            Console.SetCursorPosition(DIALOGUE_X, Console.CursorTop);
                             Console.WriteLine("{0}은 {1}의 데미지를 입었다.", Player.instance.name, criDam);
                             Console.SetCursorPosition(DIALOGUE_X, Console.CursorTop);
                             Console.WriteLine("급소에 맞았다!");
@@ -538,7 +539,6 @@ namespace Console_Pokemon_Project
                         }
                         else // 몬스터의 공격이 크리티컬이 안터졌을때
                         {
-                            Console.SetCursorPosition(DIALOGUE_X, Console.CursorTop);
                             Console.WriteLine("{0}은 {1}의 데미지를 입었다.", Player.instance.name, monSkillDam3);
                             Console.ReadKey(true);
                             DialogueClear();
@@ -578,9 +578,6 @@ namespace Console_Pokemon_Project
             }
             Item selectedItem = tmpItems[selectedIndex];
 
-
-            string itemNames = Menu.SelectMenu(DIALOGUE_X, DIALOGUE_Y, tmpItems);
-
             switch (itemName)
             {
                 case "체력포션":
@@ -605,13 +602,7 @@ namespace Console_Pokemon_Project
                         Player.instance.inven.RemoveItem(selectedItem);
                         Console.ReadKey(true);
                         DialogueClear();
-
-                        Console.WriteLine("체력 포션을 사용하였다.");
-                        Console.WriteLine("{0} 이 {1}만큼 회복되었다.", Player.instance.name, 50);
-                        Player.instance.hp += 50;
-                        if (Player.instance.hp > Player.instance.maxHp) { Player.instance.hp = Player.instance.maxHp; }
                         // 소모품 개수 닳게할공간
-                        DialogueClear();
                         break;
                     }
             }
@@ -711,7 +702,7 @@ namespace Console_Pokemon_Project
             Console.SetCursorPosition(43, 3);
             Console.WriteLine("Lv : {0} ", enemy.level); // 몬스터의 Lv표시
             Console.SetCursorPosition(43, 5);
-            Console.WriteLine("HP : {0} / {1, -3}", enemy.hp, enemy.maxHp); // 몬스터의 hp표시
+            Console.WriteLine("HP : {0 ,-3} / {1, -3}", enemy.hp, enemy.maxHp); // 몬스터의 hp표시
             Console.SetCursorPosition(60, 26);
             Console.WriteLine("Lv : {0} ", Player.instance.level); //플레이어의 Lv표시
             Console.SetCursorPosition(60, 28);
