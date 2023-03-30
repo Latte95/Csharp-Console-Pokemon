@@ -1,7 +1,7 @@
 [
   {
     "name": "피카츄",
-    "maxHp":  35,
+    "maxhp":  35,
     "hp": 35,
     "att": 55,
     "def": 40,
@@ -11,37 +11,37 @@
     "critical": 15,
     "avoidence": 3,
     "level": 5,
-    "characterDisplayInfo": null,
+    "characterdisplayinfo": null,
     "skills": [
       {
-        "Name": "10만볼트",
-        "Power": 90,
-        "Hitrate": 100,
-        "Pp": 15
+        "name": "10만볼트",
+        "power": 90,
+        "hitrate": 100,
+        "pp": 15
       },
       {
-        "Name": "아이언테일",
-        "Power": 100,
-        "Hitrate": 75,
-        "Pp": 15
+        "name": "아이언테일",
+        "power": 100,
+        "hitrate": 75,
+        "pp": 15
       },
       {
-        "Name": "번개",
-        "Power": 110,
-        "Hitrate": 70,
-        "Pp": 10
+        "name": "번개",
+        "power": 110,
+        "hitrate": 70,
+        "pp": 10
       },
       {
-        "Name": "볼부비부비",
-        "Power": 55,
-        "Hitrate": 95,
-        "Pp": 25
+        "name": "볼부비부비",
+        "power": 55,
+        "hitrate": 95,
+        "pp": 25
       }
     ]
   },
   {
     "name": "꼬부기",
-    "maxHp": 44,
+    "maxhp": 44,
     "hp": 44,
     "att": 48,
     "def": 65,
@@ -51,37 +51,37 @@
     "critical": 15,
     "avoidence": 3,
     "level": 5,
-    "characterDisplayInfo": null,
+    "characterdisplayinfo": null,
     "skills": [
       {
-        "Name": "할퀴기",
-        "Power": 40,
-        "Hitrate": 100,
-        "Pp": 35
+        "name": "할퀴기",
+        "power": 40,
+        "hitrate": 100,
+        "pp": 35
       },
       {
-        "Name": "물대포",
-        "Power": 40,
-        "Hitrate": 100,
-        "Pp": 25
+        "name": "물대포",
+        "power": 40,
+        "hitrate": 100,
+        "pp": 25
       },
       {
-        "Name": "물기",
-        "Power": 60,
-        "Hitrate": 100,
-        "Pp": 25
+        "name": "물기",
+        "power": 60,
+        "hitrate": 100,
+        "pp": 25
       },
       {
-        "Name": "하이드로펌프",
-        "Power": 110,
-        "Hitrate": 80,
-        "Pp": 5
+        "name": "하이드로펌프",
+        "power": 110,
+        "hitrate": 80,
+        "pp": 5
       }
     ]
   },
   {
     "name": "파이리",
-    "maxHp": 39,
+    "maxhp": 39,
     "hp": 39,
     "att": 52,
     "def": 43,
@@ -91,37 +91,37 @@
     "critical": 15,
     "avoidence": 3,
     "level": 5,
-    "characterDisplayInfo": null,
+    "characterdisplayinfo": null,
     "skills": [
       {
-        "Name": "할퀴기",
-        "Power": 40,
-        "Hitrate": 100,
-        "Pp": 35
+        "name": "할퀴기",
+        "power": 40,
+        "hitrate": 100,
+        "pp": 35
       },
       {
-        "Name": "불꽃세례",
-        "Power": 40,
-        "Hitrate": 100,
-        "Pp": 25
+        "name": "불꽃세례",
+        "power": 40,
+        "hitrate": 100,
+        "pp": 25
       },
       {
-        "Name": "불꽃엄니",
-        "Power": 65,
-        "Hitrate": 95,
-        "Pp": 15
+        "name": "불꽃엄니",
+        "power": 65,
+        "hitrate": 95,
+        "pp": 15
       },
       {
-        "Name": "화염방사",
-        "Power": 90,
-        "Hitrate": 100,
-        "Pp": 15
+        "name": "화염방사",
+        "power": 90,
+        "hitrate": 100,
+        "pp": 15
       }
     ]
   },
   {
     "name": "이상해씨",
-    "maxHp": 45,
+    "maxhp": 45,
     "hp": 45,
     "att": 49,
     "def": 49,
@@ -131,37 +131,37 @@
     "critical": 15,
     "avoidence": 3,
     "level": 5,
-    "characterDisplayInfo": null,
+    "characterdisplayinfo": null,
     "skills": [
       {
-        "Name": "잎날가르기",
-        "Power": 20,
-        "Hitrate": 100,
-        "Pp": 20
+        "name": "잎날가르기",
+        "power": 20,
+        "hitrate": 100,
+        "pp": 20
       },
       {
-        "Name": "덩굴채찍",
-        "Power": 45,
-        "Hitrate": 100,
-        "Pp": 25
+        "name": "덩굴채찍",
+        "power": 45,
+        "hitrate": 100,
+        "pp": 25
       },
       {
-        "Name": "매지컬리프",
-        "Power": 60,
-        "Hitrate": 100,
-        "Pp": 20
+        "name": "매지컬리프",
+        "power": 60,
+        "hitrate": 100,
+        "pp": 20
       },
       {
-        "Name": "기가드레인",
-        "Power": 75,
-        "Hitrate": 100,
-        "Pp": 10
+        "name": "기가드레인",
+        "power": 75,
+        "hitrate": 100,
+        "pp": 10
       }
     ]
   },
   {
     "name": "나옹",
-    "maxHp": 40,
+    "maxhp": 40,
     "hp": 40,
     "att": 45,
     "def": 35,
@@ -171,37 +171,37 @@
     "critical": 15,
     "avoidence": 3,
     "level": 7,
-    "characterDisplayInfo": null,
+    "characterdisplayinfo": null,
     "skills": [
       {
-        "Name": "할퀴기",
-        "Power": 40,
-        "Hitrate": 100,
-        "Pp": 35
+        "name": "할퀴기",
+        "power": 40,
+        "hitrate": 100,
+        "pp": 35
       },
       {
-        "Name": "물기",
-        "Power": 60,
-        "Hitrate": 100,
-        "Pp": 25
+        "name": "물기",
+        "power": 60,
+        "hitrate": 100,
+        "pp": 25
       },
       {
-        "Name": "고양이돈받기",
-        "Power": 40,
-        "Hitrate": 100,
-        "Pp": 20
+        "name": "고양이돈받기",
+        "power": 40,
+        "hitrate": 100,
+        "pp": 20
       },
       {
-        "Name": "치근거리기",
-        "Power": 90,
-        "Hitrate": 90,
-        "Pp": 10
+        "name": "치근거리기",
+        "power": 90,
+        "hitrate": 90,
+        "pp": 10
       }
     ]
   },
   {
     "name": "푸린",
-    "maxHp": 115,
+    "maxhp": 115,
     "hp": 115,
     "att": 45,
     "def": 20,
@@ -211,37 +211,37 @@
     "critical": 15,
     "avoidence": 3,
     "level": 9,
-    "characterDisplayInfo": null,
+    "characterdisplayinfo": null,
     "skills": [
       {
-        "Name": "치근거리기",
-        "Power": 90,
-        "Hitrate": 90,
-        "Pp": 10
+        "name": "치근거리기",
+        "power": 90,
+        "hitrate": 90,
+        "pp": 10
       },
       {
-        "Name": "막치기",
-        "Power": 40,
-        "Hitrate": 100,
-        "Pp": 35
+        "name": "막치기",
+        "power": 40,
+        "hitrate": 100,
+        "pp": 35
       },
       {
-        "Name": "화염방사",
-        "Power": 90,
-        "Hitrate": 100,
-        "Pp": 15
+        "name": "화염방사",
+        "power": 90,
+        "hitrate": 100,
+        "pp": 15
       },
       {
-        "Name": "10만볼트",
-        "Power": 90,
-        "Hitrate": 100,
-        "Pp": 15
+        "name": "10만볼트",
+        "power": 90,
+        "hitrate": 100,
+        "pp": 15
       }
     ]
   },
   {
     "name": "괴력몬",
-    "maxHp": 90,
+    "maxhp": 90,
     "hp": 90,
     "att": 130,
     "def": 80,
@@ -251,37 +251,37 @@
     "critical": 15,
     "avoidence": 3,
     "level": 12,
-    "characterDisplayInfo": null,
+    "characterdisplayinfo": null,
     "skills": [
       {
-        "Name": "스톤샤워",
-        "Power": 75,
-        "Hitrate": 90,
-        "Pp": 10
+        "name": "스톤샤워",
+        "power": 75,
+        "hitrate": 90,
+        "pp": 10
       },
       {
-        "Name": "깨트리다",
-        "Power": 75,
-        "Hitrate": 100,
-        "Pp": 15
+        "name": "깨트리다",
+        "power": 75,
+        "hitrate": 100,
+        "pp": 15
       },
       {
-        "Name": "암석봉인",
-        "Power": 60,
-        "Hitrate": 95,
-        "Pp": 15
+        "name": "암석봉인",
+        "power": 60,
+        "hitrate": 95,
+        "pp": 15
       },
       {
-        "Name": "화염자동차",
-        "Power": 60,
-        "Hitrate": 100,
-        "Pp": 25
+        "name": "화염자동차",
+        "power": 60,
+        "hitrate": 100,
+        "pp": 25
       }
     ]
   },
   {
     "name": "포니타",
-    "maxHp": 50,
+    "maxhp": 50,
     "hp": 50,
     "att": 85,
     "def": 55,
@@ -291,37 +291,37 @@
     "critical": 15,
     "avoidence": 3,
     "level": 8,
-    "characterDisplayInfo": null,
+    "characterdisplayinfo": null,
     "skills": [
       {
-        "Name": "불꽃엄니",
-        "Power": 65,
-        "Hitrate": 95,
-        "Pp": 15
+        "name": "불꽃엄니",
+        "power": 65,
+        "hitrate": 95,
+        "pp": 15
       },
       {
-        "Name": "화염방사",
-        "Power": 90,
-        "Hitrate": 100,
-        "Pp": 15
+        "name": "화염방사",
+        "power": 90,
+        "hitrate": 100,
+        "pp": 15
       },
       {
-        "Name": "화염자동차",
-        "Power": 60,
-        "Hitrate": 100,
-        "Pp": 25
+        "name": "화염자동차",
+        "power": 60,
+        "hitrate": 100,
+        "pp": 25
       },
       {
-        "Name": "짓밟기",
-        "Power": 65,
-        "Hitrate": 100,
-        "Pp": 20
+        "name": "짓밟기",
+        "power": 65,
+        "hitrate": 100,
+        "pp": 20
       }
     ]
   },
   {
     "name": "팬텀",
-    "maxHp": 60,
+    "maxhp": 60,
     "hp": 60,
     "att": 65,
     "def": 60,
@@ -331,37 +331,37 @@
     "critical": 15,
     "avoidence": 3,
     "level": 11,
-    "characterDisplayInfo": null,
+    "characterdisplayinfo": null,
     "skills": [
       {
-        "Name": "섀도볼",
-        "Power": 80,
-        "Hitrate": 100,
-        "Pp": 15
+        "name": "섀도볼",
+        "power": 80,
+        "hitrate": 100,
+        "pp": 15
       },
       {
-        "Name": "악의파동",
-        "Power": 80,
-        "Hitrate": 100,
-        "Pp": 15
+        "name": "악의파동",
+        "power": 80,
+        "hitrate": 100,
+        "pp": 15
       },
       {
-        "Name": "핥기",
-        "Power": 30,
-        "Hitrate": 100,
-        "Pp": 30
+        "name": "핥기",
+        "power": 30,
+        "hitrate": 100,
+        "pp": 30
       },
       {
-        "Name": "섀도클로",
-        "Power": 70,
-        "Hitrate": 100,
-        "Pp": 15
+        "name": "섀도클로",
+        "power": 70,
+        "hitrate": 100,
+        "pp": 15
       }
     ]
   },
   {
     "name": "아쿠스타",
-    "maxHp": 60,
+    "maxhp": 60,
     "hp": 60,
     "att": 75,
     "def": 85,
@@ -371,31 +371,31 @@
     "critical": 15,
     "avoidence": 3,
     "level": 12,
-    "characterDisplayInfo": null,
+    "characterdisplayinfo": null,
     "skills": [
       {
-        "Name": "하이드로펌프",
-        "Power": 110,
-        "Hitrate": 80,
-        "Pp": 5
+        "name": "하이드로펌프",
+        "power": 110,
+        "hitrate": 80,
+        "pp": 5
       },
       {
-        "Name": "환상빔",
-        "Power": 65,
-        "Hitrate": 100,
-        "Pp": 20
+        "name": "환상빔",
+        "power": 65,
+        "hitrate": 100,
+        "pp": 20
       },
       {
-        "Name": "사이코키네시스",
-        "Power": 90,
-        "Hitrate": 100,
-        "Pp": 10
+        "name": "사이코키네시스",
+        "power": 90,
+        "hitrate": 100,
+        "pp": 10
       },
       {
-        "Name": "파도타기",
-        "Power": 90,
-        "Hitrate": 100,
-        "Pp": 15
+        "name": "파도타기",
+        "power": 90,
+        "hitrate": 100,
+        "pp": 15
       }
     ]
   }
