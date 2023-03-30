@@ -35,8 +35,6 @@ namespace Console_Pokemon_Project
 
             if (menu.Count.Equals(0))
             {
-                Console.WriteLine("보유 아이템이 없습니다.");
-                Console.ReadKey(true);
                 return null;
             }
 
