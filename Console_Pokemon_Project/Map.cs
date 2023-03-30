@@ -22,8 +22,9 @@ namespace Console_Pokemon_Project
         public enum TileType
         {
             GROUND = '　',
+            GRASS = '＃',
             WALL = '■',
-            PLAYER = '●',
+            PLAYER = '★',
             SHOP = '＠',
             MONSTER_FIELD = '※'
         }
@@ -32,7 +33,8 @@ namespace Console_Pokemon_Project
         public const int MAP_HEIGHT = 45;
         
 
-        public char[,] mapInfo = new char[MAP_WIDTH, MAP_HEIGHT]; // screen으로 출력할 맵 캐릭터 배열
+        public char[,] mapInfo = new char[MAP_WIDTH, MAP_HEIGHT]; // 맵 타일 정보
+        public char[,] printInfo = new char[MAP_WIDTH, MAP_HEIGHT]; // screen으로 출력할 맵 캐릭터 배열
         public readonly int startXLoc;
         public readonly int startYLoc;
         private int lastPlayerLocX;
@@ -52,7 +54,7 @@ namespace Console_Pokemon_Project
 
         public void InitMap()
         {
-            // 테두리는 벽, 그 안은 GROUND
+            // 처음은 GROUND로 채움
             for (int i = 0; i < MAP_WIDTH; i++)
             {
                 for (int j = 0; j < MAP_HEIGHT; j++)
@@ -60,6 +62,7 @@ namespace Console_Pokemon_Project
                     mapInfo[i, j] = (char)TileType.GROUND;
                 }
             }
+            // 테두리는 벽
             for (int i=0; i<MAP_WIDTH;i++)
             {
                 mapInfo[i, 0] = (char)TileType.WALL;
@@ -69,6 +72,20 @@ namespace Console_Pokemon_Project
             {
                 mapInfo[0, i] = (char)TileType.WALL;
                 mapInfo[MAP_WIDTH - 1, i] = (char)TileType.WALL;
+            }
+            for(int i=1; i<MAP_WIDTH-1; i++)
+            {
+                for(int j=1; j<MAP_HEIGHT-1; j++)
+                {
+                    if(i%2==0 && j%2==0)
+                    {
+                        mapInfo[i, j] = (char)TileType.GRASS;
+                    }
+                    else if(i%2==1 && j%2==1)
+                    {
+                        mapInfo[i, j] = (char)TileType.GRASS;
+                    }
+                }
             }
 
             // 다음 맵으로 넘어갈 수 있는 위치
@@ -143,11 +160,13 @@ namespace Console_Pokemon_Project
             int playerPosX = Player.instance.locX - this.startXLoc;
             int playerPosY = Player.instance.locY - this.startYLoc;
 
+            printInfo = (char[,])mapInfo.Clone();
+
             // 플레이어가 해당 맵에 없으면 종료
             if (playerPosX >= MAP_WIDTH || playerPosX < 0 ||
                 playerPosY >= MAP_HEIGHT || playerPosY < 0)
             {
-                mapInfo[lastPlayerPosX, lastPlayerPosY] = (char)TileType.GROUND;    // 맵 바뀌기 직전 캐릭터 흔적 삭제
+                printInfo[lastPlayerPosX, lastPlayerPosY] = (char)TileType.GROUND;    // 맵 바뀌기 직전 캐릭터 흔적 삭제
                 return true;
             }
 
@@ -159,16 +178,11 @@ namespace Console_Pokemon_Project
             }
             else
             {
-                if (mapInfo[playerPosX, playerPosY] == (char)TileType.MONSTER_FIELD)
-                {
-
-                }
-                mapInfo[lastPlayerPosX, lastPlayerPosY] = (char)TileType.GROUND;
-                mapInfo[playerPosX, playerPosY] = (char)TileType.PLAYER;
-
                 lastPlayerLocX = Player.instance.locX;
                 lastPlayerLocY = Player.instance.locY;
             }
+
+            printInfo[playerPosX, playerPosY] = (char)TileType.PLAYER;
 
             return false;
         }
@@ -224,7 +238,7 @@ namespace Console_Pokemon_Project
             lastPlayerLocX = Player.instance.locX;
             lastPlayerLocY = Player.instance.locY;
             UpdatePlayerLoc();
-            Screen.Print(mapInfo);
+            Screen.Print(printInfo);
 
             while (Player.instance.isWaitingInput)
             {
@@ -284,8 +298,7 @@ namespace Console_Pokemon_Project
                     //    return;
                     //}
                 }
-            
-                Screen.Print(mapInfo);
+                Screen.Print(printInfo);
             }
         }
 
