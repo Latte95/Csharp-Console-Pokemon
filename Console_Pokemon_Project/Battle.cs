@@ -517,7 +517,8 @@ namespace Console_Pokemon_Project
         {
             List<Item> tmpItem = Player.instance.inven.items;
 
-            ItemList.SelectMenu(DIALOGUE_X, DIALOGUE_Y, tmpItem);
+            DialogueClear();
+            Menu.SelectMenu(DIALOGUE_X, DIALOGUE_Y, tmpItem);
         }
         public bool Run() // 도망치기시 80%확률로 도망에 성공,
         {
@@ -567,7 +568,7 @@ namespace Console_Pokemon_Project
 
             if (enemy.hp <= 0)
             {
-                Console.Clear();
+                
                 Display();
                 Console.SetCursorPosition(DIALOGUE_X, DIALOGUE_Y);
                 Console.WriteLine("{0}의 체력이 0이 되었다.", enemy.name);
@@ -612,11 +613,11 @@ namespace Console_Pokemon_Project
             Console.SetCursorPosition(20, 3);
             Console.WriteLine("Lv : {0} ", enemy.level); // 몬스터의 Lv표시
             Console.SetCursorPosition(20, 5);
-            Console.WriteLine("HP : {0} / {1}", enemy.hp, enemy.maxHp); // 몬스터의 hp표시
+            Console.WriteLine("HP : {0} / {1, -3}", enemy.hp, enemy.maxHp); // 몬스터의 hp표시
             Console.SetCursorPosition(80, 23);
             Console.WriteLine("Lv : {0} ", Player.instance.level); //플레이어의 Lv표시
             Console.SetCursorPosition(80, 25);
-            Console.WriteLine("HP : {0} / {1}", Player.instance.hp, Player.instance.maxHp);  //플레이어의 hp표시
+            Console.WriteLine("HP : {0, -3} / {1, -3}", Player.instance.hp, Player.instance.maxHp);  //플레이어의 hp표시
         }
     }
 }
