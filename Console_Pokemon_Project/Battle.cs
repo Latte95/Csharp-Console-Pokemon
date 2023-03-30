@@ -534,6 +534,8 @@ namespace Console_Pokemon_Project
 
             }
 
+            Player.instance.isInBattle = false;
+            Player.instance.isWaitingInput = true;
         }
         public void ItemUse()
         {
