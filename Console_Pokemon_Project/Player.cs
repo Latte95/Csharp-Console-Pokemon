@@ -163,21 +163,5 @@ namespace Console_Pokemon_Project
                 tmpSkills[skillIndex].maxPp)
                 );
         }
-
-        private Player(string name, int hp, int atk, int def)
-        {
-            this.name = name;
-            this.hp = hp;
-            this.atk = atk;
-            this.def = def;
-            equipSlot = new EquipmentSlot();
-            inven = new Inventory();
-            locX = 2;
-            locY = 2;
-            isWaitingInput = true;
-        }
-
-
-
     }
 }

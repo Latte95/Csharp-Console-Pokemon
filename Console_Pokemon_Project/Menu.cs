@@ -8,11 +8,9 @@ namespace Console_Pokemon_Project
 {
     class Menu
     {
-        // 상점이면 아이템구입, 아이템판매 등등
-        // 전투면 전투, 아이템사용, 도망
-        // 전투면 무슨 스킬 선택할지
-        // 키입력 감지해서 무슨 메뉴를 선택했는지 판단
+        // List를 받아와서, 해당 List의 string을 메뉴로 출력
 
+        // ▶의 크기. 메뉴 이름과 ▶
         const int CURSOR_X_LENGTH = 2;
         // 최대 출력 옵션 수
         const int MAX_OPTION_LENGTH = 4;
@@ -21,18 +19,17 @@ namespace Console_Pokemon_Project
         // 메뉴가 출력되어야 될 위치값을 dialoqueXY로 전달받음
         public static string SelectMenu<T>(int dialoqueX, int dialoqueY, List<T> menu)
         {
-            // 선택 포인터(▶) 위치를 제한하기 위한 변수
+            // ▶가 선택할 메뉴 인덱스
             int pointerY = 0;
-            // ▶가 옮겨지기 전의 위치
+            // ▶가 옮겨지기 전의 위치(새로 그리기 위해서)
             int oldPointerY = 0;
             // 맨위에 출력될 아이템 인덱스
             int menuIndex = 0;
-            // 선택 가능한 메뉴 수
-            int menuLength = menu.Count;
             // 위를 눌렀는지 아래를 눌렀는지
-            bool isUp;
-            bool isDown;
+            bool isScrollUp;
+            bool isScrollDown;
 
+            // 출력할 메뉴가 없으면 null 반환
             if (menu.Count.Equals(0))
             {
                 return null;
@@ -48,11 +45,12 @@ namespace Console_Pokemon_Project
             {
                 // 사용자가 입력한 키를 저장하는 변수
                 ConsoleKey key = Console.ReadKey(true).Key;
-                // 사용자가 키입력을 하기 전의 위치를 저장
+                // 옮기기 전 위치 저장
                 oldPointerY = pointerY;
 
-                isUp = false;
-                isDown = false;
+                // 상태 초기화
+                isScrollUp = false;
+                isScrollDown = false;
 
                 // 입력한 키에 따른 행동을 정하는 조건문
                 switch (key)
@@ -62,8 +60,9 @@ namespace Console_Pokemon_Project
                         // 맨 위면 ▶ 이동x
                         if (pointerY.Equals(0))
                         {
-                            isUp = true;
+                            isScrollUp = true;
                         }
+                        // 맨 위 아니면 ▶ 위로 이동
                         else
                         {
                             pointerY = pointerY - 1;
@@ -73,8 +72,9 @@ namespace Console_Pokemon_Project
                         // 맨 아래면 ▶ 이동x
                         if (pointerY.Equals(MAX_OPTION_LENGTH - 1) || pointerY.Equals(menu.Count - 1))
                         {
-                            isDown = true;
+                            isScrollDown = true;
                         }
+                        // 맨 아래 아니면 ▶ 아래로 이동
                         else
                         {
                             pointerY = pointerY + 1;
@@ -85,41 +85,51 @@ namespace Console_Pokemon_Project
                     // 엔터 또는 스페이스바를 눌렀을 때 메뉴가 선택됨
                     case ConsoleKey.Enter:
                     case ConsoleKey.Spacebar:
-                        // ▶위치의 메뉴를 반환함
+                        // ▶ 위치의 메뉴를 반환함
+                        // 아이템이면 아이템이름
                         if (menu[pointerY] is Item item)
                         {
                             return item.name;
                         }
+                        // 스킬이면 스킬이름
                         else if (menu[pointerY] is Skill skill)
                         {
                             return skill.name;
                         }
+                        // string List 전달 받았으면 해당 str
                         else if (menu[pointerY] is string str)
                         {
                             return str;
                         }
+                        // 그외 null
                         else
                         {
                             return null;
                         }
+                    // esc 누를 시 
                     case ConsoleKey.Escape:
+                        // 스킬선택 (전투)일시 취소x
                         if (menu[pointerY] is Skill skill2)
                         {
                             continue;
                         }
+                        // 그 외에는 메뉴 출력 취소
                         else
                         {
                             return null;
                         }
                 }
-                if (isUp.Equals(true) && menuIndex > 0)
+                // ▶가 맨 위일 때 위를 눌렀고, 메뉴 인덱스 가 0보다 크면(맨위에 출력되는 메뉴가 첫 메뉴가 아니면)
+                if (isScrollUp.Equals(true) && menuIndex > 0)
                 {
+                    // 메뉴 위로 스크롤
                     MenuScrollUp(ref menuIndex);
                     PrintMenu(dialoqueX, dialoqueY, menu, menuIndex);
                 }
-                // 아래를 눌렀는데 ▶ 위치가 그대로면 아이템 스크롤을 올려줌
-                else if (isDown.Equals(true) && menuIndex < menu.Count - MAX_OPTION_LENGTH)
+                // ▶가 맨 아래일 때 아래를 눌렀고, 메뉴 인덱스가 마지막 인덱스가 아니면
+                else if (isScrollDown.Equals(true) && menuIndex < menu.Count - MAX_OPTION_LENGTH)
                 {
+                    // 메뉴 아래로 스크롤
                     MenuScrollDown(ref menuIndex);
                     PrintMenu(dialoqueX, dialoqueY, menu, menuIndex);
                 }
@@ -130,13 +140,14 @@ namespace Console_Pokemon_Project
         // 메뉴 목록만 출력
         private static void PrintMenu<T>(int dialoqueX, int dialoqueY, List<T> menu, int menuIndex)
         {
+            // 전각 반각 차이에 의한 *2 연산
             dialoqueX *= 2;
 
             // 출력할 메뉴 개수
             int menuLength = menu.Count;
             // 메뉴 팝업 너비
             int menuWidth = 0;
-            // 표시할 메뉴는 최대 4개
+            // 표시할 최대 메뉴 수
             int menuHeight;
             if (menu.Count > 4)
             {

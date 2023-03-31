@@ -2,33 +2,16 @@
   "name": "Player",
   "maxHp": 200,
   "hp": 200,
-  "atk": 444,
+  "atk": 125,
   "def": 30,
-  "speed": 50,
+  "speed": 75,
   "level": 15,
-  "money": 8700,
+  "money": 10000,
   "avoidence": 15,
   "critical": 3,
   "exp": 0,
   "inven": {
-    "items": [
-      {
-        "equipType": 0,
-        "name": "파란두건",
-        "atk": 0,
-        "def": 5,
-        "price": 300,
-        "quantity": 1
-      },
-      {
-        "equipType": 2,
-        "name": "칼1",
-        "atk": 5,
-        "def": 1,
-        "price": 1000,
-        "quantity": 1
-      }
-    ]
+    "items": []
   },
   "equipSlot": {
     "equipSlots": {
@@ -38,8 +21,8 @@
       "FOOT": null
     }
   },
-  "locX": 18,
-  "locY": 25,
+  "locX": 2,
+  "locY": 9,
   "isWaitingInput": true,
   "isInBattle": false,
   "upExp": [
@@ -779,25 +762,53 @@
       "maxPp": 15
     },
     {
-      "name": "아이언테일",
-      "power": 100,
-      "hitrate": 75,
-      "pp": 15,
-      "maxPp": 15
-    },
-    {
-      "name": "번개",
-      "power": 110,
-      "hitrate": 70,
+      "name": "치근거리기",
+      "power": 90,
+      "hitrate": 90,
       "pp": 10,
       "maxPp": 10
     },
     {
-      "name": "볼부비부비",
-      "power": 55,
-      "hitrate": 95,
+      "name": "물기",
+      "power": 60,
+      "hitrate": 100,
       "pp": 25,
       "maxPp": 25
+    },
+    {
+      "name": "하이드로펌프",
+      "power": 110,
+      "hitrate": 80,
+      "pp": 5,
+      "maxPp": 5
+    },
+    {
+      "name": "10만볼트",
+      "power": 90,
+      "hitrate": 100,
+      "pp": 15,
+      "maxPp": 15
+    },
+    {
+      "name": "치근거리기",
+      "power": 90,
+      "hitrate": 90,
+      "pp": 10,
+      "maxPp": 10
+    },
+    {
+      "name": "물기",
+      "power": 60,
+      "hitrate": 100,
+      "pp": 25,
+      "maxPp": 25
+    },
+    {
+      "name": "하이드로펌프",
+      "power": 110,
+      "hitrate": 80,
+      "pp": 5,
+      "maxPp": 5
     }
   ]
 }

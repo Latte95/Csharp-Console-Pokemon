@@ -10,6 +10,7 @@ namespace Console_Pokemon_Project
 {
     public class DataManager
     {
+        // 암호화 구현하려다 미뤄진 변수들...
         private static int keySizes = 32;
         private byte[] key;
         private static readonly byte[] salt = new byte[] { 0x26, 0x19, 0x36, 0x29, 0x3F, 0x10, 0x01, 0x1A };
@@ -35,9 +36,11 @@ namespace Console_Pokemon_Project
             return Player.instance;
         }
 
+        // 저장하기
         public static void Save(Player data)
         {           
             string path = Path.GetFullPath(Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..\.\JSON\"));
+            // 해당 경로가 없으면 새로 생성
             Directory.CreateDirectory(Path.GetDirectoryName(path+ "saveData.json"));
 
             string playerJson = JsonConvert.SerializeObject(Player.instance, Formatting.Indented);
