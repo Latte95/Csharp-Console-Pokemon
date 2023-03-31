@@ -730,8 +730,23 @@ namespace Console_Pokemon_Project
 
 
             double playerHpBarUnit = (Player.instance.maxHp / 10.0);
-            Console.SetCursorPosition(56, 27);
+            Console.SetCursorPosition(56, 26);
             Console.WriteLine("Lv : {0} ", Player.instance.level); //플레이어의 Lv표시
+            Console.SetCursorPosition(56, 28);
+            // 현재체력
+            Console.BackgroundColor = ConsoleColor.Gray;
+            for (int i = 0; i < Player.instance.hp / playerHpBarUnit; i++)
+            {
+                Console.Write("　");
+            }
+            Console.BackgroundColor = ConsoleColor.DarkGray;
+            // 깎인 체력
+            for (int i = 0; i < 9 - Player.instance.hp /playerHpBarUnit; i++)
+            {
+                Console.Write("　");
+            }
+            Console.ResetColor();
+            //플레이어 HP바
             Console.SetCursorPosition(56, 29);
             Console.WriteLine("HP : {0, -3} / {1, -3}", Player.instance.hp, Player.instance.maxHp);  //플레이어의 hp표시
             Console.SetCursorPosition(56, 31);
