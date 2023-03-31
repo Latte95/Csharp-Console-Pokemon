@@ -125,12 +125,16 @@ namespace Console_Pokemon_Project
             }
             Item selectedItem = Player.instance.inven.items[itemIndex];
 
+            // 선택한 아이템이 장비아이템이면
             if(selectedItem is EquipableItem)
             {
+                // 장비아이템 착용
                 Player.instance.equipSlot.EquipItem(selectedItem as EquipableItem);
             }
+            // 선택한 아이템이 소비아이템이면
             else if(selectedItem is ConsumableItem)
             {
+                // 수량 체크 후 사용(회복)
                 if(selectedItem.quantity > 0)
                 {
                     selectedItem.quantity--;
@@ -140,6 +144,7 @@ namespace Console_Pokemon_Project
                         Player.instance.hp = Player.instance.maxHp;
                     }
                 }
+                // 다 썼으면 인벤토리에서 삭제
                 if(selectedItem.quantity <= 0)
                 {
                     Player.instance.inven.RemoveItem(selectedItem);
@@ -152,10 +157,12 @@ namespace Console_Pokemon_Project
             Console.SetCursorPosition(CURSOR_X, CURSOR_Y);
             //Console.SetCursorPosition(CURSOR_X, Console.CursorTop);
 
+            // 장비슬롯 목록 가져오기
             List<EquipableItem.EQUIPTYPE> equipments = new List<EquipableItem.EQUIPTYPE>(Player.instance.equipSlot.equipSlots.Keys);
 
             List<string> equipmentNames = new List<string>();
 
+            // 플레이어 장비 슬롯에 있는 아이템 목록 출력
             for (int i = 0; i < equipments.Count; i++)
             {
                 if (Player.instance.equipSlot.equipSlots[equipments[i]] is null)
