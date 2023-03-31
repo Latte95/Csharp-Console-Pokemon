@@ -54,7 +54,7 @@ namespace Console_Pokemon_Project
         {
             this.name = "Player";
             this.maxHp = 200;
-            this.hp = 1;
+            this.hp = 200;
             this.atk = 125;
             this.def = 30;
             this.speed = 75;
