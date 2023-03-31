@@ -63,19 +63,10 @@ namespace Console_Pokemon_Project
                     Battle ga = new Battle();
                     ga.MeetPokemon();
                 }
-                
-                // 여기부터는 배틀차례
-                //if(Player.instance.isInBattle == true)
-                //{
-
-                //}
-                // Battle battle = new Battle();
-
-                //Screen.print(pixel);
-                //if (Console.ReadKey(true).Key == ConsoleKey.Escape)
-                //{
-                //  Menu.SelectMenu(cursorX, cursorY, option);
-                //}
+                if(Player.instance.hp <= 0)
+                {
+                    return;
+                }
             }
         }
     }
