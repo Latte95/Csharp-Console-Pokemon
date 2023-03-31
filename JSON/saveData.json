@@ -1,21 +1,18 @@
 {
   "name": "Player",
   "maxHp": 200,
-  "hp": 186,
+  "hp": 200,
   "atk": 444,
-  "def": 35,
+  "def": 30,
   "speed": 50,
   "level": 15,
-  "money": 11178,
+  "money": 8700,
   "avoidence": 15,
   "critical": 3,
-  "exp": 488,
+  "exp": 0,
   "inven": {
-    "items": []
-  },
-  "equipSlot": {
-    "equipSlots": {
-      "HEAD": {
+    "items": [
+      {
         "equipType": 0,
         "name": "파란두건",
         "atk": 0,
@@ -23,13 +20,26 @@
         "price": 300,
         "quantity": 1
       },
+      {
+        "equipType": 2,
+        "name": "칼1",
+        "atk": 5,
+        "def": 1,
+        "price": 1000,
+        "quantity": 1
+      }
+    ]
+  },
+  "equipSlot": {
+    "equipSlots": {
+      "HEAD": null,
       "BODY": null,
       "WEAPON": null,
       "FOOT": null
     }
   },
-  "locX": 21,
-  "locY": 21,
+  "locX": 18,
+  "locY": 25,
   "isWaitingInput": true,
   "isInBattle": false,
   "upExp": [
