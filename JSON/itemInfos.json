@@ -2,27 +2,97 @@
   {
     "$type": "Console_Pokemon_Project.EquipableItem, Console_Pokemon_Project",
     "equipType": 0,
-    "name": "파란두건",
+    "name": "파란 두건",
     "atk": 0,
-    "def": 5,
+    "def": 1,
+    "price": 100,
+    "quantity": 1
+  },
+  {
+    "$type": "Console_Pokemon_Project.EquipableItem, Console_Pokemon_Project",
+    "equipType": 0,
+    "name": "주황 머리띠",
+    "atk": 0,
+    "def": 2,
+    "price": 200,
+    "quantity": 1
+  },
+    {
+        "$type": "Console_Pokemon_Project.EquipableItem, Console_Pokemon_Project",
+        "equipType": 2,
+        "name": "한손 칼",
+        "atk": 5,
+        "def": 0,
+        "price": 500,
+        "quantity": 1
+    },
+  {
+    "$type": "Console_Pokemon_Project.ConsumableItem, Console_Pokemon_Project",
+    "name": "체력포션",
+    "atk": 0,
+    "def": 0,
+    "price": 300,
+    "quantity": 1
+  },
+  {
+    "$type": "Console_Pokemon_Project.EquipableItem, Console_Pokemon_Project",
+    "equipType": 1,
+    "name": "검은 티셔츠",
+    "atk": 0,
+    "def": 3,
+    "price": 300,
+    "quantity": 1
+  },
+  {
+    "$type": "Console_Pokemon_Project.EquipableItem, Console_Pokemon_Project",
+    "equipType": 1,
+    "name": "주황 티셔츠",
+    "atk": 0,
+    "def": 3,
     "price": 300,
     "quantity": 1
   },
   {
     "$type": "Console_Pokemon_Project.EquipableItem, Console_Pokemon_Project",
     "equipType": 2,
-    "name": "칼1",
-    "atk": 5,
-    "def": 1,
-    "price": 1000,
+    "name": "단도",
+    "atk": 8,
+    "def": 0,
+    "price": 800,
+    "quantity": 1
+  },
+  {
+    "$type": "Console_Pokemon_Project.ConsumableItem, Console_Pokemon_Project",
+    "name": "체력포션",
+    "atk": 0,
+    "def": 0,
+    "price": 300,
+    "quantity": 1
+  },
+  {
+    "$type": "Console_Pokemon_Project.EquipableItem, Console_Pokemon_Project",
+    "equipType": 3,
+    "name": "가죽샌들",
+    "atk": 0,
+    "def": 2,
+    "price": 200,
+    "quantity": 1
+  },
+  {
+    "$type": "Console_Pokemon_Project.EquipableItem, Console_Pokemon_Project",
+    "equipType": 3,
+    "name": "빨간장화",
+    "atk": 0,
+    "def": 2,
+    "price": 20,
     "quantity": 1
   },
   {
     "$type": "Console_Pokemon_Project.EquipableItem, Console_Pokemon_Project",
     "equipType": 2,
-    "name": "완드1",
-    "atk": 5,
-    "def": 1,
+    "name": "한손 도끼",
+    "atk": 10,
+    "def": 0 ,
     "price": 1000,
     "quantity": 1
   },
@@ -37,95 +107,25 @@
   {
     "$type": "Console_Pokemon_Project.EquipableItem, Console_Pokemon_Project",
     "equipType": 2,
-    "name": "몽둥이2",
-    "atk": 5,
-    "def": 1,
-    "price": 1000,
+    "name": "집행검+99",
+    "atk": 100,
+    "def": 10,
+    "price": 100000,
     "quantity": 1
   },
   {
     "$type": "Console_Pokemon_Project.EquipableItem, Console_Pokemon_Project",
     "equipType": 2,
-    "name": "칼2",
-    "atk": 5,
-    "def": 1,
-    "price": 1000,
-    "quantity": 1
-  },
-  {
-    "$type": "Console_Pokemon_Project.EquipableItem, Console_Pokemon_Project",
-    "equipType": 2,
-    "name": "완드2",
-    "atk": 5,
-    "def": 1,
-    "price": 1000,
-    "quantity": 1
-  },
-  {
-    "$type": "Console_Pokemon_Project.ConsumableItem, Console_Pokemon_Project",
-    "name": "체력포션",
-    "atk": 0,
+    "name": "엑스칼리버",
+    "atk": 150,
     "def": 0,
-    "price": 300,
+    "price": 100000,
     "quantity": 1
   },
   {
     "$type": "Console_Pokemon_Project.EquipableItem, Console_Pokemon_Project",
     "equipType": 2,
-    "name": "몽둥이3",
-    "atk": 5,
-    "def": 1,
-    "price": 1000,
-    "quantity": 1
-  },
-  {
-    "$type": "Console_Pokemon_Project.EquipableItem, Console_Pokemon_Project",
-    "equipType": 2,
-    "name": "칼3",
-    "atk": 5,
-    "def": 1,
-    "price": 1000,
-    "quantity": 1
-  },
-  {
-    "$type": "Console_Pokemon_Project.EquipableItem, Console_Pokemon_Project",
-    "equipType": 2,
-    "name": "완드3",
-    "atk": 5,
-    "def": 1,
-    "price": 1000,
-    "quantity": 1
-  },
-  {
-    "$type": "Console_Pokemon_Project.ConsumableItem, Console_Pokemon_Project",
-    "name": "체력포션",
-    "atk": 0,
-    "def": 0,
-    "price": 300,
-    "quantity": 1
-  },
-  {
-    "$type": "Console_Pokemon_Project.EquipableItem, Console_Pokemon_Project",
-    "equipType": 2,
-    "name": "몽둥이4",
-    "atk": 5,
-    "def": 1,
-    "price": 1000,
-    "quantity": 1
-  },
-  {
-    "$type": "Console_Pokemon_Project.EquipableItem, Console_Pokemon_Project",
-    "equipType": 2,
-    "name": "칼4",
-    "atk": 5,
-    "def": 1,
-    "price": 1000,
-    "quantity": 1
-  },
-  {
-    "$type": "Console_Pokemon_Project.EquipableItem, Console_Pokemon_Project",
-    "equipType": 2,
-    "name": "완드4",
+    "name": "완드",
     "atk": 5,
     "def": 1,
     "price": 1000,
