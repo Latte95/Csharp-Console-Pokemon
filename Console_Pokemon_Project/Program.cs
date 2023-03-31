@@ -10,7 +10,7 @@ namespace Console_Pokemon_Project
 {
     class Program
     {
-        public static List<string> titleOption = new List<string> { "새로하기", "불러오기", "게임 종료", "게임 종료", "게임 종료", "게임 종료" };
+        public static List<string> titleOption = new List<string> { "새로하기", "불러오기", "게임 종료"};
 
         static void Main(string[] args)
         {
