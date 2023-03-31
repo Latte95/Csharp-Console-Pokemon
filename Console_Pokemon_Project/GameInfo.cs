@@ -183,6 +183,7 @@ namespace Console_Pokemon_Project
                 return;
             }
 
+            // 선택한 장비 부위에 맞게 장착 해제
             string selectedType = Menu.SelectMenu(CURSOR_X, CURSOR_Y, equipmentNames);
             if(selectedType == null)
             {

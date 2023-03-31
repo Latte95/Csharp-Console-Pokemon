@@ -19,29 +19,22 @@ namespace Console_Pokemon_Project
         // 인벤토리에 아이템 추가 (구매, 착용, 드랍 등등)
         public void AddItem(Item item)
         {
-            // 소비 아이템을 추가할 땐
             if (item is ConsumableItem)
             {
-                ConsumableItem addItem = (ConsumableItem)item;
-                bool isExist = false;
-                // 인벤토리에 추가하는 아이템이 이미 있으면 
-                foreach (Item existItem in items)
+                // 같은 이름을 가진 아이템이 있는지 찾기
+                int itemIndex = items.FindIndex(invenItem => invenItem.name == item.name);
+                
+                // 아이템이 있으면 수량증가
+                if (itemIndex >= 0)
                 {
-                    if (existItem.name == addItem.name)
-                    {
-                        // 이미 존재하는 아이템의 개수를 추가
-                        ConsumableItem existing = (ConsumableItem)existItem;
-                        existing.quantity += addItem.quantity;                        
-                        isExist = true;
-                        // 불필요한 반복 종료
-                        break;
-                    }
+                    Player.instance.inven.items[itemIndex].quantity++;
+                    return;
                 }
-                // 없으면 새롭게 아이템을 추가
-                if (!isExist)
+                // 아이템이 없으면 인벤토리에 추가
+                else
                 {
-                    items.Add(addItem);
-                    addItem.quantity = 1;
+                    items.Add(item);
+                    item.quantity = 1;
                 }
             }
             // 장비 아이템을 추가할 땐
@@ -49,6 +42,7 @@ namespace Console_Pokemon_Project
             {
                 // 그냥 아이템 추가
                 items.Add(item);
+                item.quantity = 1;
             }
             else
             {
@@ -59,27 +53,30 @@ namespace Console_Pokemon_Project
         // 아이템 삭제 (판매, 해제, 버림, 사용 등등)
         public void RemoveItem(Item item)
         {
+            // 같은 이름을 가진 아이템이 있는지 찾기
+            int itemIndex = items.FindIndex(invenItem => invenItem.name == item.name);
+
             // 인벤토리에 삭제할 아이템이 있다면
-            if(items.Contains(item))
+            if (itemIndex >= 0)
             {
                 // 소비 아이템
                 if(item is ConsumableItem)
                 {
                     // 보유 하고 있으면 1개씩 제거하고
-                    if (item.quantity > 0)
+                    if (items[itemIndex].quantity > 0)
                     {
-                        item.quantity--;
+                        items[itemIndex].quantity--;
                     }
                     // 수량이 0이 되면 완전히 제거
-                    if(item.quantity <= 0)
+                    if(items[itemIndex].quantity <= 0)
                     {
-                        items.Remove(item);
+                        items.RemoveAt(itemIndex);
                     }
                 }
                 // 장비 아이템은 그냥 완전히 제거
                 else
                 {
-                    items.Remove(item);
+                    items.RemoveAt(itemIndex);
                 }
             }
         }
