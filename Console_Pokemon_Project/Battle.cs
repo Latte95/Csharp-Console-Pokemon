@@ -724,12 +724,12 @@ namespace Console_Pokemon_Project
                 Console.Write("　");
             }
             Console.ResetColor();
-
-            // 몬스터의 hp표시
+            //몬스터 HP바
             Console.SetCursorPosition(44,7);
-            Console.WriteLine("HP : {0 ,-3} / {1, -3}", enemy.hp, enemy.maxHp); 
+            Console.WriteLine("HP : {0 ,-3} / {1, -3}", enemy.hp, enemy.maxHp);  //몬스터 HP표시
 
 
+            double playerHpBarUnit = (Player.instance.maxHp / 10.0);
             Console.SetCursorPosition(56, 27);
             Console.WriteLine("Lv : {0} ", Player.instance.level); //플레이어의 Lv표시
             Console.SetCursorPosition(56, 29);
