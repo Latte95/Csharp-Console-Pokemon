@@ -27,7 +27,11 @@ namespace Console_Pokemon_Project
             WALL = '■',
             PLAYER = '★',
             SHOP = '＠',
-            MONSTER_FIELD = '※'
+            MONSTER_FIELD = '※',
+            EXIT_DIRECTION_LEFT = '←',
+            EXIT_DIRECTION_RIGHT = '→',
+            EXIT_DIRECTION_UP = '↑',
+            EXIT_DIRECTION_DOWN = '↓'
         }
 
         public const int MAP_WIDTH = 40;
