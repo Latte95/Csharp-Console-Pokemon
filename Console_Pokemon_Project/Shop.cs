@@ -84,7 +84,8 @@ namespace Console_Pokemon_Project
                 return;
             }
             else if (Player.instance.money < tmpItem.price)
-            {   
+            {
+                Console.WriteLine("소지금이 부족합니다.");
                 return;
             }
 
