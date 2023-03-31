@@ -80,7 +80,7 @@ namespace Console_Pokemon_Project
 
         }
 
-        public void MeetPokemon()
+        public void MeetPokemon() //포켓몬과 조우시작
         {
 
             bool isBattlePlay = true; // 배틀전체 실행값
@@ -88,10 +88,9 @@ namespace Console_Pokemon_Project
             BattleFrame();
             MonsterGraphic();
             PlayerGraphic();
-            // MonsterGraphic();
             Screen.Print(pixel);
             Console.SetCursorPosition(DIALOGUE_X, DIALOGUE_Y);
-            Console.WriteLine("지나가던 {0}와 조우했다! 공격력 {1}", enemy.name, Player.instance.atk);
+            Console.WriteLine("지나가던 {0}와 조우했다!", enemy.name);
             Console.ReadKey(true);
             DialogueClear();
 
@@ -105,9 +104,8 @@ namespace Console_Pokemon_Project
                 Console.ReadKey(true);
                 DialogueClear();
 
-
-                string name = Menu.SelectMenu(DIALOGUE_X, DIALOGUE_Y, battle);
                 string skillName;
+                string name = Menu.SelectMenu(DIALOGUE_X, DIALOGUE_Y, battle); // 
                 switch (name)
                 {
                     case "전투":
@@ -704,7 +702,7 @@ namespace Console_Pokemon_Project
 
         public static void Display() //플레이어와 몬스터의 상태창을 띄워주는 메서드 (상수좀 바꿔줘야될듯?)
         {
-            int monHpBar = (enemy.maxHp / 10) ;
+            double monHpBarUnit = (enemy.maxHp / 10.0) ;
 
             Console.SetCursorPosition(44, 2);
             Console.WriteLine("이름 : {0} ", enemy.name); // 몬스터의 Lv표시
@@ -714,12 +712,14 @@ namespace Console_Pokemon_Project
 
             Console.SetCursorPosition(44, 6);
             Console.BackgroundColor = ConsoleColor.Gray;
-            for (int i=0; i< enemy.hp/monHpBar; i++)
+            // 현재체력
+            for (int i=0; i< enemy.hp/monHpBarUnit; i++)
             {
                 Console.Write("　");
             }
-            Console.BackgroundColor = ConsoleColor.Black;
-            for (int i=0; i<11-enemy.hp /monHpBar; i++)
+            Console.BackgroundColor = ConsoleColor.DarkGray;
+            // 깎인 체력
+            for (int i=0; i< 9 - enemy.hp /monHpBarUnit; i++)
             {
                 Console.Write("　");
             }
@@ -730,11 +730,11 @@ namespace Console_Pokemon_Project
             Console.WriteLine("HP : {0 ,-3} / {1, -3}", enemy.hp, enemy.maxHp); 
 
 
-            Console.SetCursorPosition(56, 28);
+            Console.SetCursorPosition(56, 27);
             Console.WriteLine("Lv : {0} ", Player.instance.level); //플레이어의 Lv표시
-            Console.SetCursorPosition(56, 30);
+            Console.SetCursorPosition(56, 29);
             Console.WriteLine("HP : {0, -3} / {1, -3}", Player.instance.hp, Player.instance.maxHp);  //플레이어의 hp표시
-            Console.SetCursorPosition(56, 32);
+            Console.SetCursorPosition(56, 31);
             Console.WriteLine("EXP : {0, -3} / {1, -3}", Player.instance.exp, Player.instance.upExp[Player.instance.level]);  //플레이어의 hp표시
 
 
