@@ -8,6 +8,7 @@ namespace Console_Pokemon_Project
 {
     public class EquipableItem : Item
     {
+        // 장비 슬롯 부위
         public enum EQUIPTYPE
         {
             HEAD,
