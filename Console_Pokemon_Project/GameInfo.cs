@@ -109,11 +109,18 @@ namespace Console_Pokemon_Project
 
             // 해당 문자열 (아이템이름)이 플레이어 인벤토리의 몇번째 인덱스인지 탐색
             int itemIndex = Player.instance.inven.items.FindIndex(item => item.name == itemName);
-            if(itemIndex < 0)
+
+            // 플레이어 인벤토리에 아이템이 없을 때
+            if(Player.instance.inven.items.Count <= 0)
             {
                 Console.SetCursorPosition(CURSOR_X * 2, CURSOR_Y + infoMenu.Count - 1);
                 Console.WriteLine("아이템 없음");
                 Console.ReadKey(true);
+                return;
+            }
+            // 선택한 아이템이 없을 때 (선택 안하고 나왔을 때)
+            if(itemIndex < 0)
+            {
                 return;
             }
             Item selectedItem = Player.instance.inven.items[itemIndex];
