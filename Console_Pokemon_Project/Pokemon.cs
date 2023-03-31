@@ -79,11 +79,11 @@ namespace Console_Pokemon_Project
                     AddSkill(6);
                     AddSkill(7);
                     break;
-                case "나옹":
-                    AddSkill(8);
+                case "아보크":
+                    AddSkill(10);
                     AddSkill(13);
-                    AddSkill(15);
-                    AddSkill(16);
+                    AddSkill(24);
+                    AddSkill(18);
                     break;
                 case "푸린":
                     AddSkill(16);

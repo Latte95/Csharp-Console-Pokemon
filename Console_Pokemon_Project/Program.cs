@@ -16,10 +16,12 @@ namespace Console_Pokemon_Project
         {
             Screen.PreferencesWindow();
             Title();
+            
         }
 
         public static void Title()
         {
+            Screen.TitleGraphic();
             string select;
 
             select = Menu.SelectMenu((Screen.WINDOW_WIDTH >> 2)-10, 30, titleOption);

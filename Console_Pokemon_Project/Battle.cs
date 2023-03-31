@@ -138,6 +138,7 @@ namespace Console_Pokemon_Project
                                 {
                                     break;
                                 }
+                                PlayerLevelUp(Player.instance.upExp);
                                 MonsterAttack();
                                 isBattlePlay = CheckPlayerAlive();
                             }
@@ -396,6 +397,7 @@ namespace Console_Pokemon_Project
             if (monSkillDam1 < 1) { monSkillDam1 = 1; }
             if (monSkillDam2 < 1) { monSkillDam2 = 1; }
             if (monSkillDam3 < 1) { monSkillDam3 = 1; }
+            DialogueClear();
 
             Console.WriteLine(enemy.skills[ranSkill].name);
             if (Player.instance.hp != 0 && enemy.hp != 0)
